@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SuasCaronas extends StatelessWidget {
-  const SuasCaronas({Key? key}) : super(key: key);
+class HistoricoPage extends StatelessWidget {
+  const HistoricoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(

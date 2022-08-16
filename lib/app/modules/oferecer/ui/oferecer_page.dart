@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class OferecerCaronas extends StatelessWidget {
-  const OferecerCaronas({Key? key}) : super(key: key);
+class OferecerPage extends StatelessWidget {
+  const OferecerPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
