@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        dividerColor: Colors.black,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -35,51 +36,50 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   int _selectedIndex = 0;
 
-  final screens = [
-    PegarCaronas(),
-    SuasCaronas(),
-    OferecerCaronas(),
-    Perfil()
-  ];
+  final screens = [PegarCaronas(), SuasCaronas(), OferecerCaronas(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: screens,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.green,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white38,
-        iconSize: 25,
-        showUnselectedLabels: false,
-        currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index) ,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.thumb_up_rounded),
-            label: 'Pegar',
+    return MaterialApp(
+        title: 'navbar',
+        theme: ThemeData(
+          primaryColor: Colors.green
+        ),
+        home: Scaffold(
+          body: IndexedStack(
+            index: _selectedIndex,
+            children: screens,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people_rounded),
-            label: 'Caronas',
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.green,
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white38,
+            iconSize: 25,
+            showUnselectedLabels: false,
+            currentIndex: _selectedIndex,
+            onTap: (index) => setState(() => _selectedIndex = index),
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.thumb_up_rounded),
+                label: 'Pegar',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.people_rounded),
+                label: 'Caronas',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.directions_car_filled),
+                label: 'Oferecer',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle_rounded),
+                label: 'Perfil',
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.directions_car_filled),
-            label: 'Oferecer',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_rounded),
-            label: 'Perfil',
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }
