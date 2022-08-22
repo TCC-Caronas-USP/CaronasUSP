@@ -5,7 +5,10 @@ class User {
   final String cpf;
   final String telefone;
   final String instituto;
-  final String veiculo;
+  final String veiculoModelo;
+  final String veiculoCor;
+  final String veiculoMarca;
+  final String veiculoPlaca;
   final int caronasUtilizadas;
   final int caronasRealizadas;
   final double ranking;
@@ -17,7 +20,10 @@ class User {
     required this.cpf,
     required this.telefone,
     required this.instituto,
-    required this.veiculo,
+    required this.veiculoModelo,
+    required this.veiculoCor,
+    required this.veiculoMarca,
+    required this.veiculoPlaca,
     required this.caronasUtilizadas,
     required this.caronasRealizadas,
     required this.ranking,
