@@ -6,7 +6,6 @@ import 'package:caronas_usp/widget/infos_widget.dart';
 import 'package:caronas_usp/widget/numbers_widget.dart';
 import 'package:caronas_usp/widget/profile_widget.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
