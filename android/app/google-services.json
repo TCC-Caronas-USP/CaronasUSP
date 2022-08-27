@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "85259641686",
+    "project_id": "caronas-usp-teste",
+    "storage_bucket": "caronas-usp-teste.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85259641686:android:4cbb064107a5a335da6cf7",
+        "android_client_info": {
+          "package_name": "com.example.caronas_usp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85259641686-s8rs7no6e2blcqdoo392682km4i2kcpl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6WH-_JW09LozezY6dAKagpcLJQdd8kQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85259641686-s8rs7no6e2blcqdoo392682km4i2kcpl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
