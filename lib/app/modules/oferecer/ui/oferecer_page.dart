@@ -1,3 +1,4 @@
+import 'package:caronas_usp/widget/appbar_widget.dart';
 import 'package:flutter/material.dart';
 
 class OferecerPage extends StatelessWidget {
@@ -5,7 +6,7 @@ class OferecerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text("Oferecer Caronas"),),
+    appBar: buildAppBar(context, "Oferecer Caronas"),
     body: const Center(
       child: Text("Oferecer Caronas"),
     ),

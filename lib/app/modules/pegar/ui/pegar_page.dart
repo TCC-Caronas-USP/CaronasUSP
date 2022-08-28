@@ -1,3 +1,4 @@
+import 'package:caronas_usp/widget/appbar_widget.dart';
 import 'package:flutter/material.dart';
 
 class PegarPage extends StatelessWidget {
@@ -5,7 +6,7 @@ class PegarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text("Pegar Caronas"),),
+    appBar: buildAppBar(context, "Pegar Caronas"),
     body: const Center(
       child: Text("Pegar Caronas"),
     ),
