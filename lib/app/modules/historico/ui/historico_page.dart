@@ -6,9 +6,9 @@ class HistoricoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: buildAppBar(context, "Suas Caronas"),
-    body: const Center(
-      child: Text("Suas Caronas"),
-    ),
-  );
+        appBar: buildAppBar(context, "Suas Caronas"),
+        body: const Center(
+          child: Text("Suas Caronas"),
+        ),
+      );
 }
