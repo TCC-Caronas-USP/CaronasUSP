@@ -6,9 +6,9 @@ class OferecerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: buildAppBar(context, "Oferecer Caronas"),
-    body: const Center(
-      child: Text("Oferecer Caronas"),
-    ),
-  );
+        appBar: buildAppBar(context, "Oferecer Caronas"),
+        body: const Center(
+          child: Text("Oferecer Caronas"),
+        ),
+      );
 }

@@ -6,9 +6,9 @@ class PegarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: buildAppBar(context, "Pegar Caronas"),
-    body: const Center(
-      child: Text("Pegar Caronas"),
-    ),
-  );
+        appBar: buildAppBar(context, "Pegar Caronas"),
+        body: const Center(
+          child: Text("Pegar Caronas"),
+        ),
+      );
 }
