@@ -8,6 +8,7 @@ import 'package:caronas_usp/widget/appbar_widget.dart';
 import 'package:caronas_usp/widget/infos_widget.dart';
 import 'package:caronas_usp/widget/numbers_widget.dart';
 import 'package:caronas_usp/widget/profile_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
