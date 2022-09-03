@@ -12,12 +12,16 @@ class OferecerPage extends StatefulWidget {
 class _OferecerPageState extends State<OferecerPage> {
   @override
   Widget build(BuildContext context) {
+    // const userOfferedRides = UserOfferedRides.myOfferedRides;
+
     return Scaffold(
         appBar: buildAppBar(context, "Oferecer Caronas"),
-        body: ListView(physics: const BouncingScrollPhysics(), children: const [
-          SizedBox(height: 24,),
-          OfferRide(),
-          SizedBox(height: 24,),
+        body: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: const [
+              SizedBox(height: 24,),
+              OfferRide(),
+              SizedBox(height: 24,),
         ]));
   }
 }
