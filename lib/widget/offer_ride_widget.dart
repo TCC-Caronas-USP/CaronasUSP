@@ -1,22 +1,15 @@
 import 'package:caronas_usp/model/ride.dart';
-import 'package:caronas_usp/utils/user_offered_rides.dart';
 import 'package:caronas_usp/widget/ride_infos_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class OfferRide extends StatefulWidget {
-  const OfferRide({Key? key}) : super(key: key);
+class OfferRide extends StatelessWidget {
+  final List<List<Ride>> userOfferedRides;
 
-  @override
-  State<OfferRide> createState() => _OfferRideState();
-}
+  const OfferRide({Key? key, required this.userOfferedRides}) : super(key: key);
 
-class _OfferRideState extends State<OfferRide> {
   @override
   Widget build(BuildContext context) {
-    const userOfferedRides = UserOfferedRides.myOfferedRides;
-    List<List<Ride>> dailyOfferedRides = rideDates(userOfferedRides);
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Column(
@@ -26,9 +19,9 @@ class _OfferRideState extends State<OfferRide> {
               scrollDirection: Axis.vertical,
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
-              itemCount: dailyOfferedRides.length,
+              itemCount: userOfferedRides.length,
               itemBuilder: (context, index) {
-                final item = dailyOfferedRides[index];
+                final item = userOfferedRides[index];
                 final date = item[0].rideDate.substring(0, 10);
 
                 return buildRideDailyOffered(date, item);
@@ -36,28 +29,6 @@ class _OfferRideState extends State<OfferRide> {
         ],
       ),
     );
-  }
-
-  List<List<Ride>> rideDates(List<Ride> userOfferedRides) {
-    List<String> userOfferedRideDates = [];
-    for (final ride in userOfferedRides) {
-      var rideDate = ride.rideDate.substring(0, 10);
-      userOfferedRideDates.add(rideDate);
-    }
-    userOfferedRideDates = userOfferedRideDates.toSet().toList()..sort();
-
-    List<List<Ride>> ridesOfTheSameDay = [];
-    for (final userOfferedRideDate in userOfferedRideDates) {
-      List<Ride> rideOfTheSameDay = [];
-      for (final ride in userOfferedRides) {
-        if (userOfferedRideDate == ride.rideDate.substring(0, 10)) {
-          rideOfTheSameDay.add(ride);
-        }
-      }
-      ridesOfTheSameDay.add(rideOfTheSameDay);
-    }
-
-    return ridesOfTheSameDay;
   }
 
   Widget buildRideDailyOffered(String rideDate, List<Ride> userOfferedRides) {
