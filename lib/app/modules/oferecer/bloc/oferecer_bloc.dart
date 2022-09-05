@@ -1,13 +1,18 @@
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_event.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_state.dart';
+import 'package:caronas_usp/app/repositories/rides_repository.dart';
+import 'package:caronas_usp/model/ride.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OferecerBloc extends Bloc<OferecerEvent, OferecerState> {
+  final RidesRepository ridesRepository;
 
-  OferecerBloc() : super(OferecerLoading()) {
-    on<FetchOferecer>((event, emit) async {
+  OferecerBloc(this.ridesRepository) : super(OferecerLoading()) {
+    on<FetchUserOfferedRides>((event, emit) async {
       emit(OferecerLoading());
-      emit(OferecerLoaded());
+
+      final List<List<Ride>> userOfferedRides = await ridesRepository.getUserOfferedRides();
+      emit(OferecerLoaded(userOfferedRides));
     });
   }
 }
