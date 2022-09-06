@@ -12,7 +12,7 @@ import 'page/user_page_test.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 // class MyApp extends StatelessWidget {
@@ -32,6 +32,7 @@ Future main() async {
 // }
 
 class MyApp extends StatelessWidget{
+  const MyApp({super.key});
   static const String title = 'Flutter Demo';
 
   @override
@@ -61,10 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   final screens = [
-    PegarCaronas(),
-    SuasCaronas(),
-    OferecerCaronas(),
-    Perfil()
+    const PegarCaronas(),
+    const SuasCaronas(),
+    const OferecerCaronas(),
+    const Perfil()
   ];
 
   @override

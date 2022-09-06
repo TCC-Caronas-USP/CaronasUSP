@@ -1,4 +1,4 @@
-import 'package:caronas_usp/page/Perfil.dart';
+// import 'package:caronas_usp/page/Perfil.dart';
 import 'package:caronas_usp/provider/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -18,7 +18,9 @@ class SignUpWidget extends StatelessWidget {
 
         const Spacer(),
 
-        const FlutterLogo(size: 120), //TODO: Alterar o logo do Flutter pelo logo do projeto
+        // const FlutterLogo(size: 120), //TODO: Alterar o logo do Flutter pelo logo do projeto
+
+        Icon(Icons.directions_car_rounded, size: 120, color: standardPageColor),
 
         const Spacer(),
 
@@ -65,39 +67,51 @@ class SignUpWidget extends StatelessWidget {
 
         const SizedBox(height: 40),
 
-        RichText(
-          text: TextSpan(
-            children: [
-              TextSpan(
-                text: 'Não possui uma conta? ',
-                style: TextStyle(
-                  color: standardPageColor,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-              WidgetSpan(
-                child: GestureDetector(
-                  child: Text(
-                    'Cadastre-se',
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      color: standardPageColor,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        //TODO: Caminho apenas de exemplo, levar o usuário para uma página de registro
-                        builder: (context) => const Perfil()),
-                    );
-                  }
-                )
-              )
-            ]
+        const SizedBox(height: 8),
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            'Sistema de login unificado',
+            style: TextStyle(
+              fontSize: 16,
+              color: standardPageColor
+            ),
           )
         ),
+
+        // RichText(
+        //   text: TextSpan(
+        //     children: [
+        //       TextSpan(
+        //         text: 'Não possui uma conta? ',
+        //         style: TextStyle(
+        //           color: standardPageColor,
+        //           fontWeight: FontWeight.bold
+        //         ),
+        //       ),
+        //       WidgetSpan(
+        //         child: GestureDetector(
+        //           child: Text(
+        //             'Cadastre-se',
+        //             style: TextStyle(
+        //               decoration: TextDecoration.underline,
+        //               color: standardPageColor,
+        //               fontWeight: FontWeight.bold
+        //             ),
+        //           ),
+        //           onTap: (){
+        //             Navigator.push(
+        //               context,
+        //               MaterialPageRoute(
+        //                 //TODO: Caminho apenas de exemplo, levar o usuário para uma página de registro
+        //                 builder: (context) => const Perfil()),
+        //             );
+        //           }
+        //         )
+        //       )
+        //     ]
+        //   )
+        // ),
         
         const Spacer()
 
