@@ -17,5 +17,5 @@ class OferecerLoading extends OferecerState {
 class OferecerLoaded extends OferecerState {
   final List<List<Ride>> userOfferedRides;
 
-  OferecerLoaded(this.userOfferedRides) : super([]);
+  OferecerLoaded(this.userOfferedRides) : super([userOfferedRides]);
 }
