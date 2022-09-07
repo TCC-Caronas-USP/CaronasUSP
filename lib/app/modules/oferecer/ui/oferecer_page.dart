@@ -65,18 +65,7 @@ class _OferecerPageState extends State<OferecerPage> {
                       color: Colors.green,
                       size: 50.0,
                     )
-                  : ListView(
-                      physics: const BouncingScrollPhysics(),
-                      children: [
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          OfferRide(userOfferedRides: userOfferedRides!),
-                          const SizedBox(
-                            height: 24,
-                          ),
-                        ]
-              )
+                  : OfferRide(userOfferedRides: userOfferedRides!),
           );
         });
   }

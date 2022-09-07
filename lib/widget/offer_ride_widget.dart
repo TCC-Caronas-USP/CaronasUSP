@@ -10,25 +10,21 @@ class OfferRide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ListView.builder(
-              scrollDirection: Axis.vertical,
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: userOfferedRides.length,
-              itemBuilder: (context, index) {
-                final item = userOfferedRides[index];
-                final date = item[0].rideDate.substring(0, 10);
+    return ListView.builder(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8.0,
+          vertical: 24,
+        ),
+        scrollDirection: Axis.vertical,
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: userOfferedRides.length,
+        itemBuilder: (context, index) {
+          final item = userOfferedRides[index];
+          final date = item[0].rideDate.substring(0, 10);
 
-                return buildRideDailyOffered(date, item);
-              })
-        ],
-      ),
-    );
+          return buildRideDailyOffered(date, item);
+        });
   }
 
   Widget buildRideDailyOffered(String rideDate, List<Ride> userOfferedRides) {
@@ -40,7 +36,7 @@ class OfferRide extends StatelessWidget {
 
     return Column(children: [
       Text(
-        " $rideDay/$rideMonth/$rideYear",
+        "$rideDay/$rideMonth/$rideYear",
         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         textAlign: TextAlign.center,
         softWrap: true,
