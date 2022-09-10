@@ -1,63 +1,30 @@
 import 'package:caronas_usp/model/ride.dart';
-import 'package:caronas_usp/utils/user_offered_rides.dart';
 import 'package:caronas_usp/widget/ride_infos_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class OfferRide extends StatefulWidget {
-  const OfferRide({Key? key}) : super(key: key);
+class OfferRide extends StatelessWidget {
+  final List<List<Ride>> userOfferedRides;
 
-  @override
-  State<OfferRide> createState() => _OfferRideState();
-}
+  const OfferRide({Key? key, required this.userOfferedRides}) : super(key: key);
 
-class _OfferRideState extends State<OfferRide> {
   @override
   Widget build(BuildContext context) {
-    const userOfferedRides = UserOfferedRides.myOfferedRides;
-    List<List<Ride>> dailyOfferedRides = rideDates(userOfferedRides);
+    return ListView.builder(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8.0,
+          vertical: 24,
+        ),
+        scrollDirection: Axis.vertical,
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: userOfferedRides.length,
+        itemBuilder: (context, index) {
+          final item = userOfferedRides[index];
+          final date = item[0].rideDate.substring(0, 10);
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ListView.builder(
-              scrollDirection: Axis.vertical,
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: dailyOfferedRides.length,
-              itemBuilder: (context, index) {
-                final item = dailyOfferedRides[index];
-                final date = item[0].rideDate.substring(0, 10);
-
-                return buildRideDailyOffered(date, item);
-              })
-        ],
-      ),
-    );
-  }
-
-  List<List<Ride>> rideDates(List<Ride> userOfferedRides) {
-    List<String> userOfferedRideDates = [];
-    for (final ride in userOfferedRides) {
-      var rideDate = ride.rideDate.substring(0, 10);
-      userOfferedRideDates.add(rideDate);
-    }
-    userOfferedRideDates = userOfferedRideDates.toSet().toList()..sort();
-
-    List<List<Ride>> ridesOfTheSameDay = [];
-    for (final userOfferedRideDate in userOfferedRideDates) {
-      List<Ride> rideOfTheSameDay = [];
-      for (final ride in userOfferedRides) {
-        if (userOfferedRideDate == ride.rideDate.substring(0, 10)) {
-          rideOfTheSameDay.add(ride);
-        }
-      }
-      ridesOfTheSameDay.add(rideOfTheSameDay);
-    }
-
-    return ridesOfTheSameDay;
+          return buildRideDailyOffered(date, item);
+        });
   }
 
   Widget buildRideDailyOffered(String rideDate, List<Ride> userOfferedRides) {
@@ -69,7 +36,7 @@ class _OfferRideState extends State<OfferRide> {
 
     return Column(children: [
       Text(
-        " $rideDay/$rideMonth/$rideYear",
+        "$rideDay/$rideMonth/$rideYear",
         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         textAlign: TextAlign.center,
         softWrap: true,

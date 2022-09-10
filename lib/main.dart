@@ -3,6 +3,7 @@ import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
 import 'package:caronas_usp/app/modules/pegar/bloc/pegar_bloc.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_bloc.dart';
+import 'package:caronas_usp/app/repositories/rides_repository.dart';
 import 'package:caronas_usp/app/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,9 @@ Future<void> main() async {
           create: (context) => LoginBloc(),
         ),
         BlocProvider(
-          create: (context) => OferecerBloc(),
+          create: (context) => OferecerBloc(
+            RidesRepository(),
+          ),
         ),
         BlocProvider(
           create: (context) => PegarBloc(),

@@ -9,7 +9,6 @@ abstract class OferecerEvent extends Equatable {
   List<Object> get props => _props as List<Object>;
 }
 
-class FetchOferecer extends OferecerEvent {
-
-  FetchOferecer() : super();
+class FetchUserOfferedRides extends OferecerEvent {
+  FetchUserOfferedRides() : super();
 }

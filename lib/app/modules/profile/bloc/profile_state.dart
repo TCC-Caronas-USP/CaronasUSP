@@ -1,6 +1,5 @@
 import 'package:caronas_usp/model/user.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 abstract class ProfileState extends Equatable {
   final List _props;
