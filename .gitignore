@@ -4,6 +4,8 @@
 .flutter-plugins
 .flutter-plugins-dependencies
 
+.idea
+
 # Files and directories created by pub
 .dart_tool/
 .packages
@@ -25,3 +27,4 @@ doc/api/
 *.js.deps
 *.js.map
 /caronas_usp.iml
+/.idea
