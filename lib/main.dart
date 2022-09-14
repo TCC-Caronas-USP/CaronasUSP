@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_bloc.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_bloc.dart';
 import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
@@ -36,6 +37,11 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (context) => HistoricoBloc(),
+        ),
+        BlocProvider(
+          create: (context) => DetalhesBloc(
+            RidesRepository(),
+          ),
         ),
       ],
       child: App(),
