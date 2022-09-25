@@ -9,7 +9,7 @@ class NetworkHelper{
 
   NetworkHelper({required this.coordinates});
 
-  Future getData() async{
+  Future getPolylinesData() async{
     http.Response response = await http.post(
         Uri.parse('$url$journeyMode/geojson'),
         headers: <String, String>{
@@ -20,9 +20,6 @@ class NetworkHelper{
           'coordinates': coordinates,
         }),
     );
-
-    print("RESPONSE BODY");
-    print(response.body);
 
     if(response.statusCode == 200) {
       String data = response.body;
