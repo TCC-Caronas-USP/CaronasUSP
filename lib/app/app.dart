@@ -16,7 +16,7 @@ class _AppState extends State<App> {
 
   final pages = [
     () => PegarPage(),
-    () => HistoricoPage(),
+    () => HistoricoPage(), //TODO voltar para historico
     () => OferecerPage(),
     () => ProfilePage()
   ];
