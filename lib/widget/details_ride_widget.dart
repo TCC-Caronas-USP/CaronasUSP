@@ -1,7 +1,7 @@
 import 'package:caronas_usp/model/ride.dart';
+import 'package:caronas_usp/widget/maps_widget.dart';
 import 'package:caronas_usp/widget/user_image_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 
 class DetailsRide extends StatelessWidget {
@@ -33,11 +33,23 @@ class DetailsRide extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       children: [
+        const Text(
+          "Localização",
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
         buildInfoDetails(ride.destinyPlace, "Destino",
             icon: Icons.map, time: rideTimeToArrive),
         buildInfoDetails(ride.sourcePlace, "Origem",
             icon: Icons.map, time: rideSourceTimeToLeft),
-        buildInfoDetails("R\$ ${ride.price.toStringAsFixed(2)}", "Pago ao final da carona",
+        Maps(height: 400, locations: ride.locations),
+        const Text(
+          "Preço",
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        buildInfoDetails(
+            "R\$ ${ride.price.toStringAsFixed(2)}", "Pago ao final da carona",
             icon: Icons.monetization_on_outlined),
         const Text(
           "Motorista",
@@ -54,7 +66,9 @@ class DetailsRide extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        for (var consumerUser in ride.consumersUsers) buildInfoDetails(consumerUser.name, consumerUser.instituto, image: true, imagePath: consumerUser.imagePath),
+        for (var consumerUser in ride.consumersUsers)
+          buildInfoDetails(consumerUser.name, consumerUser.instituto,
+              image: true, imagePath: consumerUser.imagePath),
       ],
     );
   }
