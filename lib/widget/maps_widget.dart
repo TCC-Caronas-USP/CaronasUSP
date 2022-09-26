@@ -1,6 +1,6 @@
 import 'package:caronas_usp/model/location.dart';
 import 'package:caronas_usp/utils/maps_directions.dart';
-import 'package:caronas_usp/utils/maps_utils.dart';
+import 'package:caronas_usp/utils/maps_bounds_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

@@ -14,7 +14,7 @@ class NetworkHelper{
         Uri.parse('$url$journeyMode/geojson'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': '5b3ce3597851110001cf62483bb4ca5ac2f04e23bf6f546f95234a47'
+          'Authorization': apiKey
         },
         body: jsonEncode(<String, List>{
           'coordinates': coordinates,
