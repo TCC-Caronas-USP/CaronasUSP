@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:caronas_usp/model/location.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:caronas_usp/model/user.dart';
 
@@ -65,7 +66,32 @@ const myOfferedRides = <Ride>[
       price: 4,
       totalOccupation: 4,
       currentOccupation: 2,
-      consumersUsers: [consumerUser1, consumerUser2]),
+      consumersUsers: [
+        consumerUser1,
+        consumerUser2
+      ],
+      locations: [
+        Location(
+            id: "0",
+            description: "Centro, Osasco",
+            lat: -23.52757364623115,
+            lon: -46.775917073927005),
+        Location(
+            id: "1",
+            description: "Ginásio Esportivo José Liberatti, Osasco",
+            lat: -23.522968147439226,
+            lon: -46.77195689128132),
+        Location(
+            id: "2",
+            description: "Shopping União, Osasco",
+            lat: -23.540725715455537,
+            lon: -46.76624979719036),
+        Location(
+            id: "3",
+            description: "CEPE USP, Cidade Universitária",
+            lat: -23.56112651802629,
+            lon: -46.71734667392638),
+      ]),
   Ride(
       rideId: '0000-0001',
       driverUsers: driverUser,
@@ -76,7 +102,19 @@ const myOfferedRides = <Ride>[
       price: 4,
       totalOccupation: 4,
       currentOccupation: 0,
-      consumersUsers: []),
+      consumersUsers: [],
+      locations: [
+        Location(
+            id: "0",
+            description: "CEPE USP, Cidade Universitária",
+            lat: -23.56112651802629,
+            lon: -46.71734667392638),
+        Location(
+            id: "1",
+            description: "Centro, Osasco",
+            lat: -23.52757364623115,
+            lon: -46.775917073927005),
+      ]),
   Ride(
       rideId: '0000-0002',
       driverUsers: driverUser,
@@ -87,7 +125,26 @@ const myOfferedRides = <Ride>[
       price: 5,
       totalOccupation: 4,
       currentOccupation: 1,
-      consumersUsers: [consumerUser1]),
+      consumersUsers: [
+        consumerUser1
+      ],
+      locations: [
+        Location(
+            id: "0",
+            description: "Centro, Osasco",
+            lat: -23.52757364623115,
+            lon: -46.775917073927005),
+        Location(
+            id: "1",
+            description: "Shopping União, Osasco",
+            lat: -23.540725715455537,
+            lon: -46.76624979719036),
+        Location(
+            id: "2",
+            description: "Escola Politécnia da USP, Cidade Universitária",
+            lat: -23.556977524989904,
+            lon: -46.73021254499231),
+      ]),
   Ride(
       rideId: '0000-0003',
       driverUsers: driverUser,
@@ -98,19 +155,56 @@ const myOfferedRides = <Ride>[
       price: 5,
       totalOccupation: 4,
       currentOccupation: 2,
-      consumersUsers: [consumerUser1, consumerUser2]),
+      consumersUsers: [
+        consumerUser1,
+        consumerUser2
+      ],
+      locations: [
+        Location(
+            id: "0",
+            description: "Escola Politécnia da USP, Cidade Universitária",
+            lat: -23.556977524989904,
+            lon: -46.73021254499231),
+        Location(
+            id: "1",
+            description: "Ginásio Esportivo José Liberatti, Osasco",
+            lat: -23.522968147439226,
+            lon: -46.77195689128132),
+        Location(
+            id: "2",
+            description: "Shopping União, Osasco",
+            lat: -23.540725715455537,
+            lon: -46.76624979719036),
+        Location(
+            id: "3",
+            description: "Centro, Osasco",
+            lat: -23.52757364623115,
+            lon: -46.775917073927005),
+
+      ]),
   Ride(
-    rideId: '0000-0004',
-    driverUsers: driverUser,
-    rideDestinyDatetime: '2022-07-22 10:00:00',
-    destinyPlace: "POLI",
-    rideSourceDatetime: '2022-07-22 08:30:00',
-    sourcePlace: "Osasco",
-    price: 6.50,
-    totalOccupation: 4,
-    currentOccupation: 0,
-    consumersUsers: [],
-  ),
+      rideId: '0000-0004',
+      driverUsers: driverUser,
+      rideDestinyDatetime: '2022-07-22 10:00:00',
+      destinyPlace: "POLI",
+      rideSourceDatetime: '2022-07-22 08:30:00',
+      sourcePlace: "Osasco",
+      price: 6.50,
+      totalOccupation: 4,
+      currentOccupation: 0,
+      consumersUsers: [],
+      locations: [
+        Location(
+            id: "0",
+            description: "Centro, Osasco",
+            lat: -23.52757364623115,
+            lon: -46.775917073927005),
+        Location(
+            id: "1",
+            description: "Escola Politécnia da USP, Cidade Universitária",
+            lat: -23.556977524989904,
+            lon: -46.73021254499231),
+      ]),
 ];
 
 class RidesRepository {

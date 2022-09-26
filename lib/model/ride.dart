@@ -1,3 +1,4 @@
+import 'package:caronas_usp/model/location.dart';
 import 'package:caronas_usp/model/user.dart';
 
 class Ride {
@@ -11,6 +12,7 @@ class Ride {
   final int totalOccupation;
   final int currentOccupation;
   final List<User> consumersUsers;
+  final List<Location> locations;
 
   const Ride({
     required this.rideId,
@@ -23,5 +25,6 @@ class Ride {
     required this.totalOccupation,
     required this.currentOccupation,
     required this.consumersUsers,
+    required this.locations,
   });
 }
