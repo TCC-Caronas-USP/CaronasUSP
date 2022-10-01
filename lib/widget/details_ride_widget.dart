@@ -38,10 +38,10 @@ class DetailsRide extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        buildInfoDetails(ride.destinyPlace, "Destino",
-            icon: Icons.map, time: rideTimeToArrive),
         buildInfoDetails(ride.sourcePlace, "Origem",
             icon: Icons.map, time: rideSourceTimeToLeft),
+        buildInfoDetails(ride.destinyPlace, "Destino",
+            icon: Icons.map, time: rideTimeToArrive),
         Maps(height: 400, locations: ride.locations),
         const Text(
           "Preço",
@@ -62,7 +62,7 @@ class DetailsRide extends StatelessWidget {
             ride.driverUsers.veiculoModelo, ride.driverUsers.veiculoPlaca,
             icon: Icons.directions_car_filled),
         const Text(
-          "Usuários",
+          "Caronista",
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
@@ -81,11 +81,12 @@ class DetailsRide extends StatelessWidget {
       child: ListTile(
         title: Text(
           title,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          overflow: TextOverflow.fade,
+          style: const TextStyle(fontSize: 16),
         ),
         subtitle: Text(
           subtitle,
+          style: const TextStyle(fontSize: 12),
         ),
         leading: FittedBox(
           alignment: Alignment.center,
@@ -107,7 +108,7 @@ class DetailsRide extends StatelessWidget {
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               )
             : null,
-        minLeadingWidth: 32,
+        minLeadingWidth: 20,
       ),
     );
   }
