@@ -20,6 +20,10 @@ class Maps extends StatefulWidget {
 
 class _MapsState extends State<Maps> {
   late Set<Polyline> polylines;
+  late MapsDirections mapsDirections =
+      MapsDirections(coordinates: polylinesCoordinates(widget.locations));
+  late String distance;
+  late String duration;
 
   Set<Marker> markersLocation(List<Location> locations) {
     Set<Marker> markers = {};
@@ -47,15 +51,16 @@ class _MapsState extends State<Maps> {
     return Set.from(markers);
   }
 
-  Future<Set<Polyline>> polylinesDirections(List<Location> locations) {
+  List<List<double>> polylinesCoordinates(List<Location> locations) {
     List<List<double>> coordinates = [];
     for (var location in locations) {
       coordinates.add([location.lon, location.lat]);
     }
-
-    MapsDirections mapsDirections = MapsDirections(coordinates: coordinates);
-    return mapsDirections.getDirectionsJsonData();
+    return coordinates;
   }
+
+  // Text("Distância: ${distance}"),
+  // Text("Duração: ${duration}"),
 
   @override
   Widget build(BuildContext context) {
@@ -63,44 +68,71 @@ class _MapsState extends State<Maps> {
       padding: const EdgeInsets.all(10.0),
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        child: SizedBox(
-            height: widget.height,
-            child: FutureBuilder(
-                future: polylinesDirections(widget.locations),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    Location initialLocation = widget.locations[0];
-                    polylines = snapshot.data as Set<Polyline>;
-                    return GoogleMap(
-                      markers: markersLocation(widget.locations),
-                      polylines: polylines,
-                      initialCameraPosition: CameraPosition(
-                        target:
-                            LatLng(initialLocation.lat, initialLocation.lon),
-                        zoom: 15,
+        child: FutureBuilder(
+            future: mapsDirections.getPolylinesData(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                Location initialLocation = widget.locations[0];
+                polylines = mapsDirections.getDirectionsJsonData(snapshot.data);
+                duration = mapsDirections.getDuration(snapshot.data);
+                distance = mapsDirections.getDistance(snapshot.data);
+                return Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      child: SizedBox(
+                        height: widget.height,
+                        child: GoogleMap(
+                          markers: markersLocation(widget.locations),
+                          polylines: polylines,
+                          initialCameraPosition: CameraPosition(
+                            target: LatLng(
+                                initialLocation.lat, initialLocation.lon),
+                            zoom: 15,
+                          ),
+                          onMapCreated: (GoogleMapController controller) {
+                            Future.delayed(const Duration(milliseconds: 1000),
+                                () {
+                              controller.animateCamera(
+                                  CameraUpdate.newLatLngBounds(
+                                      MapUtils.boundsFromLatLngList(widget
+                                          .locations
+                                          .map(
+                                              (loc) => LatLng(loc.lat, loc.lon))
+                                          .toList()),
+                                      1));
+                            });
+                          },
+                          gestureRecognizers: <
+                              Factory<OneSequenceGestureRecognizer>>{
+                            Factory<OneSequenceGestureRecognizer>(
+                              () => EagerGestureRecognizer(),
+                            ),
+                          },
+                        ),
                       ),
-                      onMapCreated: (GoogleMapController controller) {
-                        Future.delayed(const Duration(milliseconds: 1000), () {
-                          controller.animateCamera(CameraUpdate.newLatLngBounds(
-                              MapUtils.boundsFromLatLngList(widget.locations
-                                  .map((loc) => LatLng(loc.lat, loc.lon))
-                                  .toList()),
-                              1));
-                        });
-                      },
-                      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                        Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer(),),
-                      },
-                    );
-                  } else {
-                    return const DecoratedBox(
-                        decoration: BoxDecoration(color: Color(0xFFE0E0E0)),
-                        child: SpinKitRotatingCircle(
-                          color: Colors.green,
-                          size: 50.0,
-                        ));
-                  }
-                })),
+                    ),
+                    const SizedBox(height: 4),
+                    Text("Tempo estimado: $duration",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 14)),
+                    Text("Distância da viagem: $distance",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 14)),
+                  ],
+                );
+              } else {
+                return SizedBox(
+                  height: widget.height,
+                  child: const DecoratedBox(
+                      decoration: BoxDecoration(color: Color(0xFFE0E0E0)),
+                      child: SpinKitRotatingCircle(
+                        color: Colors.green,
+                        size: 50.0,
+                      )),
+                );
+              }
+            }),
       ),
     );
   }

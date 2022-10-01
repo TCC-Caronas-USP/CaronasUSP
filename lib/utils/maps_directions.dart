@@ -8,17 +8,14 @@ class MapsDirections extends NetworkHelper {
 
   MapsDirections({required coordinates}) : super(coordinates: coordinates);
 
-  Future<Set<Polyline>> getDirectionsJsonData() async {
+  Set<Polyline> getDirectionsJsonData(openRouteDirectionsData) {
     // Create an instance of Class NetworkHelper which uses http package
     // for requesting data to the server and receiving response as JSON format
 
     try {
-      // getData() returns a json Decoded data
-      var data = await getPolylinesData();
-
       // We can reach to our desired JSON data manually as following
-      LineString ls = LineString(data['features'][0]['geometry']['coordinates']);
-      // LineString(data['features'][0]['properties']['summary'])
+      LineString ls = LineString(
+          openRouteDirectionsData['features'][0]['geometry']['coordinates']);
 
       for (int i = 0; i < ls.lineString.length; i++) {
         polyPoints.add(LatLng(ls.lineString[i][1], ls.lineString[i][0]));
@@ -38,6 +35,31 @@ class MapsDirections extends NetworkHelper {
     }
 
     return polyLines;
+  }
+
+  String getDistance(openRouteDirectionsData) {
+    double distance = openRouteDirectionsData['features'][0]['properties']
+        ['summary']['distance'];
+    distance = distance / 1000.0;
+
+    return "${distance.toStringAsFixed(2)} km";
+  }
+
+  String getDuration(openRouteDirectionsData) {
+    double duration = openRouteDirectionsData['features'][0]['properties']
+        ['summary']['duration'];
+
+    int h = duration ~/ 3600;
+    int m = ((duration - h * 3600)) ~/ 60;
+
+    String hourLeft =
+        h.toString().length < 2 ? "0${h.toString()}" : h.toString();
+    String minuteLeft =
+        m.toString().length < 2 ? "0${m.toString()}" : m.toString();
+
+    String result = "$hourLeft h $minuteLeft min";
+
+    return result;
   }
 }
 
