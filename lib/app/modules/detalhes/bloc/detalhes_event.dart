@@ -14,3 +14,9 @@ class FetchRide extends DetalhesEvent {
 
   FetchRide(this.rideId) : super([rideId]);
 }
+
+class CancelRide extends DetalhesEvent {
+  final String rideId;
+
+  CancelRide(this.rideId) : super([rideId]);
+}

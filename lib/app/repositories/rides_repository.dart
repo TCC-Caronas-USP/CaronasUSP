@@ -60,9 +60,10 @@ const myOfferedRides = <Ride>[
       rideId: '0000-0000',
       driverUsers: driverUser,
       rideDestinyDatetime: '2022-07-20 17:00:00',
-      destinyPlace: "CEPEUSP",
+      destinyPlace:
+          "CEPEUSP - Centro de Práticas Esportivas da USP, Prç. Prof. Rubião Meira, 61 - Vila Universitaria, São Paulo - SP, 05508-110",
       rideSourceDatetime: '2022-07-20 15:30:00',
-      sourcePlace: "Osasco",
+      sourcePlace: "Osascoooooooooooooooooooooooooooo",
       price: 4,
       totalOccupation: 4,
       currentOccupation: 2,
@@ -180,7 +181,6 @@ const myOfferedRides = <Ride>[
             description: "Centro, Osasco",
             lat: -23.52757364623115,
             lon: -46.775917073927005),
-
       ]),
   Ride(
       rideId: '0000-0004',
@@ -250,5 +250,11 @@ class RidesRepository {
     }
 
     return ride;
+  }
+
+  Future<bool?> cancelRide(rideId) async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    return true;
   }
 }

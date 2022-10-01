@@ -19,3 +19,13 @@ class DetalhesLoaded extends DetalhesState {
 
   DetalhesLoaded(this.ride) : super([ride]);
 }
+
+class Canceling extends DetalhesState {
+  Canceling() : super([]);
+}
+
+class Canceled extends DetalhesState {
+  final bool? canceled;
+
+  Canceled(this.canceled) : super([canceled]);
+}

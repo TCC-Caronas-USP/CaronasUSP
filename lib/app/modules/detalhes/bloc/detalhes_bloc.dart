@@ -14,5 +14,12 @@ class DetalhesBloc extends Bloc<DetalhesEvent, DetalhesState> {
       final Ride? ride = await ridesRepository.getRide(event.rideId);
       emit(DetalhesLoaded(ride!));
     });
+
+    on<CancelRide>((event, emit) async {
+      emit(Canceling());
+
+      final bool? canceled = await ridesRepository.cancelRide(event.rideId);
+      emit(Canceled(canceled!));
+    });
   }
 }
