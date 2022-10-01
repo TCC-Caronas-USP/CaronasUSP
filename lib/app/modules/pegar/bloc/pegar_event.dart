@@ -10,6 +10,5 @@ abstract class PegarEvent extends Equatable {
 }
 
 class FetchPegar extends PegarEvent {
-
   FetchPegar() : super();
 }
