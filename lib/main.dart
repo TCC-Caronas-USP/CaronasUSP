@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_bloc.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_bloc.dart';
 import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
@@ -16,22 +17,36 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
-    MultiProvider(providers: [
-      BlocProvider(
-        create: (context) => ProfileBloc(UserRepository()),
-      ),
-      BlocProvider(
-        create: (context) => LoginBloc(),
-      ),
-      BlocProvider(
-        create: (context) => OferecerBloc(RidesRepository()),
-      ),
-      BlocProvider(
-        create: (context) => PegarBloc(RidesRepository()),
-      ),
-      BlocProvider(
-        create: (context) => HistoricoBloc(),
-      ),
-    ], child: App()),
+    MultiProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ProfileBloc(
+            UserRepository(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => LoginBloc(),
+        ),
+        BlocProvider(
+          create: (context) => OferecerBloc(
+            RidesRepository(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => PegarBloc(
+              RidesRepository()
+          ),
+        ),
+        BlocProvider(
+          create: (context) => HistoricoBloc(),
+        ),
+        BlocProvider(
+          create: (context) => DetalhesBloc(
+            RidesRepository(),
+          ),
+        ),
+      ],
+      child: App(),
+    ),
   );
 }
