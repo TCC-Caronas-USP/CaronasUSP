@@ -4,8 +4,10 @@ import 'package:intl/intl.dart';
 
 class RideInfos extends StatelessWidget {
   final Ride rideInfos;
+  final bool isMyRide;
 
-  const RideInfos({Key? key, required this.rideInfos}) : super(key: key);
+  const RideInfos({Key? key, required this.rideInfos, this.isMyRide = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +41,12 @@ class RideInfos extends StatelessWidget {
                       ],
                     ),
                   ),
-                  buildRidePriceAndPeople(rideInfos.price,
-                      rideInfos.currentOccupation, rideInfos.totalOccupation),
+                  isMyRide
+                      ? buildRideStatus(rideInfos.myRideStatus!)
+                      : buildRidePriceAndPeople(
+                          rideInfos.price,
+                          rideInfos.currentOccupation,
+                          rideInfos.totalOccupation),
                 ],
               ),
             ),
@@ -97,7 +103,8 @@ class RideInfos extends StatelessWidget {
     ));
   }
 
-  Widget buildRidePriceAndPeople(double price, int currentOccupation, int totalOccupation) {
+  Widget buildRidePriceAndPeople(
+      double price, int currentOccupation, int totalOccupation) {
     String ridePrice = price.toStringAsFixed(2);
     String rideCurrentOccupation = currentOccupation.toString();
     String rideTotalOccupation = totalOccupation.toString();
@@ -128,5 +135,47 @@ class RideInfos extends StatelessWidget {
         ],
       )
     ]);
+  }
+
+  Widget buildRideStatus(String status) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            width: 10,
+          ),
+          _getCorrectIcon(status),
+          const SizedBox(
+            width: 10,
+          ),
+        ],
+      )
+    ]);
+  }
+
+  Icon _getCorrectIcon(String status) {
+    switch (status) {
+      case 'approved':
+        return const Icon(
+          Icons.check,
+          size: 30,
+        );
+      case 'waiting':
+        return const Icon(
+          Icons.access_time_filled,
+          size: 30,
+        );
+      case 'rejected':
+        return const Icon(
+          Icons.close,
+          size: 30,
+        );
+      default:
+        return const Icon(
+          Icons.question_mark,
+          size: 30,
+        );
+    }
   }
 }

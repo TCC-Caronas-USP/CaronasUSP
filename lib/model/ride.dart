@@ -8,6 +8,7 @@ class Ride {
   final double price;
   final int totalOccupation;
   final int currentOccupation;
+  final String? myRideStatus;
 
   const Ride({
     required this.driverUsers,
@@ -17,5 +18,6 @@ class Ride {
     required this.price,
     required this.totalOccupation,
     required this.currentOccupation,
+    this.myRideStatus,
   });
 }
