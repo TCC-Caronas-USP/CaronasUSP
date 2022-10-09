@@ -33,6 +33,9 @@ Future<void> main() async {
       BlocProvider(
         create: (context) => HistoricoBloc(RidesRepository()),
       ),
+      BlocProvider(
+        create: (context) => DetalhesBloc(RidesRepository()),
+      ),
     ], child: App()),
   );
 }

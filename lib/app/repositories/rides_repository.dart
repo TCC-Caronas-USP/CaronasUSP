@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:caronas_usp/model/location.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:caronas_usp/model/user.dart';
@@ -431,7 +430,7 @@ class RidesRepository {
     Ride(
         driverUsers: User(
           imagePath:
-          "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
+              "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
           name: "Ana Paula Martins",
           email: "ana.paula@usp.br",
           cpf: "519.595.340-68",
@@ -470,7 +469,7 @@ class RidesRepository {
     Ride(
         driverUsers: User(
           imagePath:
-          "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+              "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
           name: "Luiz Pereira",
           email: "luiz.pereira@usp.br",
           cpf: "307.674.600-65",
@@ -509,7 +508,7 @@ class RidesRepository {
     Ride(
         driverUsers: User(
           imagePath:
-          "https://images.unsplash.com/photo-1512361436605-a484bdb34b5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+              "https://images.unsplash.com/photo-1512361436605-a484bdb34b5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
           name: "Gabriela Araújo",
           email: "gabriela.araujo@usp.br",
           cpf: "327.480.260-39",
@@ -566,14 +565,9 @@ class RidesRepository {
 
   Future<Ride?> getRide(rideId) async {
     await Future.delayed(const Duration(seconds: 1));
-
     Ride? ride;
-    for (var myRide in myOfferedRides.expand((element) => offeredRides)) {
-      if (myRide.rideId == rideId) {
-        ride = myRide;
-      }
-    }
-
+    ride = (myOfferedRides + offeredRides)
+        .firstWhere((element) => element.rideId == rideId);
     return ride;
   }
 
@@ -586,6 +580,7 @@ class RidesRepository {
   Future<List<List<Ride>>> getMyRides() async {
     // return UserGraphQLRequester.getMyRides(); TODO implementar requester
     await Future.delayed(const Duration(seconds: 1));
+
     return rideDates(myRides);
   }
 }
