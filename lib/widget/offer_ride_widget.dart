@@ -21,7 +21,7 @@ class OfferRide extends StatelessWidget {
         itemCount: userOfferedRides.length,
         itemBuilder: (context, index) {
           final item = userOfferedRides[index];
-          final date = item[0].rideDate.substring(0, 10);
+          final date = item[0].rideDestinyDatetime.substring(0, 10);
 
           return buildRideDailyOffered(date, item);
         });

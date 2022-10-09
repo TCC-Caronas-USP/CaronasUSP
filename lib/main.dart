@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_bloc.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_bloc.dart';
 import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
