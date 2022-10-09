@@ -30,7 +30,7 @@ Future<void> main() async {
         create: (context) => PegarBloc(RidesRepository()),
       ),
       BlocProvider(
-        create: (context) => HistoricoBloc(),
+        create: (context) => HistoricoBloc(RidesRepository()),
       ),
     ], child: App()),
   );
