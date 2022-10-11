@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 
 import 'package:caronas_usp/utils/registred_emails.dart';
 
-class UserPage extends StatelessWidget {
-  const UserPage({super.key});
+class AuthPage extends StatelessWidget {
+  const AuthPage({super.key});
   final domain = "usp.br";
   
   @override
