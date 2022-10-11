@@ -4,14 +4,12 @@ import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
 import 'package:caronas_usp/app/modules/pegar/bloc/pegar_bloc.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_bloc.dart';
 import 'package:caronas_usp/app/repositories/rides_repository.dart';
-import 'package:caronas_usp/app/repositories/user_repository.dart';
-import 'package:caronas_usp/provider/google_sign_in.dart';
+import 'package:caronas_usp/app/repositories/rider_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
 import 'app/app.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:async';
 
@@ -23,7 +21,7 @@ Future<void> main() async {
       providers: [
         BlocProvider(
           create: (context) => ProfileBloc(
-            UserRepository(),
+            RiderRepository(),
           ),
         ),
         BlocProvider(
