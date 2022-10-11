@@ -48,8 +48,8 @@ android {
         applicationId "com.example.caronas_usp"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion flutter.minSdkVersion // No vídeo tutorial de configuração do FIREBASE o cara disse que a minSdkVersion deveria ser a 21
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

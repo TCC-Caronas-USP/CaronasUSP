@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/modules/detalhes/ui/detalhes_page.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +15,10 @@ class RideInfos extends StatelessWidget {
         Card(
           elevation: 2,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DetalhesPage(rideId: rideInfos.rideId,)));
+            },
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
@@ -32,7 +36,7 @@ class RideInfos extends StatelessWidget {
                           width: 12,
                         ),
                         buildRideLocation(rideInfos.destinyPlace,
-                            rideInfos.sourcePlace, rideInfos.rideDate),
+                            rideInfos.sourcePlace, rideInfos.rideDestinyDatetime),
                         const SizedBox(
                           width: 12,
                         ),
