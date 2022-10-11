@@ -1,7 +1,7 @@
-import 'package:caronas_usp/model/user.dart';
+import 'package:caronas_usp/model/rider.dart';
 
 class Ride {
-  final User driverUsers;
+  final Rider driverUsers;
   final String rideDate; // tentei colocar como datetime, mas não consegui
   final String destinyPlace;
   final String sourcePlace;

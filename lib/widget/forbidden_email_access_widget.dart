@@ -1,4 +1,3 @@
-// import 'package:caronas_usp/page/Perfil.dart';
 import 'package:flutter/material.dart';
 
 class ForbiddenEmailAccess extends StatelessWidget {

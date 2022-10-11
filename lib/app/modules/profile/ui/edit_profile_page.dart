@@ -38,10 +38,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
           const SizedBox(
             height: 24,
           ),
-          TextFieldWidget(label: "CPF", text: user.cpf, onChanged: (cpf) {}),
-          const SizedBox(
-            height: 24,
-          ),
+          // TextFieldWidget(label: "CPF", text: user.cpf, onChanged: (cpf) {}),
+          // const SizedBox(
+          //   height: 24,
+          // ),
           TextFieldWidget(
               label: "Telefone", text: user.telefone, onChanged: (telefone) {}),
           const SizedBox(
@@ -56,28 +56,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
           ),
           TextFieldWidget(
               label: "Modelo do veículo",
-              text: user.veiculoModelo,
+              text: user.vehicles.first.model,
               onChanged: (veiculoModelo) {}),
           const SizedBox(
             height: 24,
           ),
           TextFieldWidget(
               label: "Cor do veículo",
-              text: user.veiculoCor,
+              text: user.vehicles.first.color,
               onChanged: (veiculoCor) {}),
           const SizedBox(
             height: 24,
           ),
           TextFieldWidget(
               label: "Placa do veículo",
-              text: user.veiculoPlaca,
+              text: user.vehicles.first.licensePlate,
               onChanged: (veiculoPlaca) {}),
           const SizedBox(
             height: 24,
           ),
           TextFieldWidget(
               label: "Marca do veículo",
-              text: user.veiculoMarca,
+              text: user.vehicles.first.brand,
               onChanged: (veiculoMarca) {}),
           const SizedBox(
             height: 24,
