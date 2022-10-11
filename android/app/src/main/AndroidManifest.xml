@@ -4,6 +4,10 @@
         android:label="caronas_usp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDdDkfBDOHLS4F8IT9JrgA8xX8mmV_JfiM"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
