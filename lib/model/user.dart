@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'user.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class User {
   final String imagePath;
   final String name;
@@ -12,6 +17,10 @@ class User {
   final int caronasUtilizadas;
   final int caronasRealizadas;
   final double ranking;
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 
   const User({
     required this.imagePath,
