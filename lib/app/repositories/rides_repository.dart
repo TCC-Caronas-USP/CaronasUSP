@@ -449,17 +449,26 @@ class RidesRepository {
     await Future.delayed(const Duration(seconds: 1));
 
     Ride? ride;
-    for (var myRide in myOfferedRides.expand((element) => offeredRides)) {
-      if (myRide.rideId == rideId) {
-        ride = myRide;
-      }
-    }
+    ride = (myOfferedRides + offeredRides).firstWhere((element) => element.rideId == rideId);
 
     return ride;
   }
 
   Future<bool?> cancelRide(rideId) async {
     await Future.delayed(const Duration(seconds: 1));
+
+    return true;
+  }
+
+  Future<bool?> createRide(Ride ride) async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    print(ride.toString());
+    print(ride.toJson());
+    print(ride.driverUsers.toJson());
+    for (var l in ride.locations) {
+      print(l.toJson());
+    }
 
     return true;
   }
