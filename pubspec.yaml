@@ -42,9 +42,14 @@ dependencies:
   flutter_bloc: ^8.1.1
   equatable: ^2.0.5
   flutter_spinkit: ^5.1.0
+  json_annotation: ^4.7.0
   google_maps_flutter: ^2.1.1
   flutter_polyline_points: ^1.0.0
   http: ^0.13.5
+  flutter_typeahead: ^4.1.1
+  date_field: ^3.0.1
+  flutter_masked_text2: ^0.9.1
+  quantity_input: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +61,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.0.0
+  json_serializable: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
