@@ -13,6 +13,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:async';
 
+import 'app/modules/criar/bloc/criar_bloc.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -39,6 +41,11 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (context) => HistoricoBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CriarBloc(
+              RidesRepository(),
+          ),
         ),
         BlocProvider(
           create: (context) => DetalhesBloc(
