@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/modules/criar/ui/criar_page.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_event.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_state.dart';
@@ -59,13 +60,20 @@ class _OferecerPageState extends State<OferecerPage> {
         listener: _handleListener,
         builder: (BuildContext context, OferecerState state) {
           return Scaffold(
-              appBar: buildAppBar(context, "Oferecer Caronas"),
-              body: _loading
-                  ? const SpinKitRotatingCircle(
-                      color: Colors.green,
-                      size: 50.0,
-                    )
-                  : OfferRide(userOfferedRides: userOfferedRides!),
+            appBar: buildAppBar(context, "Oferecer Caronas"),
+            floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const CriarPage()));
+                },
+                backgroundColor: Colors.green[400],
+                child: const Icon(Icons.add)),
+            body: _loading
+                ? const SpinKitRotatingCircle(
+                    color: Colors.green,
+                    size: 50.0,
+                  )
+                : OfferRide(userOfferedRides: userOfferedRides!),
           );
         });
   }
