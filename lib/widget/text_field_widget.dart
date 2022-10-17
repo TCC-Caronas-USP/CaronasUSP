@@ -2,15 +2,25 @@ import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String label;
-  final String text;
-  final ValueChanged<String> onChanged;
+  String? text;
+  final ValueChanged<String>? onChanged;
+  final String? Function(String?)? onValidation;
+  final TextEditingController? fieldController;
+  final FocusNode? focusNode;
+  final TextInputType textInputType;
+  final String type;
 
-  const TextFieldWidget({
-    Key? key,
-    required this.label,
-    required this.text,
-    required this.onChanged,
-  }) : super(key: key);
+  TextFieldWidget(
+      {Key? key,
+      required this.label,
+      this.text,
+      this.onChanged,
+      this.onValidation,
+      this.fieldController,
+      this.focusNode,
+      this.textInputType = TextInputType.name,
+      this.type = "text"})
+      : super(key: key);
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -22,7 +32,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   void initState() {
     super.initState();
-    controller = TextEditingController(text: widget.text);
+    controller =
+        widget.fieldController ?? TextEditingController(text: widget.text);
   }
 
   @override
@@ -33,28 +44,31 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 48),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Divider(thickness: 2),
-        const SizedBox(height: 12),
-        Text(
-          widget.label,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-        ),
-        const SizedBox(height: 4),
-        TextField(
-          controller: controller,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12)
-            ),
-          )
-        ),
-      ],
-    ),
+  Widget build(BuildContext context) => TextFormField(
+    autovalidateMode: AutovalidateMode.onUserInteraction,
+    validator: widget.onValidation,
+    onChanged: widget.onChanged ?? onChanged,
+    controller: controller,
+    keyboardType: widget.textInputType,
+    decoration: InputDecoration(
+        border: const UnderlineInputBorder(),
+        labelText: widget.label,
+        suffixIcon: controller.text.isNotEmpty
+            ? IconButton(
+          onPressed: () {
+            setState(() {
+              widget.text = null;
+              controller.clear();
+            });
+          },
+          icon: const Icon(Icons.clear_outlined, color: Colors.green),
+        )
+            : null),
   );
-}
 
+  void onChanged(String value) {
+    setState(() {
+      widget.text = value;
+    });
+  }
+}
