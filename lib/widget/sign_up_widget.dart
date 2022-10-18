@@ -1,10 +1,11 @@
-import 'package:caronas_usp/provider/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class SignUpWidget extends StatelessWidget {
-  SignUpWidget({super.key});
+  final Function() onSignUpPressed;
+
+  SignUpWidget(this.onSignUpPressed, {super.key});
 
   final standardPageColor = Colors.green[700];
 
@@ -35,19 +36,6 @@ class SignUpWidget extends StatelessWidget {
           ),
         ),
 
-        // // Subtítulo para a tela inicial?
-        // const SizedBox(height: 8),
-        // Align(
-        //   alignment: Alignment.center,
-        //   child: Text(
-        //     'Entre com seu email USP',
-        //     style: TextStyle(
-        //       fontSize: 16,
-        //       color: standardPageColor
-        //     ),
-        //   )
-        // ),
-
         const Spacer(),
 
         ElevatedButton.icon(
@@ -58,10 +46,7 @@ class SignUpWidget extends StatelessWidget {
           ),
           icon: const FaIcon(FontAwesomeIcons.google),
           label: const Text('Entre com sua conta USP'),
-          onPressed: () {
-            final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-            provider.googleLogin();
-          },
+          onPressed: onSignUpPressed,
         ),
 
         const SizedBox(height: 40),
@@ -77,40 +62,6 @@ class SignUpWidget extends StatelessWidget {
             ),
           )
         ),
-
-        // RichText(
-        //   text: TextSpan(
-        //     children: [
-        //       TextSpan(
-        //         text: 'Não possui uma conta? ',
-        //         style: TextStyle(
-        //           color: standardPageColor,
-        //           fontWeight: FontWeight.bold
-        //         ),
-        //       ),
-        //       WidgetSpan(
-        //         child: GestureDetector(
-        //           child: Text(
-        //             'Cadastre-se',
-        //             style: TextStyle(
-        //               decoration: TextDecoration.underline,
-        //               color: standardPageColor,
-        //               fontWeight: FontWeight.bold
-        //             ),
-        //           ),
-        //           onTap: (){
-        //             Navigator.push(
-        //               context,
-        //               MaterialPageRoute(
-        //                 //TODO: Caminho apenas de exemplo, levar o usuário para uma página de registro
-        //                 builder: (context) => const Perfil()),
-        //             );
-        //           }
-        //         )
-        //       )
-        //     ]
-        //   )
-        // ),
         
         const Spacer()
 
