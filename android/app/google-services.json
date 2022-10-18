@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "85259641686-e64c8teq5vo0fdkj83tkpmh6upg1919f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.caronas_usp",
+            "certificate_hash": "e8a035ec2bd700f4d1ceacef0e3c70c723ba38d5"
+          }
+        },
+        {
           "client_id": "85259641686-s8rs7no6e2blcqdoo392682km4i2kcpl.apps.googleusercontent.com",
           "client_type": 3
         }
