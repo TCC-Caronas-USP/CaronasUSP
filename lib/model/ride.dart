@@ -13,6 +13,7 @@ class Ride {
   final int currentOccupation;
   final List<User> consumersUsers;
   final List<Location> locations;
+  final String? myRideStatus;
 
   const Ride({
     required this.rideId,
@@ -26,5 +27,6 @@ class Ride {
     required this.currentOccupation,
     required this.consumersUsers,
     required this.locations,
+    this.myRideStatus,
   });
 }
