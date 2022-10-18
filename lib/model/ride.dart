@@ -11,7 +11,7 @@ class Ride {
   final double price;
   final int totalOccupation;
   final int currentOccupation;
-  final List<User> consumersUsers;
+  final List<Rider> consumersUsers;
   final List<Location> locations;
 
   const Ride({

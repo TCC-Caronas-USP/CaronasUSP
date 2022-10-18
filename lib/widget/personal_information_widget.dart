@@ -1,5 +1,4 @@
-import 'package:caronas_usp/app/core/auth/ui/auth_page.dart';
-import 'package:caronas_usp/provider/google_sign_in.dart';
+import 'package:caronas_usp/app/modules/login/ui/login_page.dart';
 import 'package:caronas_usp/widget/appbar_backbutton_widget.dart';
 import 'package:caronas_usp/widget/profile_widget.dart';
 import 'package:caronas_usp/widget/text_field_widget.dart';
@@ -10,7 +9,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 
 class PersonalInformationState extends StatelessWidget{
@@ -55,7 +53,7 @@ class PersonalInformationState extends StatelessWidget{
                 Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const AuthPage()),
+                        builder: (context) => const LoginPage()),
                     );
               },
             ),
@@ -73,15 +71,7 @@ class PersonalInformationState extends StatelessWidget{
               ),
               icon: const FaIcon(Icons.cancel),
               label: const Text('Cancelar'),
-              onPressed: () {
-                final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-                provider.logout();
-                Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AuthPage()),
-                    );
-              },
+              onPressed: null,
             ),
           ),
 
