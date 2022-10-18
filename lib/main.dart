@@ -39,7 +39,7 @@ Future<void> main() async {
           ),
         ),
         BlocProvider(
-          create: (context) => HistoricoBloc(),
+          create: (context) => HistoricoBloc(RidesRepository()),
         ),
         BlocProvider(
           create: (context) => DetalhesBloc(
@@ -51,17 +51,3 @@ Future<void> main() async {
     ),
   );
 }
-
-// import 'page/user_page_test.dart';
-
-// @override
-// Widget build(BuildContext context) => ChangeNotifierProvider(
-//   create: (context) => GoogleSignInProvider(),
-//   child: MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: title,
-//       theme: ThemeData(primarySwatch: Colors.blue),
-//       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-//       home: UserPage()
-//   ),
-// );

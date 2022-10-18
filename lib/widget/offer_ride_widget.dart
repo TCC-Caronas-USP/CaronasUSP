@@ -44,7 +44,11 @@ class OfferRide extends StatelessWidget {
       const SizedBox(
         height: 6,
       ),
-      for (var ride in userOfferedRides) RideInfos(rideInfos: ride),
+      for (var ride in userOfferedRides)
+        RideInfos(
+          rideInfos: ride,
+          isMyRide: ride.myRideStatus == null ? false : true,
+        ),
       const SizedBox(
         height: 16,
       ),
