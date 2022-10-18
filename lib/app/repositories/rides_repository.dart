@@ -408,22 +408,22 @@ class RidesRepository {
 
   static const myRides = <Ride>[
     Ride(
-        driverUsers: User(
-          imagePath:
-              "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
-          name: "Ana Paula Martins",
-          email: "ana.paula@usp.br",
-          cpf: "519.595.340-68",
-          telefone: "(11) 78640-2609",
-          instituto: "FAU",
-          veiculoModelo: "Siena",
-          veiculoCor: "Preto",
-          veiculoMarca: "Fiat",
-          veiculoPlaca: "JTN-7099",
-          caronasUtilizadas: 34,
-          caronasRealizadas: 12,
-          ranking: 4.6,
-        ),
+        driverUsers: Rider(
+            imagePath:
+            "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+            name: "Maria Clara",
+            email: "maria.clara@usp.br",
+            telefone: "(99) 99999-9999",
+            instituto: "FFLCH",
+            curso: 'História',
+            ano: 2019,
+            caronasPassageiro: 23,
+            caronasMotorista: 0,
+            ranking: 4.8,
+            vehicles: [
+              Vehicle(
+                  model: 'Ka', color: 'Prata', brand: 'Ford', licensePlate: 'ABC1D34')
+            ]),
         rideDestinyDatetime: '2022-09-24 17:35:00',
         destinyPlace: "FAU USP",
         rideSourceDatetime: '2022-07-22 08:30:00',
@@ -447,22 +447,22 @@ class RidesRepository {
         rideId: '0000-0010',
         myRideStatus: "approved"),
     Ride(
-        driverUsers: User(
-          imagePath:
-              "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-          name: "Luiz Pereira",
-          email: "luiz.pereira@usp.br",
-          cpf: "307.674.600-65",
-          telefone: "(11) 86737-7225",
-          instituto: "IME",
-          veiculoModelo: "Hilux",
-          veiculoCor: "Cinza",
-          veiculoMarca: "Toyota",
-          veiculoPlaca: "GAE-4856",
-          caronasUtilizadas: 87,
-          caronasRealizadas: 89,
-          ranking: 4.8,
-        ),
+        driverUsers: Rider(
+            imagePath:
+            "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+            name: "Maria Clara",
+            email: "maria.clara@usp.br",
+            telefone: "(99) 99999-9999",
+            instituto: "FFLCH",
+            curso: 'História',
+            ano: 2019,
+            caronasPassageiro: 23,
+            caronasMotorista: 0,
+            ranking: 4.8,
+            vehicles: [
+              Vehicle(
+                  model: 'Ka', color: 'Prata', brand: 'Ford', licensePlate: 'ABC1D34')
+            ]),
         rideDestinyDatetime: '2022-09-24 15:10:00',
         destinyPlace: "IME USP",
         rideSourceDatetime: '2022-07-22 08:30:00',
@@ -486,22 +486,22 @@ class RidesRepository {
         rideId: '0000-0012',
         myRideStatus: "waiting"),
     Ride(
-        driverUsers: User(
-          imagePath:
-              "https://images.unsplash.com/photo-1512361436605-a484bdb34b5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-          name: "Gabriela Araújo",
-          email: "gabriela.araujo@usp.br",
-          cpf: "327.480.260-39",
-          telefone: "(11) 16236-9157",
-          instituto: "POLI",
-          veiculoModelo: "Mini Cooper",
-          veiculoCor: "Cinza",
-          veiculoMarca: "Rover",
-          veiculoPlaca: "JNM-0138",
-          caronasUtilizadas: 18,
-          caronasRealizadas: 65,
-          ranking: 4.9,
-        ),
+        driverUsers: Rider(
+            imagePath:
+            "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+            name: "Maria Clara",
+            email: "maria.clara@usp.br",
+            telefone: "(99) 99999-9999",
+            instituto: "FFLCH",
+            curso: 'História',
+            ano: 2019,
+            caronasPassageiro: 23,
+            caronasMotorista: 0,
+            ranking: 4.8,
+            vehicles: [
+              Vehicle(
+                  model: 'Ka', color: 'Prata', brand: 'Ford', licensePlate: 'ABC1D34')
+            ]),
         rideDestinyDatetime: '2022-09-25 13:50:00',
         destinyPlace: "Rua Amad Massud - Jardim Apurá",
         rideSourceDatetime: "2022-07-22 08:30:00",
