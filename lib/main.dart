@@ -19,41 +19,28 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
-    MultiProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ProfileBloc(
-            UserRepository(),
-          ),
+    MultiProvider(providers: [
+      BlocProvider(
+        create: (context) => ProfileBloc(UserRepository()),
+      ),
+      BlocProvider(
+        create: (context) => LoginBloc(),
+      ),
+      BlocProvider(
+        create: (context) => OferecerBloc(RidesRepository()),
+      ),
+      BlocProvider(
+        create: (context) => PegarBloc(RidesRepository()),
+      ),
+      BlocProvider(
+        create: (context) => HistoricoBloc(RidesRepository()),
+      ),
+      BlocProvider(
+        create: (context) => CriarBloc(RidesRepository(),),
         ),
         BlocProvider(
-          create: (context) => LoginBloc(),
-        ),
-        BlocProvider(
-          create: (context) => OferecerBloc(
-            RidesRepository(),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => PegarBloc(
-              RidesRepository()
-          ),
-        ),
-        BlocProvider(
-          create: (context) => HistoricoBloc(),
-        ),
-        BlocProvider(
-          create: (context) => CriarBloc(
-              RidesRepository(),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => DetalhesBloc(
-            RidesRepository(),
-          ),
-        ),
-      ],
-      child: App(),
-    ),
+          create: (context) => DetalhesBloc(RidesRepository()),
+      ),
+    ], child: App()),
   );
 }

@@ -10,6 +10,5 @@ abstract class HistoricoEvent extends Equatable {
 }
 
 class FetchHistorico extends HistoricoEvent {
-
   FetchHistorico() : super();
 }

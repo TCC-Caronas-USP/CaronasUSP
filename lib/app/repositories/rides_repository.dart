@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:caronas_usp/model/location.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:caronas_usp/model/user.dart';
@@ -23,7 +22,6 @@ class RidesRepository {
       }
       ridesOfTheSameDay.add(rideOfTheSameDay);
     }
-
     return ridesOfTheSameDay;
   }
 
@@ -428,6 +426,126 @@ class RidesRepository {
     ),
   ];
 
+  static const myRides = <Ride>[
+    Ride(
+        driverUsers: User(
+          imagePath:
+              "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
+          name: "Ana Paula Martins",
+          email: "ana.paula@usp.br",
+          cpf: "519.595.340-68",
+          telefone: "(11) 78640-2609",
+          instituto: "FAU",
+          veiculoModelo: "Siena",
+          veiculoCor: "Preto",
+          veiculoMarca: "Fiat",
+          veiculoPlaca: "JTN-7099",
+          caronasUtilizadas: 34,
+          caronasRealizadas: 12,
+          ranking: 4.6,
+        ),
+        rideDestinyDatetime: '2022-09-24 17:35:00',
+        destinyPlace: "FAU USP",
+        rideSourceDatetime: '2022-07-22 08:30:00',
+        sourcePlace: "Rua Nova Hamburgo - Ipiranga",
+        price: 4.50,
+        totalOccupation: 4,
+        currentOccupation: 2,
+        consumersUsers: [],
+        locations: [
+          Location(
+              id: "1011110",
+              description: "Rua Nova Hamburgo - Ipiranga",
+              lat: -23.600949193214976,
+              lon: -46.59260493159567),
+          Location(
+              id: "1011011",
+              description: "FAU USP",
+              lat: -23.559905784167515,
+              lon: -46.72986378742103)
+        ],
+        rideId: '0000-0010',
+        myRideStatus: "approved"),
+    Ride(
+        driverUsers: User(
+          imagePath:
+              "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+          name: "Luiz Pereira",
+          email: "luiz.pereira@usp.br",
+          cpf: "307.674.600-65",
+          telefone: "(11) 86737-7225",
+          instituto: "IME",
+          veiculoModelo: "Hilux",
+          veiculoCor: "Cinza",
+          veiculoMarca: "Toyota",
+          veiculoPlaca: "GAE-4856",
+          caronasUtilizadas: 87,
+          caronasRealizadas: 89,
+          ranking: 4.8,
+        ),
+        rideDestinyDatetime: '2022-09-24 15:10:00',
+        destinyPlace: "IME USP",
+        rideSourceDatetime: '2022-07-22 08:30:00',
+        sourcePlace: "Rua Paiquerê - Vila Bandeirantes",
+        price: 5.00,
+        totalOccupation: 4,
+        currentOccupation: 4,
+        consumersUsers: [],
+        locations: [
+          Location(
+              id: "1011000",
+              description: "Rua Paiquerê - Vila Bandeirantes",
+              lat: -23.49762904491432,
+              lon: -46.66445241625738),
+          Location(
+              id: "1011001",
+              description: "IME USP",
+              lat: -23.559470293931206,
+              lon: -46.73197834509127)
+        ],
+        rideId: '0000-0012',
+        myRideStatus: "waiting"),
+    Ride(
+        driverUsers: User(
+          imagePath:
+              "https://images.unsplash.com/photo-1512361436605-a484bdb34b5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+          name: "Gabriela Araújo",
+          email: "gabriela.araujo@usp.br",
+          cpf: "327.480.260-39",
+          telefone: "(11) 16236-9157",
+          instituto: "POLI",
+          veiculoModelo: "Mini Cooper",
+          veiculoCor: "Cinza",
+          veiculoMarca: "Rover",
+          veiculoPlaca: "JNM-0138",
+          caronasUtilizadas: 18,
+          caronasRealizadas: 65,
+          ranking: 4.9,
+        ),
+        rideDestinyDatetime: '2022-09-25 13:50:00',
+        destinyPlace: "Rua Amad Massud - Jardim Apurá",
+        rideSourceDatetime: "2022-07-22 08:30:00",
+        sourcePlace: "POLI USP",
+        price: 10.40,
+        totalOccupation: 2,
+        currentOccupation: 1,
+        consumersUsers: [],
+        locations: [
+          Location(
+              id: "1011010",
+              description: "Rua Paiquerê - Vila Bandeirantes",
+              lat: -23.49762904491432,
+              lon: -46.66445241625738),
+          Location(
+              id: "1011011",
+              description: "POLI USP",
+              lat: -23.556977524989904,
+              lon: -46.73021254499231)
+        ],
+        rideId: '0000-0011',
+        myRideStatus: "rejected"),
+  ];
+
   Future<List<List<Ride>>> getUserOfferedRides() async {
     // return UserGraphQLRequester.getUserOfferedRides(email); TODO implementar requester
     await Future.delayed(
@@ -447,10 +565,11 @@ class RidesRepository {
 
   Future<Ride?> getRide(rideId) async {
     await Future.delayed(const Duration(seconds: 1));
-
     Ride? ride;
     ride = (myOfferedRides + offeredRides).firstWhere((element) => element.rideId == rideId);
 
+    ride = (myOfferedRides + offeredRides)
+        .firstWhere((element) => element.rideId == rideId);
     return ride;
   }
 
@@ -471,5 +590,12 @@ class RidesRepository {
     }
 
     return true;
+  }
+
+  Future<List<List<Ride>>> getMyRides() async {
+    // return UserGraphQLRequester.getMyRides(); TODO implementar requester
+    await Future.delayed(const Duration(seconds: 1));
+
+    return rideDates(myRides);
   }
 }

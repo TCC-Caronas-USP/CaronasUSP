@@ -18,6 +18,7 @@ class Ride {
   final int currentOccupation;
   final List<User> consumersUsers;
   final List<Location> locations;
+  final String? myRideStatus;
 
   factory Ride.fromJson(Map<String, dynamic> json) => _$RideFromJson(json);
 
@@ -35,5 +36,6 @@ class Ride {
     required this.currentOccupation,
     required this.consumersUsers,
     required this.locations,
+    this.myRideStatus,
   });
 }
