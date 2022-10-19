@@ -1,3 +1,4 @@
+import 'package:caronas_usp/model/ride.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class HistoricoState extends Equatable {
@@ -14,5 +15,7 @@ class HistoricoLoading extends HistoricoState {
 }
 
 class HistoricoLoaded extends HistoricoState {
-  HistoricoLoaded() : super([]);
+  final List<List<Ride>> myRides;
+
+  HistoricoLoaded(this.myRides) : super([myRides]);
 }
