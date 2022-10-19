@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
       case AccountStatus.loggedOut:
         return SignUpWidget(onSignUpPressed);
       case AccountStatus.loggedIn:
-        return LoggedInWidget();
+        return PersonalInformationWidget();
     }
   }
 
