@@ -1,18 +1,17 @@
 import 'package:caronas_usp/app/modules/profile/bloc/profile_event.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_state.dart';
-import 'package:caronas_usp/app/repositories/user_repository.dart';
-import 'package:caronas_usp/model/user.dart';
+import 'package:caronas_usp/app/repositories/rider_repository.dart';
+import 'package:caronas_usp/model/rider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  final UserRepository userRepository;
+  final RiderRepository riderRepository;
 
-  ProfileBloc(this.userRepository) : super(ProfileLoading()) {
+  ProfileBloc(this.riderRepository) : super(ProfileLoading()) {
     on<FetchUserInfo>((event, emit) async {
       emit(ProfileLoading());
-
-      final User user = await userRepository.getUser(event.email);
-      emit(ProfileLoaded(user));
+      final Rider rider = await riderRepository.getRider();
+      emit(ProfileLoaded(rider));
     });
   }
 }

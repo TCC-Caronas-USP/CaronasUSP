@@ -1,11 +1,16 @@
 # See https://www.dartlang.org/guides/libraries/private-files
 
+# Flutter/Dart?Pub related
+.flutter-plugins
+.flutter-plugins-dependencies
+
 .idea
 
 # Files and directories created by pub
 .dart_tool/
 .packages
 build/
+
 # If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock
 

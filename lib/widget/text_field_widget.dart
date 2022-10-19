@@ -4,12 +4,14 @@ class TextFieldWidget extends StatefulWidget {
   final String label;
   final String text;
   final ValueChanged<String> onChanged;
+  final bool enabled;
 
   const TextFieldWidget({
     Key? key,
     required this.label,
     required this.text,
     required this.onChanged,
+    this.enabled = true
   }) : super(key: key);
 
   @override
@@ -46,6 +48,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         ),
         const SizedBox(height: 4),
         TextField(
+          enabled: widget.enabled,
           controller: controller,
           decoration: InputDecoration(
             border: OutlineInputBorder(

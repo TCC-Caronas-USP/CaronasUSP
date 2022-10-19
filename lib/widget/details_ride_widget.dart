@@ -59,7 +59,7 @@ class DetailsRide extends StatelessWidget {
         buildInfoDetails(ride.driverUsers.name, ride.driverUsers.instituto,
             image: true, imagePath: ride.driverUsers.imagePath),
         buildInfoDetails(
-            ride.driverUsers.veiculoModelo, ride.driverUsers.veiculoPlaca,
+            ride.driverUsers.vehicles.first.model, ride.driverUsers.vehicles.first.licensePlate,
             icon: Icons.directions_car_filled),
         const Text(
           "Caronista",

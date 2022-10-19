@@ -1,9 +1,9 @@
 import 'package:caronas_usp/model/location.dart';
-import 'package:caronas_usp/model/user.dart';
+import 'package:caronas_usp/model/rider.dart';
 
 class Ride {
   final String rideId;
-  final User driverUsers;
+  final Rider driverUsers;
   final String rideDestinyDatetime; // tentei colocar como datetime, mas não consegui
   final String destinyPlace;
   final String rideSourceDatetime;
@@ -11,7 +11,7 @@ class Ride {
   final double price;
   final int totalOccupation;
   final int currentOccupation;
-  final List<User> consumersUsers;
+  final List<Rider> consumersUsers;
   final List<Location> locations;
   final String? myRideStatus;
 

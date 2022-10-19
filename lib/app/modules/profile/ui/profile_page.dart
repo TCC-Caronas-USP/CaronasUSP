@@ -2,8 +2,8 @@ import 'package:caronas_usp/app/modules/profile/bloc/profile_bloc.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_event.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_state.dart';
 import 'package:caronas_usp/app/modules/profile/ui/edit_profile_page.dart';
-import 'package:caronas_usp/model/auth_user.dart';
-import 'package:caronas_usp/model/user.dart';
+import 'package:caronas_usp/model/rider.dart';
+import 'package:caronas_usp/model/vehicle.dart';
 import 'package:caronas_usp/widget/appbar_widget.dart';
 import 'package:caronas_usp/widget/infos_widget.dart';
 import 'package:caronas_usp/widget/numbers_widget.dart';
@@ -22,21 +22,16 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   ProfileBloc? _profileBloc;
-
-  // TODO remover authUser mock
-  AuthUser? authUser = AuthUser(
-      imagePath:
-          "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
-      name: "João Souza",
-      email: "joao.souza@usp.br");
-  User? user;
+  Rider? user;
+  Vehicle? vehicle;
   bool _loading = true;
 
   @override
   void initState() {
     super.initState();
     _profileBloc = context.read<ProfileBloc>();
-    _profileBloc!.add(FetchUserInfo(authUser!.email));
+    _profileBloc!.add(FetchUserInfo());
+    vehicle = user?.vehicles.first;
   }
 
   Future<void> _handleListener(BuildContext context, ProfileState state) async {
@@ -86,16 +81,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 24,
                       ),
                       NumbersWidget(
-                          caronasRealizadas: user!.caronasRealizadas,
-                          caronasUtilizadas: user!.caronasUtilizadas,
+                          caronasRealizadas: user!.caronasMotorista,
+                          caronasUtilizadas: user!.caronasPassageiro,
                           ranking: user!.ranking),
                       const SizedBox(
                         height: 24,
                       ),
-                      InfosWidget(infoTitle: "CPF", infoValues: [user!.cpf]),
-                      const SizedBox(
-                        height: 12,
-                      ),
+                      // InfosWidget(infoTitle: "CPF", infoValues: [user!.cpf]),
+                      // const SizedBox(
+                      //   height: 12,
+                      // ),
                       InfosWidget(
                           infoTitle: "Telefone", infoValues: [user!.telefone]),
                       const SizedBox(
@@ -108,10 +103,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 12,
                       ),
                       InfosWidget(infoTitle: "Veículo", infoValues: [
-                        user!.veiculoModelo,
-                        user!.veiculoCor,
-                        user!.veiculoPlaca,
-                        user!.veiculoMarca
+                        vehicle!.model,
+                        vehicle!.color,
+                        vehicle!.licensePlate,
+                        vehicle!.brand
                       ]),
                       const SizedBox(
                         height: 24,
@@ -122,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
         });
   }
 
-  Widget buildName(User user) => Column(
+  Widget buildName(Rider user) => Column(
         children: [
           Text(
             user.name,
