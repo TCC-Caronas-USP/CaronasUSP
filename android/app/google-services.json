@@ -22,6 +22,22 @@
           }
         },
         {
+          "client_id": "85259641686-nf2hdgluco96no2eii487ugqs54m94e5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.caronas_usp",
+            "certificate_hash": "5e63aefd568e468b2cbf7b9e4f6177e70156e9fe"
+          }
+        },
+        {
+          "client_id": "85259641686-s32fmhffujst12dn8cppjjvv2h46fhih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.caronas_usp",
+            "certificate_hash": "d0e9bf11b8e185d09f957f73bfadcb85ae568c11"
+          }
+        },
+        {
           "client_id": "85259641686-s8rs7no6e2blcqdoo392682km4i2kcpl.apps.googleusercontent.com",
           "client_type": 3
         }
