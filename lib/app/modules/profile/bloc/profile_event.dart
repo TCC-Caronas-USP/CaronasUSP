@@ -10,7 +10,5 @@ abstract class ProfileEvent extends Equatable {
 }
 
 class FetchUserInfo extends ProfileEvent {
-  final String email;
-
-  FetchUserInfo(this.email) : super([email]);
+  FetchUserInfo() : super([]);
 }

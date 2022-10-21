@@ -38,9 +38,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
             fieldInput: TextFieldWidget(
                 label: "Email", text: user.email, onChanged: (email) {}),
           ),
-          FieldWrapper(
-              fieldInput: TextFieldWidget(
-                  label: "CPF", text: user.cpf, onChanged: (cpf) {})),
+          // FieldWrapper(
+          //     fieldInput: TextFieldWidget(
+          //         label: "CPF", text: user.cpf, onChanged: (cpf) {})),
           FieldWrapper(
             fieldInput: TextFieldWidget(
                 label: "Telefone",
@@ -56,25 +56,25 @@ class _EditProfilePageState extends State<EditProfilePage> {
           FieldWrapper(
             fieldInput: TextFieldWidget(
                 label: "Modelo do veículo",
-                text: user.veiculoModelo,
+                text: user.vehicles.first.model,
                 onChanged: (veiculoModelo) {}),
           ),
           FieldWrapper(
             fieldInput: TextFieldWidget(
                 label: "Cor do veículo",
-                text: user.veiculoCor,
+                text: user.vehicles.first.color,
                 onChanged: (veiculoCor) {}),
           ),
           FieldWrapper(
             fieldInput: TextFieldWidget(
                 label: "Placa do veículo",
-                text: user.veiculoPlaca,
+                text: user.vehicles.first.licensePlate,
                 onChanged: (veiculoPlaca) {}),
           ),
           FieldWrapper(
             fieldInput: TextFieldWidget(
                 label: "Marca do veículo",
-                text: user.veiculoMarca,
+                text: user.vehicles.first.brand,
                 onChanged: (veiculoMarca) {}),
           ),
         ],

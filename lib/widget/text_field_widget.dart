@@ -9,18 +9,20 @@ class TextFieldWidget extends StatefulWidget {
   final FocusNode? focusNode;
   final TextInputType textInputType;
   final String type;
+  final bool enabled;
 
-  TextFieldWidget(
-      {Key? key,
-      required this.label,
-      this.text,
-      this.onChanged,
-      this.onValidation,
-      this.fieldController,
-      this.focusNode,
-      this.textInputType = TextInputType.name,
-      this.type = "text"})
-      : super(key: key);
+  TextFieldWidget({
+    Key? key,
+    required this.label,
+    this.text,
+    this.onChanged,
+    this.onValidation,
+    this.fieldController,
+    this.focusNode,
+    this.textInputType = TextInputType.name,
+    this.type = "text",
+    this.enabled = true
+  }) : super(key: key);
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -45,6 +47,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 
   @override
   Widget build(BuildContext context) => TextFormField(
+    enabled: widget.enabled,
     autovalidateMode: AutovalidateMode.onUserInteraction,
     validator: widget.onValidation,
     onChanged: widget.onChanged ?? onChanged,
