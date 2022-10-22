@@ -7,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final googleSignIn = GoogleSignIn();
-  final domain = "usp.br";
 
   LoginBloc() : super(LoginLoading()) {
     on<LoadLogin>((event, emit) async {
@@ -44,7 +43,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       return await logout();
     }
 
-    if (googleUser.email.split('@').last != domain) {
+    if (googleUser.email.split('@').last != ALLOWED_EMAIL_DOMAIN) {
       return await logout(AccountStatus.domainNotAllowed);
     }
 

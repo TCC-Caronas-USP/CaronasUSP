@@ -1,6 +1,11 @@
 import 'package:caronas_usp/model/location.dart';
 import 'package:caronas_usp/model/rider.dart';
 
+import 'package:json_annotation/json_annotation.dart';
+
+part 'ride.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Ride {
   final String rideId;
   final Rider driverUsers;
@@ -14,6 +19,10 @@ class Ride {
   final List<Rider> consumersUsers;
   final List<Location> locations;
   final String? myRideStatus;
+
+  factory Ride.fromJson(Map<String, dynamic> json) => _$RideFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RideToJson(this);
 
   const Ride({
     required this.rideId,

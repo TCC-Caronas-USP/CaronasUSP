@@ -1,4 +1,6 @@
+import 'package:caronas_usp/app/modules/criar/bloc/criar_bloc.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_bloc.dart';
+import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_bloc.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_bloc.dart';
 import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
@@ -26,6 +28,11 @@ Future<void> main() async {
           ),
         ),
         BlocProvider(
+          create: (context) => EditProfileBloc(
+            RiderRepository(),
+          ),
+        ),
+        BlocProvider(
           create: (context) => LoginBloc(),
         ),
         BlocProvider(
@@ -34,12 +41,13 @@ Future<void> main() async {
           ),
         ),
         BlocProvider(
-          create: (context) => PegarBloc(
-              RidesRepository()
-          ),
+          create: (context) => PegarBloc(RidesRepository()),
         ),
         BlocProvider(
           create: (context) => HistoricoBloc(RidesRepository()),
+        ),
+        BlocProvider(
+          create: (context) => CriarBloc(RidesRepository(), RiderRepository()),
         ),
         BlocProvider(
           create: (context) => DetalhesBloc(

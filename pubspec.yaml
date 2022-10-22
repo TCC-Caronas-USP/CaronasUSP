@@ -53,6 +53,10 @@ dependencies:
   google_maps_flutter: ^2.1.1
   flutter_polyline_points: ^1.0.0
   http: ^0.13.5
+  flutter_typeahead: ^4.1.1
+  date_field: ^3.0.1
+  flutter_masked_text2: ^0.9.1
+  quantity_input: ^1.0.2
 
 dev_dependencies:
   flutter_test:

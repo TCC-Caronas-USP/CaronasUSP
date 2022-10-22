@@ -1,7 +1,7 @@
 import 'package:caronas_usp/app/modules/profile/bloc/profile_bloc.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_event.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_state.dart';
-import 'package:caronas_usp/app/modules/profile/ui/edit_profile_page.dart';
+import 'package:caronas_usp/app/modules/edit_profile/ui/edit_profile_page.dart';
 import 'package:caronas_usp/model/rider.dart';
 import 'package:caronas_usp/model/vehicle.dart';
 import 'package:caronas_usp/widget/appbar_widget.dart';
@@ -31,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
     _profileBloc = context.read<ProfileBloc>();
     _profileBloc!.add(FetchUserInfo());
-    vehicle = user?.vehicles.first;
+
   }
 
   Future<void> _handleListener(BuildContext context, ProfileState state) async {
@@ -41,6 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     if (state is ProfileLoaded) {
       user = state.user;
+      vehicle = user?.vehicles.first;
       _loading = false;
     }
   }
