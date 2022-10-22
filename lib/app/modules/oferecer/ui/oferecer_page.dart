@@ -9,7 +9,6 @@ import 'package:caronas_usp/widget/offer_ride_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:provider/provider.dart';
 
 class OferecerPage extends StatefulWidget {
   const OferecerPage({Key? key}) : super(key: key);
