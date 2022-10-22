@@ -161,8 +161,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     decimal: false, signed: false),
                             onChanged: (telefone) {},
                             onValidation: (String? value) {
+                              String patttern = r'^\([1-9]{2}\) 9[1-9]{1}[0-9]{3}\-[0-9]{4}$';
+                              RegExp regExp = RegExp(patttern);
                               if (value!.isEmpty) {
                                 return 'Campo obrigatório';
+                              } else if (!regExp.hasMatch(value)) {
+                                return 'Entre um número válido';
                               }
                               return null;
                             },
