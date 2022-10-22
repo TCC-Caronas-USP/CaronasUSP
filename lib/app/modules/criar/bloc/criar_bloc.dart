@@ -1,4 +1,6 @@
+import 'package:caronas_usp/app/repositories/rider_repository.dart';
 import 'package:caronas_usp/app/repositories/rides_repository.dart';
+import 'package:caronas_usp/model/rider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'criar_event.dart';
@@ -6,10 +8,14 @@ import 'criar_state.dart';
 
 class CriarBloc extends Bloc<CriarEvent, CriarState> {
   final RidesRepository ridesRepository;
+  final RiderRepository riderRepository;
 
-  CriarBloc(this.ridesRepository) : super(Creating()) {
+  CriarBloc(this.ridesRepository, this.riderRepository) : super(CreateLoading()) {
     on<FetchCreating>((event, emit) async {
-      emit(Creating());
+      emit(CreateLoading());
+
+      final Rider rider = await riderRepository.getRider();
+      emit(Creating(rider));
     });
 
     on<FetchCreate>((event, emit) async {

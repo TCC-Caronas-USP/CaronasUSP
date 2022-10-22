@@ -1,3 +1,4 @@
+import 'package:caronas_usp/model/rider.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class CriarState extends Equatable {
@@ -9,8 +10,14 @@ abstract class CriarState extends Equatable {
   List get props => _props;
 }
 
+class CreateLoading extends CriarState {
+  CreateLoading() : super([]);
+}
+
 class Creating extends CriarState {
-  Creating() : super([]);
+  final Rider rider;
+
+  Creating(this.rider) : super([rider]);
 }
 
 class Created extends CriarState {
