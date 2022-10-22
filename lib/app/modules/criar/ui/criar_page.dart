@@ -13,6 +13,7 @@ import 'package:caronas_usp/widget/appbar_backbutton_widget.dart';
 import 'package:caronas_usp/widget/datetime_field_widget.dart';
 import 'package:caronas_usp/widget/field_wrapper_widget.dart';
 import 'package:caronas_usp/widget/text_field_widget.dart';
+import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
@@ -137,7 +138,7 @@ class _CriarPageState extends State<CriarPage> {
                         // ),
                         FieldWrapper(
                           fieldInput: DatetimeFieldWidget(
-                            type: "date",
+                            type: DateTimeFieldPickerMode.date,
                             label: "Dia da Carona",
                             onDateSelected: (DateTime value) {
                               rideDay = value;
@@ -219,7 +220,7 @@ class _CriarPageState extends State<CriarPage> {
                         ),
                         FieldWrapper(
                           fieldInput: DatetimeFieldWidget(
-                            type: "hour",
+                            type: DateTimeFieldPickerMode.time,
                             label: "Horário de Saída",
                             onDateSelected: (DateTime value) {
                               rideSourceDatetime = value;
@@ -301,7 +302,7 @@ class _CriarPageState extends State<CriarPage> {
                         ),
                         FieldWrapper(
                           fieldInput: DatetimeFieldWidget(
-                            type: "hour",
+                            type: DateTimeFieldPickerMode.time,
                             label: "Horário de Chegada",
                             onDateSelected: (DateTime value) {
                               rideDestinyDatetime = value;

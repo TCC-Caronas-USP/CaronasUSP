@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DatetimeFieldWidget extends StatefulWidget {
-  final String type;
+  final DateTimeFieldPickerMode type;
   final String label;
 
-  var onDateSelected;
+  final onDateSelected;
 
-  DatetimeFieldWidget(
-      {Key? key, required this.label, this.type = "date", this.onDateSelected})
+  const DatetimeFieldWidget(
+      {Key? key, required this.label, this.type = DateTimeFieldPickerMode.date, this.onDateSelected})
       : super(key: key);
 
   @override
@@ -31,12 +31,10 @@ class _DatetimeFieldWidgetState extends State<DatetimeFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return DateTimeFormField(
-      dateFormat: widget.type == "date"
+      dateFormat: widget.type == DateTimeFieldPickerMode.date
           ? DateFormat("dd/MM/yyyy")
           : DateFormat("HH:mm"),
-      mode: widget.type == "date"
-          ? DateTimeFieldPickerMode.date
-          : DateTimeFieldPickerMode.time,
+      mode: widget.type,
       firstDate: DateTime.now(),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
@@ -49,7 +47,7 @@ class _DatetimeFieldWidgetState extends State<DatetimeFieldWidget> {
       decoration: InputDecoration(
           border: const UnderlineInputBorder(),
           labelText: widget.label,
-          suffixIcon: widget.type == "date"
+          suffixIcon: widget.type == DateTimeFieldPickerMode.date
               ? const Icon(Icons.event)
               : const Icon(Icons.watch_later_outlined)),
     );
