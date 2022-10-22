@@ -237,7 +237,13 @@ class RidesRepository {
           caronasPassageiro: 23,
           caronasMotorista: 0,
           ranking: 4.8,
-          vehicles: []),
+          vehicles: [
+            Vehicle(
+                model: 'Ka',
+                color: 'Prata',
+                brand: 'Ford',
+                licensePlate: 'ABC1D34')
+          ]),
       rideDestinyDatetime: '2022-09-24 17:35:00',
       destinyPlace: "FAU USP",
       rideSourceDatetime: '2022-07-22 08:30:00',
@@ -263,7 +269,7 @@ class RidesRepository {
     Ride(
       driverUsers: Rider(
           imagePath:
-          "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+              "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
           name: "Maria Clara",
           email: "maria.clara@usp.br",
           telefone: "(99) 99999-9999",
@@ -273,7 +279,13 @@ class RidesRepository {
           caronasPassageiro: 23,
           caronasMotorista: 0,
           ranking: 4.8,
-          vehicles: []),
+          vehicles: [
+            Vehicle(
+                model: 'Ka',
+                color: 'Prata',
+                brand: 'Ford',
+                licensePlate: 'ABC1D34')
+          ]),
       rideDestinyDatetime: '2022-09-25 13:50:00',
       destinyPlace: "Rua Amad Massud - Jardim Apurá",
       rideSourceDatetime: "2022-07-22 08:30:00",
@@ -299,7 +311,7 @@ class RidesRepository {
     Ride(
       driverUsers: Rider(
           imagePath:
-          "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+              "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
           name: "Maria Clara",
           email: "maria.clara@usp.br",
           telefone: "(99) 99999-9999",
@@ -309,7 +321,13 @@ class RidesRepository {
           caronasPassageiro: 23,
           caronasMotorista: 0,
           ranking: 4.8,
-          vehicles: []),
+          vehicles: [
+            Vehicle(
+                model: 'Ka',
+                color: 'Prata',
+                brand: 'Ford',
+                licensePlate: 'ABC1D34')
+          ]),
       rideDestinyDatetime: '2022-09-24 15:10:00',
       destinyPlace: "IME USP",
       rideSourceDatetime: '2022-07-22 08:30:00',
@@ -335,7 +353,7 @@ class RidesRepository {
     Ride(
       driverUsers: Rider(
           imagePath:
-          "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+              "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
           name: "Maria Clara",
           email: "maria.clara@usp.br",
           telefone: "(99) 99999-9999",
@@ -345,7 +363,13 @@ class RidesRepository {
           caronasPassageiro: 23,
           caronasMotorista: 0,
           ranking: 4.8,
-          vehicles: []),
+          vehicles: [
+            Vehicle(
+                model: 'Ka',
+                color: 'Prata',
+                brand: 'Ford',
+                licensePlate: 'ABC1D34')
+          ]),
       rideDestinyDatetime: '2022-09-26 09:30:00',
       destinyPlace: "Rua William Speers - Lapa de Baixo",
       rideSourceDatetime: '2022-07-22 08:30:00',
@@ -371,7 +395,7 @@ class RidesRepository {
     Ride(
       driverUsers: Rider(
           imagePath:
-          "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+              "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
           name: "Maria Clara",
           email: "maria.clara@usp.br",
           telefone: "(99) 99999-9999",
@@ -381,7 +405,13 @@ class RidesRepository {
           caronasPassageiro: 23,
           caronasMotorista: 0,
           ranking: 4.8,
-          vehicles: []),
+          vehicles: [
+            Vehicle(
+                model: 'Ka',
+                color: 'Prata',
+                brand: 'Ford',
+                licensePlate: 'ABC1D34')
+          ]),
       rideDestinyDatetime: '2022-09-25 07:20:00',
       destinyPlace: "IP USP",
       rideSourceDatetime: '2022-07-22 08:30:00',
@@ -406,11 +436,26 @@ class RidesRepository {
     ),
   ];
 
+  Future<List<List<Ride>>> getUserOfferedRides() async {
+    // return UserGraphQLRequester.getUserOfferedRides(email); TODO implementar requester
+    await Future.delayed(
+        const Duration(seconds: 1)); // TODO remover sleep e user mock
+    return rideDates(myOfferedRides);
+  }
+
+  Future<List<List<Ride>>> getOfferedRides() async {
+    // return UserGraphQLRequester.getOfferedRides(); TODO implementar requester
+    await Future.delayed(
+        const Duration(seconds: 1) // TODO remover sleep e user mock
+        );
+    return rideDates(offeredRides);
+  }
+
   static const myRides = <Ride>[
     Ride(
         driverUsers: Rider(
             imagePath:
-            "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+                "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
             name: "Maria Clara",
             email: "maria.clara@usp.br",
             telefone: "(99) 99999-9999",
@@ -422,7 +467,10 @@ class RidesRepository {
             ranking: 4.8,
             vehicles: [
               Vehicle(
-                  model: 'Ka', color: 'Prata', brand: 'Ford', licensePlate: 'ABC1D34')
+                  model: 'Ka',
+                  color: 'Prata',
+                  brand: 'Ford',
+                  licensePlate: 'ABC1D34')
             ]),
         rideDestinyDatetime: '2022-09-24 17:35:00',
         destinyPlace: "FAU USP",
@@ -449,7 +497,7 @@ class RidesRepository {
     Ride(
         driverUsers: Rider(
             imagePath:
-            "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+                "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
             name: "Maria Clara",
             email: "maria.clara@usp.br",
             telefone: "(99) 99999-9999",
@@ -461,7 +509,10 @@ class RidesRepository {
             ranking: 4.8,
             vehicles: [
               Vehicle(
-                  model: 'Ka', color: 'Prata', brand: 'Ford', licensePlate: 'ABC1D34')
+                  model: 'Ka',
+                  color: 'Prata',
+                  brand: 'Ford',
+                  licensePlate: 'ABC1D34')
             ]),
         rideDestinyDatetime: '2022-09-24 15:10:00',
         destinyPlace: "IME USP",
@@ -488,7 +539,7 @@ class RidesRepository {
     Ride(
         driverUsers: Rider(
             imagePath:
-            "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+                "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
             name: "Maria Clara",
             email: "maria.clara@usp.br",
             telefone: "(99) 99999-9999",
@@ -500,7 +551,10 @@ class RidesRepository {
             ranking: 4.8,
             vehicles: [
               Vehicle(
-                  model: 'Ka', color: 'Prata', brand: 'Ford', licensePlate: 'ABC1D34')
+                  model: 'Ka',
+                  color: 'Prata',
+                  brand: 'Ford',
+                  licensePlate: 'ABC1D34')
             ]),
         rideDestinyDatetime: '2022-09-25 13:50:00',
         destinyPlace: "Rua Amad Massud - Jardim Apurá",
@@ -526,25 +580,11 @@ class RidesRepository {
         myRideStatus: "rejected"),
   ];
 
-  Future<List<List<Ride>>> getUserOfferedRides() async {
-    // return UserGraphQLRequester.getUserOfferedRides(email); TODO implementar requester
-    await Future.delayed(
-        const Duration(seconds: 1)); // TODO remover sleep e user mock
-    return rideDates(myOfferedRides);
-  }
-
-  Future<List<List<Ride>>> getOfferedRides() async {
-    // return UserGraphQLRequester.getOfferedRides(); TODO implementar requester
-    await Future.delayed(
-        const Duration(seconds: 1) // TODO remover sleep e user mock
-        );
-    return rideDates(offeredRides);
-  }
-
   Future<Ride?> getRide(rideId) async {
     await Future.delayed(const Duration(seconds: 1));
     Ride? ride;
-    ride = (myOfferedRides + offeredRides).firstWhere((element) => element.rideId == rideId);
+    ride = (myOfferedRides + offeredRides)
+        .firstWhere((element) => element.rideId == rideId);
 
     ride = (myOfferedRides + offeredRides)
         .firstWhere((element) => element.rideId == rideId);
