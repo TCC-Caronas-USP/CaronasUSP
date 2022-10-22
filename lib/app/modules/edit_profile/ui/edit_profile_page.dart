@@ -166,7 +166,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               if (value!.isEmpty) {
                                 return 'Campo obrigatório';
                               } else if (!regExp.hasMatch(value)) {
-                                return 'Entre um número válido';
+                                return 'Digite um número válido';
                               }
                               return null;
                             },
