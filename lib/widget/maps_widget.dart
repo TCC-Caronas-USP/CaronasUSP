@@ -85,6 +85,7 @@ class _MapsState extends State<Maps> {
                         child: GoogleMap(
                           markers: markersLocation(widget.locations),
                           polylines: polylines,
+                          myLocationEnabled: false,
                           initialCameraPosition: CameraPosition(
                             target: LatLng(
                                 initialLocation.lat, initialLocation.lon),
