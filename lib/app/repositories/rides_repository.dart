@@ -610,6 +610,17 @@ class RidesRepository {
     return true;
   }
 
+  Future<bool?> enterRide(Ride ride) async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    print(ride.toJson());
+    for (var l in ride.locations) {
+      print(l.toJson());
+    }
+
+    return true;
+  }
+
   Future<List<List<Ride>>> getMyRides() async {
     // return UserGraphQLRequester.getMyRides(); TODO implementar requester
     await Future.delayed(const Duration(seconds: 1));
