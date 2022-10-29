@@ -186,7 +186,7 @@ class _EntrarState extends State<Entrar> {
                                   if (_formKey.currentState!.validate()) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
-                                          content: Text('Criando a carona')),
+                                          content: Text('Entrando na carona')),
                                     );
 
                                     newLocations = List.from(ride.locations)
