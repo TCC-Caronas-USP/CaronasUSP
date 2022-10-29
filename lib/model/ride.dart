@@ -9,7 +9,8 @@ part 'ride.g.dart';
 class Ride {
   final String rideId;
   final Rider driverUsers;
-  final String rideDestinyDatetime; // tentei colocar como datetime, mas não consegui
+  final String
+      rideDestinyDatetime; // tentei colocar como datetime, mas não consegui
   final String destinyPlace;
   final String rideSourceDatetime;
   final String sourcePlace;
@@ -38,4 +39,33 @@ class Ride {
     required this.locations,
     this.myRideStatus,
   });
+
+  Ride copyWith({
+    String? rideId,
+    Rider? driverUsers,
+    String? rideDestinyDatetime,
+    String? destinyPlace,
+    String? rideSourceDatetime,
+    String? sourcePlace,
+    double? price,
+    int? totalOccupation,
+    int? currentOccupation,
+    List<Rider>? consumersUsers,
+    List<Location>? locations,
+    String? myRideStatus,
+  }) {
+    return Ride(
+      rideId: rideId ?? this.rideId,
+      driverUsers: driverUsers ?? this.driverUsers,
+      rideDestinyDatetime: rideDestinyDatetime ?? this.rideDestinyDatetime,
+      destinyPlace: destinyPlace ?? this.destinyPlace,
+      rideSourceDatetime: rideSourceDatetime ?? this.rideSourceDatetime,
+      sourcePlace: sourcePlace ?? this.sourcePlace,
+      price: price ?? this.price,
+      totalOccupation: totalOccupation ?? this.totalOccupation,
+      currentOccupation: currentOccupation ?? this.currentOccupation,
+      consumersUsers: consumersUsers ?? this.consumersUsers,
+      locations: locations ?? this.locations,
+    );
+  }
 }
