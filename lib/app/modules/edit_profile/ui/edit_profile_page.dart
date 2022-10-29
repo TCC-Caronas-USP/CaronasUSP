@@ -111,7 +111,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             label: "Instituto",
                             suffixIcon: const Icon(Icons.school_outlined),
                             text: rider!.instituto,
-                            onChanged: (instituto) {},
+                            onFieldChanged: (widget, instituto) {},
                             onValidation: (String? value) {
                               if (value!.isEmpty) {
                                 return 'Campo obrigatório';
@@ -126,7 +126,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             label: "Curso",
                             text: rider!.curso,
                             suffixIcon: const Icon(Icons.school_outlined),
-                            onChanged: (instituto) {},
+                            onFieldChanged: (widget, instituto) {},
                             onValidation: (String? value) {
                               if (value!.isEmpty) {
                                 return 'Campo obrigatório';
@@ -141,7 +141,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             label: "Ano",
                             text: rider!.ano.toString(),
                             suffixIcon: const Icon(Icons.timelapse_outlined),
-                            onChanged: (instituto) {},
+                            onFieldChanged: (widget, instituto) {},
                             onValidation: (String? value) {
                               if (value!.isEmpty) {
                                 return 'Campo obrigatório';
@@ -159,7 +159,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             textInputType:
                                 const TextInputType.numberWithOptions(
                                     decimal: false, signed: false),
-                            onChanged: (telefone) {},
+                            onFieldChanged: (widget, telefone) {},
                             onValidation: (String? value) {
                               String patttern = r'^\([1-9]{2}\) 9[1-9]{1}[0-9]{3}\-[0-9]{4}$';
                               RegExp regExp = RegExp(patttern);
