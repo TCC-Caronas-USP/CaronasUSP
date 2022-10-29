@@ -19,4 +19,18 @@ class RiderRequester extends BaseRequester {
       throw HttpException(msg);
     }
   }
+
+  static Future<Rider> postRider(Map<String, dynamic> params) async {
+    const path = '/rider';
+    final response = await BaseRequester.post(path, params: params);
+
+    if (response.statusCode == HttpStatus.created) {
+      final Map<String, dynamic> userJson = json.decode(response.body);
+      return Rider.fromJson(userJson);
+    } else {
+      var msg =
+          'Unexpected ${response.statusCode} status code: ${response.reasonPhrase}, ${response.body}';
+      throw HttpException(msg);
+    }
+  }
 }
