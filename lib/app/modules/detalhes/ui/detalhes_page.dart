@@ -1,6 +1,8 @@
+import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_bloc.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_event.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_state.dart';
+import 'package:caronas_usp/app/modules/entrar/ui/entrar_page.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:caronas_usp/widget/appbar_backbutton_widget.dart';
 import 'package:caronas_usp/widget/details_ride_widget.dart';
@@ -9,10 +11,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DetalhesPage extends StatefulWidget {
-  final String rideId;
-  final bool offer;
+  final Ride ride;
+  final AppPage page;
 
-  const DetalhesPage({Key? key, required this.rideId, this.offer = true})
+  const DetalhesPage({Key? key, required this.ride, required this.page})
       : super(key: key);
 
   @override
@@ -24,14 +26,13 @@ class _DetalhesPageState extends State<DetalhesPage> {
 
   Ride? ride;
   bool _loading = true;
-  bool? _canceled = false;
 
   @override
   void initState() {
     super.initState();
 
     _detalhesBloc = context.read<DetalhesBloc>();
-    _detalhesBloc!.add(FetchRide(widget.rideId));
+    _detalhesBloc!.add(FetchRide(widget.ride));
   }
 
   Future<void> _handleListener(
@@ -63,7 +64,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
                   ),
             floatingActionButton: _loading
                 ? null
-                : widget.offer
+                : widget.page == AppPage.oferecer
                     ? Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -108,7 +109,21 @@ class _DetalhesPageState extends State<DetalhesPage> {
                                 backgroundColor: Colors.green[400],
                                 child: const Icon(Icons.edit)),
                           ])
-                    : null, // TODO inserir lógica de floating action buttons para outras telas
+                    : widget.page == AppPage.pegar
+                        ? FloatingActionButton(
+                            heroTag: "btnEntrar",
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      Entrar(ride: widget.ride)));
+                            },
+                            backgroundColor: Colors.green[400],
+                            child: const Icon(Icons.input))
+                        : FloatingActionButton(
+                            heroTag: "btnSair",
+                            onPressed: () {},
+                            backgroundColor: Colors.green[400],
+                            child: const Icon(Icons.output)),
           );
         },
         listener: _handleListener);

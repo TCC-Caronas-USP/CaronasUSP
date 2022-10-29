@@ -1,7 +1,6 @@
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_event.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_state.dart';
 import 'package:caronas_usp/app/repositories/rides_repository.dart';
-import 'package:caronas_usp/model/ride.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetalhesBloc extends Bloc<DetalhesEvent, DetalhesState> {
@@ -11,8 +10,7 @@ class DetalhesBloc extends Bloc<DetalhesEvent, DetalhesState> {
     on<FetchRide>((event, emit) async {
       emit(DetalhesLoading());
 
-      final Ride? ride = await ridesRepository.getRide(event.rideId);
-      emit(DetalhesLoaded(ride!));
+      emit(DetalhesLoaded(event.ride));
     });
 
     on<CancelRide>((event, emit) async {

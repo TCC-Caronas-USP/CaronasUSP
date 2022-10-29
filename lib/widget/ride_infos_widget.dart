@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/detalhes/ui/detalhes_page.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,13 @@ import 'package:intl/intl.dart';
 class RideInfos extends StatelessWidget {
   final Ride rideInfos;
   final bool isMyRide;
+  final AppPage page;
 
-  const RideInfos({Key? key, required this.rideInfos, this.isMyRide = false})
+  const RideInfos(
+      {Key? key,
+      required this.rideInfos,
+      required this.page,
+      this.isMyRide = false})
       : super(key: key);
 
   @override
@@ -19,7 +25,8 @@ class RideInfos extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => DetalhesPage(rideId: rideInfos.rideId,)));
+                  builder: (context) =>
+                      DetalhesPage(ride: rideInfos, page: page)));
             },
             child: Padding(
               padding:
@@ -37,8 +44,10 @@ class RideInfos extends StatelessWidget {
                         const SizedBox(
                           width: 12,
                         ),
-                        buildRideLocation(rideInfos.destinyPlace,
-                            rideInfos.sourcePlace, rideInfos.rideDestinyDatetime),
+                        buildRideLocation(
+                            rideInfos.destinyPlace,
+                            rideInfos.sourcePlace,
+                            rideInfos.rideDestinyDatetime),
                         const SizedBox(
                           width: 12,
                         ),

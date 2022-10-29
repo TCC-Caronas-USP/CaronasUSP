@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_bloc.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_event.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_state.dart';
@@ -61,7 +62,7 @@ class _HistoricoPageState extends State<HistoricoPage> {
                       color: Colors.green,
                       size: 50.0,
                     )
-                  : OfferRide(userOfferedRides: myRides!));
+                  : OfferRide(userOfferedRides: myRides!, page: AppPage.historico,));
         });
   }
 }

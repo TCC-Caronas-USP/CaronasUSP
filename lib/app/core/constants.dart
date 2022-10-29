@@ -18,3 +18,9 @@ enum AccountStatus {
   loggedOut,
   domainNotAllowed
 }
+
+enum AppPage {
+  pegar,
+  historico,
+  oferecer
+}
