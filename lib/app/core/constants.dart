@@ -6,6 +6,8 @@ const String SERVER_URL = DEV_URL;
 const String SERVER_HOST = "10.0.2.2";
 const int SERVER_PORT = 8551;
 
+const String URI_SCHEME = "http";
+
 const String ALLOWED_EMAIL_DOMAIN = 'usp.br';
 
 const String TIME_ZONE = 'America/Sao_Paulo';

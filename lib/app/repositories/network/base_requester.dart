@@ -3,11 +3,12 @@ import 'dart:collection';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:caronas_usp/app/core/constants.dart' as constants;
+import 'dart:convert';
 
 class BaseRequester {
   static Uri getUri(String path) {
     return Uri(
-      scheme: 'http',
+      scheme: constants.URI_SCHEME,
       host: constants.SERVER_HOST,
       port: constants.SERVER_PORT,
       path: path,
@@ -43,7 +44,8 @@ class BaseRequester {
       {Map<String, String>? headers, Map<String, dynamic>? params}) async {
     Uri uri = getUri(path);
     headers = await getHeaders(headers);
-    final response = await http.post(uri, headers: headers, body: params);
+    final body = jsonEncode(params);
+    final response = await http.post(uri, headers: headers, body: body);
     return response;
   }
 }
