@@ -1,4 +1,3 @@
-import 'package:caronas_usp/app/core/constants.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class LoginState extends Equatable {
@@ -14,16 +13,22 @@ class LoginLoading extends LoginState {
   LoginLoading() : super([]);
 }
 
-class LoginLoaded extends LoginState {
-
-  final AccountStatus accountStatus;
-
-  LoginLoaded(this.accountStatus) : super([accountStatus]);
+class UserBanned extends LoginState {
+  UserBanned() : super([]);
 }
 
-class LoginAttempted extends LoginState {
+class LoggedIn extends LoginState {
+  LoggedIn() : super([]);
+}
 
-  final AccountStatus accountStatus;
+class LoggedInFirstTime extends LoginState {
+  LoggedInFirstTime() : super([]);
+}
 
-  LoginAttempted(this.accountStatus) : super([accountStatus]);
+class LoggedOut extends LoginState {
+  LoggedOut() : super([]);
+}
+
+class EmailDomainNotAllowed extends LoginState {
+  EmailDomainNotAllowed() : super([]);
 }

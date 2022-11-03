@@ -41,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     if (state is ProfileLoaded) {
       user = state.user;
-      vehicle = user?.vehicles.first;
+      vehicle = user!.vehicles.isNotEmpty ? user?.vehicles.first : null;
       _loading = false;
     }
   }
@@ -103,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       const SizedBox(
                         height: 12,
                       ),
-                      InfosWidget(infoTitle: "Veículo", infoValues: [
+                      if (vehicle != null) InfosWidget(infoTitle: "Veículo", infoValues: [
                         vehicle!.model,
                         vehicle!.color,
                         vehicle!.licensePlate,
