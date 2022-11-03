@@ -57,6 +57,8 @@ dependencies:
   flutter_masked_text2: ^0.9.1
   quantity_input: ^1.0.2
   onesignal_flutter: ^3.0.0
+  firebase_core_platform_interface: ^4.5.1
+  firebase_messaging: ^13.0.4
 
 dev_dependencies:
   flutter_test:

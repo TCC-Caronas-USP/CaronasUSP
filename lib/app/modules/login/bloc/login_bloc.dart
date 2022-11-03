@@ -11,14 +11,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final googleSignIn = GoogleSignIn();
   final RiderRepository riderRepository;
 
+  Rider? _rider;
+
+  Rider? get currentRider => _rider;
+
   LoginBloc(this.riderRepository) : super(LoggedOut()) {
     on<TryLogin>((event, emit) async {
       emit(LoginLoading());
 
       LoginState loginState = await googleLogin();
-      if (loginState == LoggedIn()) {
+      if (loginState == GoogleLoggedIn()) {
         bool riderExists = await riderRepository.checkIfRiderExists();
         if (riderExists) {
+          _rider = await riderRepository.getRider(); // TODO Ao invés de chamar riderRepository 2 vezes, usar Result<T, E> para retornar Rider ou Erro. Fonte: https://gist.github.com/anoop4real/57584eb3a04ce0b9be6252401b0bde8b
           emit(LoggedIn());
         } else {
           emit(LoggedInFirstTime());
@@ -92,7 +97,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } catch (e) {
       return await logout();
     }
-    return LoggedIn();
+    return GoogleLoggedIn();
   }
 
   Future<LoginState> logout() async {
