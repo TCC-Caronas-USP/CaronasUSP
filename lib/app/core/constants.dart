@@ -10,7 +10,7 @@ const String ALLOWED_EMAIL_DOMAIN = 'usp.br';
 
 const String TIME_ZONE = 'America/Sao_Paulo';
 
-const String ONESIGNAL_APP_ID = '';
+const String ONESIGNAL_APP_ID = '36a6876f-a1dd-490e-ad39-f38befcff578';
 
 enum AccountStatus {
   banned,
