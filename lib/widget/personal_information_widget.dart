@@ -14,6 +14,9 @@ class PersonalInformationWidget extends StatelessWidget {
   final user = FirebaseAuth.instance.currentUser!;
   Map<String, dynamic> personalInfo = {};
 
+  late TextEditingController name = TextEditingController(text: user.displayName);
+  late TextEditingController email = TextEditingController(text: user.email);
+
   void onFieldChanged(TextFieldWidget field, dynamic value) {
     personalInfo[field.label] = value;
   }
@@ -33,13 +36,13 @@ class PersonalInformationWidget extends StatelessWidget {
           const SizedBox(height: 24),
           TextFieldWidget(
             label: "Nome",
-            text: user.displayName!,
+            fieldController: name,
             enabled: false,
           ),
           const SizedBox(height: 24),
           TextFieldWidget(
             label: "Email",
-            text: user.email!,
+            fieldController: email,
             enabled: false,
           ),
           const SizedBox(height: 24),

@@ -9,7 +9,6 @@ class TextFieldWidget extends StatefulWidget {
   final FocusNode? focusNode;
   final Icon? suffixIcon;
   final TextInputType textInputType;
-  final String type;
   final bool enabled;
 
   TextFieldWidget(
@@ -22,7 +21,6 @@ class TextFieldWidget extends StatefulWidget {
       this.focusNode,
       this.suffixIcon,
       this.textInputType = TextInputType.name,
-      this.type = "text",
       this.enabled = true})
       : super(key: key);
 
@@ -41,7 +39,6 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         enabled: widget.enabled,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: widget.onValidation,
-        initialValue: widget.text,
         onChanged: onChanged,
         controller: widget.fieldController,
         keyboardType: widget.textInputType,
