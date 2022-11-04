@@ -5,6 +5,7 @@ import 'package:caronas_usp/app/modules/pegar/ui/pegar_page.dart';
 import 'package:caronas_usp/app/modules/historico/ui/historico_page.dart';
 import 'package:caronas_usp/app/modules/oferecer/ui/oferecer_page.dart';
 import 'package:caronas_usp/app/modules/profile/ui/profile_page.dart';
+import 'package:caronas_usp/app/repositories/network/onesignal_requester.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -70,6 +71,8 @@ class _AppState extends State<App> {
         home: BlocBuilder<LoginBloc, LoginState>(
           builder: (BuildContext context, LoginState state) {
             if (state is LoggedIn) {
+              String riderEmail = context.read<LoginBloc>().currentRider!.email;
+              OneSignalRequester.subscribe(riderEmail);
               return Scaffold(
                 body: getIndexedPage(),
                 bottomNavigationBar: getBottomNavigationBar(),

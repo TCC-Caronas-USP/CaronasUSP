@@ -21,6 +21,10 @@ class LoggedIn extends LoginState {
   LoggedIn() : super([]);
 }
 
+class GoogleLoggedIn extends LoginState {
+  GoogleLoggedIn() : super([]);
+}
+
 class LoggedInFirstTime extends LoginState {
   LoggedInFirstTime() : super([]);
 }
