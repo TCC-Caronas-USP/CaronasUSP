@@ -34,7 +34,7 @@ Future<void> main() async {
           ),
         ),
         BlocProvider(
-          create: (context) => LoginBloc(),
+          create: (context) => LoginBloc(RiderRepository()),
         ),
         BlocProvider(
           create: (context) => OferecerBloc(
