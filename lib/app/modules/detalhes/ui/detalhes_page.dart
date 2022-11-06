@@ -64,68 +64,78 @@ class _DetalhesPageState extends State<DetalhesPage> {
                   ),
             floatingActionButton: _loading
                 ? null
-                : widget.page == AppPage.oferecer
-                    ? Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                            FloatingActionButton(
-                                heroTag: "btnCancel",
-                                onPressed: () => showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        AlertDialog(
-                                          title: const Text(
-                                              "Deseja realmente cancelar a carona?",
-                                              textAlign: TextAlign.center),
-                                          content: const Text(
-                                              "Caso cancele os caronistas serão alertados.",
-                                              textAlign: TextAlign.center),
-                                          alignment: Alignment.center,
-                                          actions: <Widget>[
-                                            TextButton(
-                                              onPressed: () =>
-                                                  Navigator.pop(context, 'Não'),
-                                              child: const Text('Não'),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {
-                                                // Navigator.of(context).push(
-                                                //     MaterialPageRoute(
-                                                //         builder: (context) =>
-                                                //             const OferecerPage()));
-                                              },
-                                              child: const Text('Sim',
-                                                  style: TextStyle(
-                                                      color: Colors.red)),
-                                            ),
-                                          ],
-                                        )),
-                                backgroundColor: Colors.red[400],
-                                child: const Icon(Icons.cancel)),
-                            const SizedBox(height: 6),
-                            FloatingActionButton(
-                                heroTag: "btnEdit",
-                                onPressed: () {},
-                                backgroundColor: Colors.green[400],
-                                child: const Icon(Icons.edit)),
-                          ])
-                    : widget.page == AppPage.pegar
-                        ? FloatingActionButton(
-                            heroTag: "btnEntrar",
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      Entrar(ride: widget.ride)));
-                            },
-                            backgroundColor: Colors.green[400],
-                            child: const Icon(Icons.input))
-                        : FloatingActionButton(
-                            heroTag: "btnSair",
-                            onPressed: () {},
-                            backgroundColor: Colors.green[400],
-                            child: const Icon(Icons.output)),
+                : buildFloatingActionButton(widget.page),
           );
         },
         listener: _handleListener);
+  }
+
+  Widget? buildFloatingActionButton(page) {
+    switch (page) {
+      case AppPage.oferecer:
+        return Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                  heroTag: "btnCancel",
+                  onPressed: () => showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          AlertDialog(
+                            title: const Text(
+                                "Deseja realmente cancelar a carona?",
+                                textAlign: TextAlign.center),
+                            content: const Text(
+                                "Caso cancele os caronistas serão alertados.",
+                                textAlign: TextAlign.center),
+                            alignment: Alignment.center,
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(context, 'Não'),
+                                child: const Text('Não'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Navigator.of(context).push(
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             const OferecerPage()));
+                                },
+                                child: const Text('Sim',
+                                    style: TextStyle(
+                                        color: Colors.red)),
+                              ),
+                            ],
+                          )),
+                  backgroundColor: Colors.red[400],
+                  child: const Icon(Icons.cancel)),
+              const SizedBox(height: 6),
+              FloatingActionButton(
+                  heroTag: "btnEdit",
+                  onPressed: () {},
+                  backgroundColor: Colors.green[400],
+                  child: const Icon(Icons.edit)),
+            ]);
+
+      case AppPage.pegar:
+        return FloatingActionButton(
+            heroTag: "btnEntrar",
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      Entrar(ride: widget.ride)));
+            },
+            backgroundColor: Colors.green[400],
+            child: const Icon(Icons.input));
+
+      case AppPage.historico:
+        return FloatingActionButton(
+            heroTag: "btnSair",
+            onPressed: () {},
+            backgroundColor: Colors.green[400],
+            child: const Icon(Icons.output));
+    }
+    return null;
   }
 }
