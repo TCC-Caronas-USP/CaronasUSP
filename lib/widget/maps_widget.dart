@@ -39,7 +39,7 @@ class _MapsState extends State<Maps> {
       }
 
       markers.add(Marker(
-          markerId: MarkerId(location.id),
+          markerId: MarkerId(location.id ?? "0000"),
           icon: BitmapDescriptor.defaultMarkerWithHue(bitMapDescriptor),
           infoWindow: InfoWindow(
             title: location.description,
