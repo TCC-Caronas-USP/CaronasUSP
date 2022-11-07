@@ -71,7 +71,7 @@ class RidesRepository {
       ranking: 4.8,
       vehicles: []);
 
-  static const myOfferedRides = <Ride>[
+  static List<Ride> myOfferedRides = <Ride>[
     Ride(
         rideId: '0000-0000',
         driverUsers: driverUser,
@@ -223,7 +223,7 @@ class RidesRepository {
         ]),
   ];
 
-  static const offeredRides = <Ride>[
+  static List<Ride> offeredRides = <Ride>[
     Ride(
       driverUsers: Rider(
           imagePath:
@@ -451,7 +451,7 @@ class RidesRepository {
     return rideDates(offeredRides);
   }
 
-  static const myRides = <Ride>[
+  static List<Ride> myRides = <Ride>[
     Ride(
         driverUsers: Rider(
             imagePath:
@@ -591,8 +591,10 @@ class RidesRepository {
     return ride;
   }
 
-  Future<bool?> cancelRide(rideId) async {
+  Future<bool> cancelRide(rideId) async {
     await Future.delayed(const Duration(seconds: 1));
+
+    print(rideId);
 
     return true;
   }
@@ -610,8 +612,18 @@ class RidesRepository {
     return true;
   }
 
-  Future<bool?> enterRide(Ride ride) async {
+  Future<bool> enterRide(Ride ride, Location newLocation) async {
     await Future.delayed(const Duration(seconds: 1));
+
+    Map<String, dynamic> params = {
+      "ride": 3,
+      "meeting_point": {
+        "address": "Rua ABCDE",
+        "lat": -10.00,
+        "lon": -20.00
+      }
+    };
+    // await RidesRequester.postRider(params);
 
     print(ride.toJson());
     for (var l in ride.locations) {
