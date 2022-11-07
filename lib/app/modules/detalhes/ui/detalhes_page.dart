@@ -3,12 +3,12 @@ import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_bloc.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_event.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_state.dart';
 import 'package:caronas_usp/app/modules/entrar/ui/entrar_page.dart';
+import 'package:caronas_usp/app/modules/oferecer/ui/oferecer_page.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:caronas_usp/widget/appbar_backbutton_widget.dart';
 import 'package:caronas_usp/widget/details_ride_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DetalhesPage extends StatefulWidget {
   final Ride ride;
@@ -24,27 +24,39 @@ class DetalhesPage extends StatefulWidget {
 class _DetalhesPageState extends State<DetalhesPage> {
   DetalhesBloc? _detalhesBloc;
 
-  Ride? ride;
-  bool _loading = true;
+  late Ride ride;
 
   @override
   void initState() {
     super.initState();
 
     _detalhesBloc = context.read<DetalhesBloc>();
-    _detalhesBloc!.add(FetchRide(widget.ride));
+
+    ride = widget.ride;
   }
 
   Future<void> _handleListener(
       BuildContext context, DetalhesState state) async {
-    if (state is DetalhesLoading) {
-      _loading = true;
-      ride = null;
-    }
-    if (state is DetalhesLoaded) {
-      ride = state.ride;
-      _loading = false;
-    }
+        if (state is Canceled) {
+          if (state.canceled == true) {
+            Navigator.pop(context, "cancelada");
+            Navigator.of(context)
+                .pop(MaterialPageRoute(builder: (context) => const OferecerPage()));
+          }
+          else {
+            Navigator.pop(context, "não cancelada");
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                  backgroundColor: Colors.red.withOpacity(0.75),
+                  content: const ListTile(
+                    title: Text("Atenção", style: TextStyle(color: Colors.white)),
+                    subtitle: Text(
+                        "Não foi possível cancelar na carona. Tente novamente mais tarde.",
+                        style: TextStyle(color: Colors.white)),
+                  )),
+            );
+          }
+        }
   }
 
   @override
@@ -54,17 +66,10 @@ class _DetalhesPageState extends State<DetalhesPage> {
         builder: (BuildContext context, DetalhesState state) {
           return Scaffold(
             appBar: buildAppBarBackButton(context, "Detalhes da Carona"),
-            body: _loading
-                ? const SpinKitRotatingCircle(
-                    color: Colors.green,
-                    size: 50.0,
-                  )
-                : DetailsRide(
-                    ride: ride!,
-                  ),
-            floatingActionButton: _loading
-                ? null
-                : buildFloatingActionButton(widget.page),
+            body: DetailsRide(
+              ride: ride,
+            ),
+            floatingActionButton: buildFloatingActionButton(widget.page),
           );
         },
         listener: _handleListener);
@@ -97,10 +102,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  // Navigator.of(context).push(
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) =>
-                                  //             const OferecerPage()));
+                                  _detalhesBloc!.add(CancelRide(ride.rideId));
                                 },
                                 child: const Text('Sim',
                                     style: TextStyle(
