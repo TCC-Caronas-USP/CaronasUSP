@@ -115,27 +115,6 @@ class _CriarPageState extends State<CriarPage> {
                       physics: const BouncingScrollPhysics(),
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       children: [
-                        // FieldWrapper(
-                        //     fieldInput: const ListTile(
-                        //   leading: CircleAvatar(
-                        //     child: Icon(
-                        //       Icons.info_outline,
-                        //       color: Colors.white,
-                        //     ),
-                        //   ),
-                        //   title: Text("Atenção"),
-                        //   subtitle: Text(
-                        //       "Ao criar a carona tente colocar pontos de referência e não especifique o endereço com a numeração."),
-                        // )),
-                        // FieldWrapper(
-                        //   fieldInput: Container(
-                        //     child: Row(children: const [
-                        //       Icon(Icons.info),
-                        //       Text(
-                        //           "Ao criar a carona tente colocar pontos de referência e não especifique o endereço com a numeração.")
-                        //     ]),
-                        //   ),
-                        // ),
                         FieldWrapper(
                           fieldInput: DatetimeFieldWidget(
                             type: DateTimeFieldPickerMode.date,
