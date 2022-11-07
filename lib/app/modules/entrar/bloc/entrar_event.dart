@@ -1,3 +1,4 @@
+import 'package:caronas_usp/model/location.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:equatable/equatable.dart';
 
@@ -10,15 +11,10 @@ abstract class EntrarEvent extends Equatable{
   List<Object> get props => _props as List<Object>;
 }
 
-class FetchEntering extends EntrarEvent {
+class SuggestPlace extends EntrarEvent {
   final Ride ride;
+  final Location newLocation;
 
-  FetchEntering(this.ride) : super([ride]);
-}
-
-class FetchSuggest extends EntrarEvent {
-  final Ride ride;
-
-  FetchSuggest(this.ride) : super([ride]);
+  SuggestPlace(this.ride, this.newLocation) : super([ride, newLocation]);
 }
 

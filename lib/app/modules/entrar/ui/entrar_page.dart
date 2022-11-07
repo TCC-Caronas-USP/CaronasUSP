@@ -9,7 +9,6 @@ import 'package:caronas_usp/widget/appbar_backbutton_widget.dart';
 import 'package:caronas_usp/widget/field_wrapper_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class Entrar extends StatefulWidget {
@@ -23,8 +22,6 @@ class Entrar extends StatefulWidget {
 
 class _EntrarState extends State<Entrar> {
   EntrarBloc? _entrarBloc;
-
-  bool _loading = true;
 
   late Ride ride;
 
@@ -51,33 +48,25 @@ class _EntrarState extends State<Entrar> {
     super.initState();
 
     _entrarBloc = context.read<EntrarBloc>();
-    _entrarBloc!.add(FetchEntering(widget.ride));
+
+    ride = widget.ride;
   }
 
   Future<void> _handleListener(BuildContext context, EntrarState state) async {
-    if (state is EnterLoading) {
-      _loading = true;
-    }
-    if (state is Entering) {
-      _loading = false;
-      ride = state.ride;
-    }
     if (state is Suggested) {
-      _loading = false;
       if (state.sugested == true) {
         Navigator.of(context).pop();
-
-        // Navigator.of(context).restorablePush(
-        //     MaterialPageRoute(builder: (context) => const HistoricoPage()),
-        // );
-        // Navigator.of(context).pushReplacement(
-        //     MaterialPageRoute(builder: (context) => const HistoricoPage()));
-        // Navigator.of(context).pushAndRemoveUntil(
-        //     MaterialPageRoute(builder: (context) => const HistoricoPage()),
-        //         (Route<dynamic> route) => false
-        // );
-        // Navigator.of(context).pop(
-        //     MaterialPageRoute(builder: (context) => const HistoricoPage()));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              backgroundColor: Colors.red.withOpacity(0.75),
+              content: const ListTile(
+                title: Text("Atenção", style: TextStyle(color: Colors.white)),
+                subtitle: Text(
+                    "Não foi possível entrar na carona. Verifique se já não entrou nessa carona, caso não tente novamente mais tarde.",
+                    style: TextStyle(color: Colors.white)),
+              )),
+        );
       }
     }
   }
@@ -90,125 +79,109 @@ class _EntrarState extends State<Entrar> {
         builder: (BuildContext context, EntrarState state) {
           return Scaffold(
               appBar: buildAppBarBackButton(context, "Entrar"),
-              body: _loading
-                  ? const SpinKitRotatingCircle(
-                      color: Colors.green,
-                      size: 50.0,
-                    )
-                  : Form(
-                      key: _formKey,
-                      child: ListView(
-                          physics: const BouncingScrollPhysics(),
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          children: [
-                            // Maps(height: 400, locations: ride.locations),
-                            FieldWrapper(
-                              fieldInput: TypeAheadFormField<Feature?>(
-                                textFieldConfiguration: TextFieldConfiguration(
-                                    controller: _localToMeet,
-                                    keyboardType: TextInputType.text,
-                                    decoration: InputDecoration(
-                                        border: const UnderlineInputBorder(),
-                                        labelText: "Ponto de encontro",
-                                        suffixIcon: IconButton(
-                                            onPressed: () {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                    backgroundColor: Colors
-                                                        .black
-                                                        .withOpacity(0.75),
-                                                    content: const ListTile(
-                                                      title: Text("Atenção",
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .white)),
-                                                      subtitle: Text(
-                                                          "Coloque pontos de referência e não especifique o endereço com a numeração.",
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .white)),
-                                                    )),
-                                              );
-                                            },
-                                            icon: const Icon(
-                                                Icons.place_outlined)))),
-                                debounceDuration:
-                                    const Duration(milliseconds: 1000),
-                                keepSuggestionsOnLoading: false,
-                                noItemsFoundBuilder: (context) {
-                                  return Container(
-                                    height: 36,
-                                    child: const Center(
-                                        child: Text(
-                                      "Local não encontrado",
-                                      style: TextStyle(fontSize: 16),
-                                    )),
-                                  );
-                                },
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Campo obrigatório';
-                                  }
-                                  return null;
-                                },
-                                hideSuggestionsOnKeyboardHide: false,
-                                suggestionsCallback: (pattern) async {
-                                  return autoCompleteSearch(pattern);
-                                },
-                                itemBuilder: (context, Feature? suggestion) {
-                                  return ListTile(
-                                    leading: const CircleAvatar(
-                                      child: Icon(
-                                        Icons.pin_drop,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    title: Text(suggestion!.properties!.label
-                                        .toString()),
-                                  );
-                                },
-                                onSuggestionSelected: (Feature? suggestion) {
-                                  setState(() {
-                                    _localToMeet.text = suggestion!
-                                        .properties!.label
-                                        .toString();
-                                    localToMeetPosition = suggestion;
-                                  });
-                                },
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            ElevatedButton(
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          content: Text('Entrando na carona')),
-                                    );
+              body: Form(
+                  key: _formKey,
+                  child: ListView(
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      children: [
+                        FieldWrapper(
+                          fieldInput: TypeAheadFormField<Feature?>(
+                            textFieldConfiguration: TextFieldConfiguration(
+                                controller: _localToMeet,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                    border: const UnderlineInputBorder(),
+                                    labelText: "Ponto de encontro",
+                                    suffixIcon: IconButton(
+                                        onPressed: () {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                                backgroundColor: Colors.black
+                                                    .withOpacity(0.75),
+                                                content: const ListTile(
+                                                  title: Text("Atenção",
+                                                      style: TextStyle(
+                                                          color: Colors.white)),
+                                                  subtitle: Text(
+                                                      "Coloque pontos de referência e não especifique o endereço com a numeração.",
+                                                      style: TextStyle(
+                                                          color: Colors.white)),
+                                                )),
+                                          );
+                                        },
+                                        icon:
+                                            const Icon(Icons.place_outlined)))),
+                            debounceDuration:
+                                const Duration(milliseconds: 1000),
+                            keepSuggestionsOnLoading: false,
+                            noItemsFoundBuilder: (context) {
+                              return Container(
+                                height: 36,
+                                child: const Center(
+                                    child: Text(
+                                  "Local não encontrado",
+                                  style: TextStyle(fontSize: 16),
+                                )),
+                              );
+                            },
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Campo obrigatório';
+                              }
+                              return null;
+                            },
+                            hideSuggestionsOnKeyboardHide: false,
+                            suggestionsCallback: (pattern) async {
+                              return autoCompleteSearch(pattern);
+                            },
+                            itemBuilder: (context, Feature? suggestion) {
+                              return ListTile(
+                                leading: const CircleAvatar(
+                                  child: Icon(
+                                    Icons.pin_drop,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                title: Text(
+                                    suggestion!.properties!.label.toString()),
+                              );
+                            },
+                            onSuggestionSelected: (Feature? suggestion) {
+                              setState(() {
+                                _localToMeet.text =
+                                    suggestion!.properties!.label.toString();
+                                localToMeetPosition = suggestion;
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        ElevatedButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text('Entrando na carona')),
+                                );
 
-                                    newLocations = List.from(ride.locations)
-                                      ..insert(
-                                          ride.locations.length - 1,
-                                          Location(
-                                              id: "00000",
-                                              description: _localToMeet.text,
-                                              lat: localToMeetPosition
-                                                  .geometry!.coordinates!.last,
-                                              lon: localToMeetPosition.geometry!
-                                                  .coordinates!.first));
+                                Location newLocation = Location(
+                                    description: _localToMeet.text,
+                                    lat: localToMeetPosition
+                                        .geometry!.coordinates!.last,
+                                    lon: localToMeetPosition
+                                        .geometry!.coordinates!.first);
 
-                                    ride =
-                                        ride.copyWith(locations: newLocations);
-
-                                    _entrarBloc!.add(FetchSuggest(ride));
-                                  }
-                                },
-                                child: const Text("Entrar")),
-                            const SizedBox(height: 12),
-                          ])));
+                                _entrarBloc!
+                                    .add(SuggestPlace(ride, newLocation));
+                              }
+                            },
+                            child: const Text("Entrar")),
+                        const SizedBox(height: 12),
+                      ])));
         });
   }
 }
