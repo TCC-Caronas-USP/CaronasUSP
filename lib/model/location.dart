@@ -4,7 +4,7 @@ part 'location.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Location {
-  final String id;
+  String? id;
   final String description;
   final double lat;
   final double lon;
@@ -13,10 +13,10 @@ class Location {
 
   Map<String, dynamic> toJson() => _$LocationToJson(this);
 
-  const Location({
-    required this.id,
+  Location({
+    this.id,
     required this.description,
     required this.lat,
-    required this.lon
+    required this.lon,
   });
 }

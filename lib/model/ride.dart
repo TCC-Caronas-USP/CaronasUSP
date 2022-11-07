@@ -18,14 +18,14 @@ class Ride {
   final int totalOccupation;
   final int currentOccupation;
   final List<Rider> consumersUsers;
-  final List<Location> locations;
+  List<Location> locations;
   final String? myRideStatus;
 
   factory Ride.fromJson(Map<String, dynamic> json) => _$RideFromJson(json);
 
   Map<String, dynamic> toJson() => _$RideToJson(this);
 
-  const Ride({
+  Ride({
     required this.rideId,
     required this.driverUsers,
     required this.rideDestinyDatetime,
@@ -39,33 +39,4 @@ class Ride {
     required this.locations,
     this.myRideStatus,
   });
-
-  Ride copyWith({
-    String? rideId,
-    Rider? driverUsers,
-    String? rideDestinyDatetime,
-    String? destinyPlace,
-    String? rideSourceDatetime,
-    String? sourcePlace,
-    double? price,
-    int? totalOccupation,
-    int? currentOccupation,
-    List<Rider>? consumersUsers,
-    List<Location>? locations,
-    String? myRideStatus,
-  }) {
-    return Ride(
-      rideId: rideId ?? this.rideId,
-      driverUsers: driverUsers ?? this.driverUsers,
-      rideDestinyDatetime: rideDestinyDatetime ?? this.rideDestinyDatetime,
-      destinyPlace: destinyPlace ?? this.destinyPlace,
-      rideSourceDatetime: rideSourceDatetime ?? this.rideSourceDatetime,
-      sourcePlace: sourcePlace ?? this.sourcePlace,
-      price: price ?? this.price,
-      totalOccupation: totalOccupation ?? this.totalOccupation,
-      currentOccupation: currentOccupation ?? this.currentOccupation,
-      consumersUsers: consumersUsers ?? this.consumersUsers,
-      locations: locations ?? this.locations,
-    );
-  }
 }
