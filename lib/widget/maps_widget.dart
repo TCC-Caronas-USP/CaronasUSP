@@ -39,7 +39,7 @@ class _MapsState extends State<Maps> {
       }
 
       markers.add(Marker(
-          markerId: MarkerId(location.id),
+          markerId: MarkerId(location.id ?? "0000"),
           icon: BitmapDescriptor.defaultMarkerWithHue(bitMapDescriptor),
           infoWindow: InfoWindow(
             title: location.description,
@@ -85,6 +85,7 @@ class _MapsState extends State<Maps> {
                         child: GoogleMap(
                           markers: markersLocation(widget.locations),
                           polylines: polylines,
+                          myLocationEnabled: false,
                           initialCameraPosition: CameraPosition(
                             target: LatLng(
                                 initialLocation.lat, initialLocation.lon),

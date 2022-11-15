@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:caronas_usp/widget/ride_infos_widget.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +6,11 @@ import 'package:intl/intl.dart';
 
 class OfferRide extends StatelessWidget {
   final List<List<Ride>> userOfferedRides;
+  final AppPage page;
 
-  const OfferRide({Key? key, required this.userOfferedRides}) : super(key: key);
+  const OfferRide(
+      {Key? key, required this.userOfferedRides, required this.page})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +27,12 @@ class OfferRide extends StatelessWidget {
           final item = userOfferedRides[index];
           final date = item[0].rideDestinyDatetime.substring(0, 10);
 
-          return buildRideDailyOffered(date, item);
+          return buildRideDailyOffered(date, item, page);
         });
   }
 
-  Widget buildRideDailyOffered(String rideDate, List<Ride> userOfferedRides) {
+  Widget buildRideDailyOffered(
+      String rideDate, List<Ride> userOfferedRides, AppPage page) {
     DateFormat format = DateFormat("yyyy-MM-dd");
     DateTime rideDateFormatted = format.parse(rideDate);
     String rideYear = rideDateFormatted.year.toString().padLeft(4, "0");
@@ -48,6 +53,7 @@ class OfferRide extends StatelessWidget {
         RideInfos(
           rideInfos: ride,
           isMyRide: ride.myRideStatus == null ? false : true,
+          page: page,
         ),
       const SizedBox(
         height: 16,

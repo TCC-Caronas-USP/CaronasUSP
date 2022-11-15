@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/criar/ui/criar_page.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_event.dart';
@@ -64,7 +65,9 @@ class _OferecerPageState extends State<OferecerPage> {
                     color: Colors.green,
                     size: 50.0,
                   )
-                : OfferRide(userOfferedRides: userOfferedRides!),
+                : OfferRide(
+                    userOfferedRides: userOfferedRides!,
+                    page: AppPage.oferecer),
           );
         });
   }

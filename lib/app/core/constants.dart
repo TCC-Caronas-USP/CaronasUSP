@@ -12,4 +12,10 @@ const String ALLOWED_EMAIL_DOMAIN = 'usp.br';
 
 const String TIME_ZONE = 'America/Sao_Paulo';
 
+enum AppPage {
+  pegar,
+  historico,
+  oferecer
+}
+
 const String ONESIGNAL_APP_ID = '36a6876f-a1dd-490e-ad39-f38befcff578';

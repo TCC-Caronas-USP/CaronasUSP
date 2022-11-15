@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/pegar/bloc/pegar_bloc.dart';
 import 'package:caronas_usp/app/modules/pegar/bloc/pegar_event.dart';
 import 'package:caronas_usp/app/modules/pegar/bloc/pegar_state.dart';
@@ -70,7 +71,10 @@ class _PegarPageState extends State<PegarPage> {
                     color: Colors.green,
                     size: 50.0,
                   )
-                : OfferRide(userOfferedRides: offeredRides!),
+                : OfferRide(
+                    userOfferedRides: offeredRides!,
+                    page: AppPage.pegar,
+                  ),
           );
         });
   }

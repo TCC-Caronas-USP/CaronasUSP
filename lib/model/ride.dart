@@ -9,7 +9,8 @@ part 'ride.g.dart';
 class Ride {
   final String rideId;
   final Rider driverUsers;
-  final String rideDestinyDatetime; // tentei colocar como datetime, mas não consegui
+  final String
+      rideDestinyDatetime; // tentei colocar como datetime, mas não consegui
   final String destinyPlace;
   final String rideSourceDatetime;
   final String sourcePlace;
@@ -17,14 +18,14 @@ class Ride {
   final int totalOccupation;
   final int currentOccupation;
   final List<Rider> consumersUsers;
-  final List<Location> locations;
+  List<Location> locations;
   final String? myRideStatus;
 
   factory Ride.fromJson(Map<String, dynamic> json) => _$RideFromJson(json);
 
   Map<String, dynamic> toJson() => _$RideToJson(this);
 
-  const Ride({
+  Ride({
     required this.rideId,
     required this.driverUsers,
     required this.rideDestinyDatetime,
