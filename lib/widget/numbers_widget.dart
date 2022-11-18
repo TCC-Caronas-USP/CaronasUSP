@@ -30,14 +30,14 @@ class NumbersWidget extends StatelessWidget {
           children: <Widget>[
             Text(
                 value,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                style: const TextStyle(fontSize: 24),
                 textAlign: TextAlign.center,
                 softWrap: true,
             ),
             const SizedBox(height: 2),
             Text(
               text,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 12),
               textAlign: TextAlign.center,
               softWrap: true,
             ),

@@ -10,7 +10,6 @@ class InfosWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -18,7 +17,7 @@ class InfosWidget extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               infoTitle,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 4),
             Container(
@@ -30,7 +29,7 @@ class InfosWidget extends StatelessWidget {
                     for (var value in infoValues)
                       Text(value,
                           style: const TextStyle(
-                              fontSize: 16, color: Colors.grey)),
+                              fontSize: 12, color: Colors.grey)),
                   ],
                 ))
           ],

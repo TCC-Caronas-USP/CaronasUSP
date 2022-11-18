@@ -31,7 +31,6 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
     _profileBloc = context.read<ProfileBloc>();
     _profileBloc!.add(FetchUserInfo());
-
   }
 
   Future<void> _handleListener(BuildContext context, ProfileState state) async {
@@ -68,6 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   )
                 : ListView(
                     physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
                     children: [
                       const SizedBox(
                         height: 24,
@@ -99,26 +99,23 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 12,
                       ),
                       InfosWidget(
-                          infoTitle: "Curso",
-                          infoValues: [user!.curso]),
+                          infoTitle: "Curso", infoValues: [user!.curso]),
                       const SizedBox(
                         height: 12,
                       ),
                       InfosWidget(
-                          infoTitle: "Ano",
-                          infoValues: [user!.ano.toString()]),
+                          infoTitle: "Ano", infoValues: [user!.ano.toString()]),
                       const SizedBox(
                         height: 12,
                       ),
-                      if (vehicle != null) InfosWidget(infoTitle: "Veículo", infoValues: [
-                        vehicle!.model,
-                        vehicle!.color,
-                        vehicle!.licensePlate,
-                        vehicle!.brand
-                      ]),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      if (vehicle != null)
+                        InfosWidget(infoTitle: "Veículo", infoValues: [
+                          vehicle!.model,
+                          vehicle!.color,
+                          vehicle!.licensePlate,
+                          vehicle!.brand
+                        ]),
+                      const SizedBox(height: 12),
                     ],
                   ),
           );
@@ -129,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Text(
             user.name,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            style: const TextStyle(fontSize: 24),
           ),
           const SizedBox(
             height: 4,
