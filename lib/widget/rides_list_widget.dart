@@ -1,15 +1,19 @@
 import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/model/ride.dart';
+import 'package:caronas_usp/model/rider.dart';
 import 'package:caronas_usp/widget/ride_infos_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class OfferRide extends StatelessWidget {
-  final List<List<Ride>> userOfferedRides;
+class RidesListWidget extends StatelessWidget {
+  final List<List<Ride>> ridesPerDate;
   final AppPage page;
+  final Rider rider;
 
-  const OfferRide(
-      {Key? key, required this.userOfferedRides, required this.page})
+  const RidesListWidget(
+      {Key? key,
+      required this.ridesPerDate,
+      required this.page,
+      required this.rider})
       : super(key: key);
 
   @override
@@ -22,22 +26,20 @@ class OfferRide extends StatelessWidget {
         scrollDirection: Axis.vertical,
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
-        itemCount: userOfferedRides.length,
+        itemCount: ridesPerDate.length,
         itemBuilder: (context, index) {
-          final item = userOfferedRides[index];
-          final date = item[0].rideDestinyDatetime.substring(0, 10);
+          final item = ridesPerDate[index];
+          final date = item[0].arrivalTime;
 
           return buildRideDailyOffered(date, item, page);
         });
   }
 
   Widget buildRideDailyOffered(
-      String rideDate, List<Ride> userOfferedRides, AppPage page) {
-    DateFormat format = DateFormat("yyyy-MM-dd");
-    DateTime rideDateFormatted = format.parse(rideDate);
-    String rideYear = rideDateFormatted.year.toString().padLeft(4, "0");
-    String rideMonth = rideDateFormatted.month.toString().padLeft(2, "0");
-    String rideDay = rideDateFormatted.day.toString().padLeft(2, "0");
+      DateTime rideDate, List<Ride> ridesPerDate, AppPage page) {
+    String rideYear = rideDate.year.toString().padLeft(4, "0");
+    String rideMonth = rideDate.month.toString().padLeft(2, "0");
+    String rideDay = rideDate.day.toString().padLeft(2, "0");
 
     return Column(children: [
       Text(
@@ -49,10 +51,10 @@ class OfferRide extends StatelessWidget {
       const SizedBox(
         height: 6,
       ),
-      for (var ride in userOfferedRides)
-        RideInfos(
-          rideInfos: ride,
-          isMyRide: ride.myRideStatus == null ? false : true,
+      for (var ride in ridesPerDate)
+        RideInfosWidget(
+          ride: ride,
+          rider: rider,
           page: page,
         ),
       const SizedBox(
