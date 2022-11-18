@@ -1,9 +1,8 @@
+import 'package:caronas_usp/widget/field_wrapper_widget.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String label;
-  String? text;
-  final Function(TextFieldWidget, dynamic)? onFieldChanged;
   final String? Function(String?)? onValidation;
   final TextEditingController? fieldController;
   final FocusNode? focusNode;
@@ -14,8 +13,6 @@ class TextFieldWidget extends StatefulWidget {
   TextFieldWidget(
       {Key? key,
       required this.label,
-      this.text,
-      this.onFieldChanged,
       this.onValidation,
       this.fieldController,
       this.focusNode,
@@ -35,11 +32,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => TextFormField(
+  Widget build(BuildContext context) => FieldWrapper(
+          fieldInput: TextFormField(
         enabled: widget.enabled,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: widget.onValidation,
-        onChanged: onChanged,
         controller: widget.fieldController,
         keyboardType: widget.textInputType,
         decoration: InputDecoration(
@@ -47,15 +44,5 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           labelText: widget.label,
           suffixIcon: widget.suffixIcon,
         ),
-      );
-
-  void onChanged(value) {
-
-    if (widget.onFieldChanged != null){
-      widget.onFieldChanged!(widget, value);
-    }
-    setState(() {
-      widget.text = value;
-    });
-  }
+      ));
 }
