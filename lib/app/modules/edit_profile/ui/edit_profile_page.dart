@@ -14,7 +14,9 @@ import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+  Rider rider;
+
+  EditProfilePage({Key? key, required this.rider}) : super(key: key);
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -22,7 +24,6 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   EditProfileBloc? _editProfileBloc;
-  Rider? rider;
   bool _loading = true;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -45,16 +46,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
       BuildContext context, EditProfileState state) async {
     if (state is EditProfileLoading) {
       _loading = true;
-      rider = null;
     }
     if (state is EditProfileLoaded) {
-      rider = state.user;
+      widget.rider = state.user;
 
-      _name.text = rider!.name;
-      _instituto.text = rider!.instituto;
-      _curso.text = rider!.curso;
-      _ano.text = rider!.ano.toString();
-      _telefone.text = rider!.telefone;
+      _name.text = widget.rider.name;
+      _instituto.text = widget.rider.instituto;
+      _curso.text = widget.rider.curso;
+      _ano.text = widget.rider.ano.toString();
+      _telefone.text = widget.rider.telefone;
 
       _loading = false;
     }
@@ -87,7 +87,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           height: 24,
                         ),
                         ProfileWidget(
-                            imagePath: rider!.imagePath,
+                            imagePath: widget.rider.imagePath,
                             onClicked: () async {}),
                         const SizedBox(
                           height: 24,
@@ -96,7 +96,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             fieldInput: TextFieldWidget(
                           fieldController: _name,
                           label: "Nome",
-                          text: rider!.name,
+                          text: _name.text,
                           suffixIcon: const Icon(Icons.text_fields_outlined),
                           onValidation: (String? value) {
                             if (value!.isEmpty) {
@@ -110,7 +110,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             fieldController: _instituto,
                             label: "Instituto",
                             suffixIcon: const Icon(Icons.school_outlined),
-                            text: rider!.instituto,
+                            text: _instituto.text,
                             onFieldChanged: (widget, instituto) {},
                             onValidation: (String? value) {
                               if (value!.isEmpty) {
@@ -124,7 +124,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           fieldInput: TextFieldWidget(
                             fieldController: _curso,
                             label: "Curso",
-                            text: rider!.curso,
+                            text: _curso.text,
                             suffixIcon: const Icon(Icons.school_outlined),
                             onFieldChanged: (widget, instituto) {},
                             onValidation: (String? value) {
@@ -139,7 +139,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           fieldInput: TextFieldWidget(
                             fieldController: _ano,
                             label: "Ano",
-                            text: rider!.ano.toString(),
+                            text: _ano.text,
                             suffixIcon: const Icon(Icons.timelapse_outlined),
                             onFieldChanged: (widget, instituto) {},
                             onValidation: (String? value) {
@@ -154,14 +154,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           fieldInput: TextFieldWidget(
                             fieldController: _telefone,
                             label: "Telefone",
-                            text: rider!.telefone,
+                            text: _telefone.text,
                             suffixIcon: const Icon(Icons.phone_enabled),
                             textInputType:
                                 const TextInputType.numberWithOptions(
                                     decimal: false, signed: false),
                             onFieldChanged: (widget, telefone) {},
                             onValidation: (String? value) {
-                              String patttern = r'^\([1-9]{2}\) 9[1-9]{1}[0-9]{3}\-[0-9]{4}$';
+                              String patttern =
+                                  r'^\([1-9]{2}\) 9[1-9]{1}[0-9]{3}\-[0-9]{4}$';
                               RegExp regExp = RegExp(patttern);
                               if (value!.isEmpty) {
                                 return 'Campo obrigatório';
@@ -182,17 +183,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 );
 
                                 Rider updatedRider = Rider(
-                                    imagePath: rider!.imagePath,
+                                    imagePath: widget.rider.imagePath,
                                     name: _name.text,
-                                    email: rider!.email,
+                                    email: widget.rider.email,
                                     telefone: _telefone.text,
                                     instituto: _instituto.text,
                                     curso: _curso.text,
                                     ano: int.parse(_ano.text),
-                                    caronasMotorista: rider!.caronasMotorista,
-                                    caronasPassageiro: rider!.caronasPassageiro,
-                                    ranking: rider!.ranking,
-                                    vehicles: rider!.vehicles);
+                                    caronasMotorista:
+                                        widget.rider.caronasMotorista,
+                                    caronasPassageiro:
+                                        widget.rider.caronasPassageiro,
+                                    ranking: widget.rider.ranking,
+                                    vehicles: widget.rider.vehicles);
 
                                 _editProfileBloc!
                                     .add(UpdateRiderInfo(updatedRider));

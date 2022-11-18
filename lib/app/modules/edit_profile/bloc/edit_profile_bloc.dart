@@ -16,8 +16,18 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     });
 
     on<UpdateRiderInfo>((event, emit) async {
-      final bool? updated = await riderRepository.updateRiderInfo(event.rider);
-      emit(EditedProfile(updated!));
+      final bool updated = await riderRepository.updateRiderInfo(event.rider);
+      emit(EditedProfile(updated));
+    });
+
+    on<InsertVehicleInfo>((event, emit) async {
+      final bool inserted = await riderRepository.insertVehicleInfo(event.vehicle);
+      emit(EditedVehicle(inserted));
+    });
+
+    on<UpdateVehicleInfo>((event, emit) async {
+      final bool updated = await riderRepository.updateVehicleInfo(event.vehicle);
+      emit(EditedVehicle(updated));
     });
   }
 }
