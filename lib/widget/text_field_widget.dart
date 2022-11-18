@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String label;
-  final Function(TextFieldWidget, dynamic)? onFieldChanged;
   final String? Function(String?)? onValidation;
   final TextEditingController? fieldController;
   final FocusNode? focusNode;
@@ -14,7 +13,6 @@ class TextFieldWidget extends StatefulWidget {
   TextFieldWidget(
       {Key? key,
       required this.label,
-      this.onFieldChanged,
       this.onValidation,
       this.fieldController,
       this.focusNode,
@@ -39,7 +37,6 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         enabled: widget.enabled,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: widget.onValidation,
-        onChanged: onChanged,
         controller: widget.fieldController,
         keyboardType: widget.textInputType,
         decoration: InputDecoration(
@@ -48,10 +45,4 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           suffixIcon: widget.suffixIcon,
         ),
       ));
-
-  void onChanged(value) {
-    if (widget.onFieldChanged != null) {
-      widget.onFieldChanged!(widget, value);
-    }
-  }
 }
