@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/modules/edit_profile/ui/edit_vehicles.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_bloc.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_event.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_state.dart';
@@ -56,7 +57,9 @@ class _ProfilePageState extends State<ProfilePage> {
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const EditProfilePage()));
+                      builder: (context) => EditProfilePage(
+                            rider: user!,
+                          )));
                 },
                 backgroundColor: Colors.green[400],
                 child: const Icon(Icons.edit)),
@@ -116,6 +119,18 @@ class _ProfilePageState extends State<ProfilePage> {
                           vehicle!.brand
                         ]),
                       const SizedBox(height: 12),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    EditVehicle(vehicle: vehicle)));
+
+                            _profileBloc!.add(FetchUserInfo());
+                          },
+                          child: vehicle == null
+                              ? const Text("Adicionar veículo")
+                              : const Text("Alterar veículo")),
+                      const SizedBox(height: 24),
                     ],
                   ),
           );
