@@ -7,9 +7,9 @@ part of 'passenger.dart';
 // **************************************************************************
 
 Passenger _$PassengerFromJson(Map<String, dynamic> json) => Passenger(
-      id: json['id'] as String,
-      rideId: json['ride_id'] as String,
-      riderId: json['rider_id'] as String,
+      id: json['id'] as int,
+      rideId: json['ride_id'] as int,
+      riderId: json['rider_id'] as int,
       riderName: json['rider_name'] as String,
       riderInstituto: json['rider_instituto'] as String,
       riderImagePath: json['rider_image_path'] as String,

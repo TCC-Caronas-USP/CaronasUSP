@@ -1,4 +1,4 @@
-import 'package:caronas_usp/widget/field_wrapper_widget.dart';
+import 'package:caronas_usp/app/widgets/field_wrapper_widget.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatefulWidget {

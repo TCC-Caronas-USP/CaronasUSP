@@ -1,11 +1,11 @@
-import 'package:caronas_usp/model/vehicle.dart';
+import 'package:caronas_usp/app/models/vehicle.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'rider.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Rider {
-  final String? id;
+  int? id;
   final String imagePath;
   final String name;
   final String email;
@@ -24,7 +24,7 @@ class Rider {
 
   Map<String, dynamic> toJson() => _$RiderToJson(this);
 
-  const Rider({
+  Rider({
     this.id,
     required this.imagePath,
     required this.name,

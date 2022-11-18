@@ -1,6 +1,6 @@
 import 'package:caronas_usp/app/repositories/rider_repository.dart';
 import 'package:caronas_usp/app/repositories/rides_repository.dart';
-import 'package:caronas_usp/model/rider.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'criar_event.dart';

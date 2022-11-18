@@ -2,7 +2,7 @@ import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/login/bloc/login_event.dart';
 import 'package:caronas_usp/app/modules/login/bloc/login_state.dart';
 import 'package:caronas_usp/app/repositories/rider_repository.dart';
-import 'package:caronas_usp/model/rider.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';

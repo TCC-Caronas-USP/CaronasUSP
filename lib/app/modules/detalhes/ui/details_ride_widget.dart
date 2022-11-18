@@ -1,5 +1,5 @@
-import 'package:caronas_usp/model/ride.dart';
-import 'package:caronas_usp/widget/maps_widget.dart';
+import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/widgets/maps_widget.dart';
 import 'package:caronas_usp/app/modules/detalhes/ui/user_image_widget.dart';
 import 'package:flutter/material.dart';
 

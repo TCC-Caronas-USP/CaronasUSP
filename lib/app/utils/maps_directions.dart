@@ -1,4 +1,4 @@
-import 'package:caronas_usp/utils/maps_open_route_service.dart';
+import 'package:caronas_usp/app/utils/maps_open_route_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 

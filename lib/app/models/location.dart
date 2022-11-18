@@ -4,7 +4,7 @@ part 'location.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Location {
-  String? id;
+  int? id;
   final String description;
   final double lat;
   final double lon;

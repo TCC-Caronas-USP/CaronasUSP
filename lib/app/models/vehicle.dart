@@ -4,6 +4,7 @@ part 'vehicle.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Vehicle {
+  int? id;
   final String model;
   final String color;
   final String brand;
@@ -13,7 +14,8 @@ class Vehicle {
 
   Map<String, dynamic> toJson() => _$VehicleToJson(this);
 
-  const Vehicle({
+  Vehicle({
+    this.id,
     required this.model,
     required this.color,
     required this.brand,

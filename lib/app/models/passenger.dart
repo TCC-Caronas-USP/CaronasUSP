@@ -1,5 +1,5 @@
 import 'package:caronas_usp/app/core/constants.dart';
-import 'package:caronas_usp/model/location.dart';
+import 'package:caronas_usp/app/models/location.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 
@@ -7,9 +7,9 @@ part 'passenger.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Passenger {
-  final String id;
-  final String rideId;
-  final String riderId;
+  int id;
+  final int rideId;
+  final int riderId;
   final String riderName;
   final String riderInstituto;
   final String riderImagePath;

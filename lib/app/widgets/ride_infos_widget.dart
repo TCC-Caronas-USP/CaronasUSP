@@ -1,7 +1,7 @@
 import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/detalhes/ui/detalhes_page.dart';
-import 'package:caronas_usp/model/ride.dart';
-import 'package:caronas_usp/model/rider.dart';
+import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:flutter/material.dart';
 
 class RideInfosWidget extends StatelessWidget {

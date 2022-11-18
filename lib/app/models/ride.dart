@@ -1,7 +1,7 @@
 import 'package:caronas_usp/app/core/constants.dart';
-import 'package:caronas_usp/model/location.dart';
-import 'package:caronas_usp/model/passenger.dart';
-import 'package:caronas_usp/model/rider.dart';
+import 'package:caronas_usp/app/models/location.dart';
+import 'package:caronas_usp/app/models/passenger.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 
@@ -9,7 +9,7 @@ part 'ride.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Ride {
-  final String id;
+  int id;
   final Rider driver;
   final DateTime arrivalTime;
   final Location destination;
@@ -20,12 +20,12 @@ class Ride {
   List<Passenger> passengers;
 
   bool isPassenger(Rider rider) {
-    String riderId = rider.id!;
+    int riderId = rider.id!;
     return passengers.any((passenger) => passenger.riderId == riderId);
   }
 
   RidePassengerStatus getStatus(Rider rider) {
-    String riderId = rider.id!;
+    int riderId = rider.id!;
     return passengers
         .singleWhere((passenger) => passenger.riderId == riderId)
         .status;

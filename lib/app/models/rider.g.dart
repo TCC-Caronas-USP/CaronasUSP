@@ -7,7 +7,7 @@ part of 'rider.dart';
 // **************************************************************************
 
 Rider _$RiderFromJson(Map<String, dynamic> json) => Rider(
-      id: json['id'] as String?,
+      id: json['id'] as int?,
       imagePath: json['image_path'] as String,
       name: json['name'] as String,
       email: json['email'] as String,

@@ -4,15 +4,15 @@ import 'package:caronas_usp/app/modules/criar/bloc/criar_bloc.dart';
 import 'package:caronas_usp/app/modules/criar/bloc/criar_event.dart';
 import 'package:caronas_usp/app/modules/criar/bloc/criar_state.dart';
 import 'package:caronas_usp/app/modules/oferecer/ui/oferecer_page.dart';
-import 'package:caronas_usp/model/location.dart';
-import 'package:caronas_usp/model/ride.dart';
-import 'package:caronas_usp/model/rider.dart';
-import 'package:caronas_usp/utils/maps_autocomplete.dart';
-import 'package:caronas_usp/utils/maps_open_route_service.dart';
-import 'package:caronas_usp/widget/appbar_backbutton_widget.dart';
-import 'package:caronas_usp/widget/datetime_field_widget.dart';
-import 'package:caronas_usp/widget/field_wrapper_widget.dart';
-import 'package:caronas_usp/widget/text_field_widget.dart';
+import 'package:caronas_usp/app/models/location.dart';
+import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
+import 'package:caronas_usp/app/utils/maps_autocomplete.dart';
+import 'package:caronas_usp/app/utils/maps_open_route_service.dart';
+import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
+import 'package:caronas_usp/app/widgets/datetime_field_widget.dart';
+import 'package:caronas_usp/app/widgets/field_wrapper_widget.dart';
+import 'package:caronas_usp/app/widgets/text_field_widget.dart';
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -328,7 +328,7 @@ class _CriarPageState extends State<CriarPage> {
                                       content: Text('Criando a carona')),
                                 );
                                 newRide = Ride(
-                                  id: "0",
+                                  id: 0,
                                   driver: driver,
                                   arrivalTime: DateTime(
                                       rideDay.year,

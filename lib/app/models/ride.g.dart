@@ -7,7 +7,7 @@ part of 'ride.dart';
 // **************************************************************************
 
 Ride _$RideFromJson(Map<String, dynamic> json) => Ride(
-      id: json['id'] as String,
+      id: json['id'] as int,
       driver: Rider.fromJson(json['driver'] as Map<String, dynamic>),
       arrivalTime: DateTime.parse(json['arrival_time'] as String),
       destination:
