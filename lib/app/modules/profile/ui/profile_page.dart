@@ -98,6 +98,18 @@ class _ProfilePageState extends State<ProfilePage> {
                       const SizedBox(
                         height: 12,
                       ),
+                      InfosWidget(
+                          infoTitle: "Curso",
+                          infoValues: [user!.curso]),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      InfosWidget(
+                          infoTitle: "Ano",
+                          infoValues: [user!.ano.toString()]),
+                      const SizedBox(
+                        height: 12,
+                      ),
                       if (vehicle != null) InfosWidget(infoTitle: "Veículo", infoValues: [
                         vehicle!.model,
                         vehicle!.color,
