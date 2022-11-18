@@ -288,25 +288,22 @@ class _CriarPageState extends State<CriarPage> {
                             },
                           ),
                         ),
-                        FieldWrapper(
-                          fieldInput: TextFieldWidget(
-                            label: "Preço",
-                            fieldController: _priceController,
-                            textInputType:
-                                const TextInputType.numberWithOptions(
-                                    decimal: false, signed: false),
-                            onValidation: (value) {
-                              if (value == null) {
-                                return 'Campo obrigatório';
-                              } else if (_priceController.numberValue == 0) {
-                                return 'Não pode ser zero';
-                              } else if (_priceController.numberValue < 0) {
-                                return 'Não pode ser menor que zero';
-                              }
-                              price = _priceController.numberValue;
-                              return null;
-                            },
-                          ),
+                        TextFieldWidget(
+                          label: "Preço",
+                          fieldController: _priceController,
+                          textInputType: const TextInputType.numberWithOptions(
+                              decimal: false, signed: false),
+                          onValidation: (value) {
+                            if (value == null) {
+                              return 'Campo obrigatório';
+                            } else if (_priceController.numberValue == 0) {
+                              return 'Não pode ser zero';
+                            } else if (_priceController.numberValue < 0) {
+                              return 'Não pode ser menor que zero';
+                            }
+                            price = _priceController.numberValue;
+                            return null;
+                          },
                         ),
                         FieldWrapper(
                           fieldInput: Center(
