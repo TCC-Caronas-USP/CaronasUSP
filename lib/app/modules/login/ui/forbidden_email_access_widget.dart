@@ -15,7 +15,7 @@ class ForbiddenEmailAccess extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: Text(
-            'Te falta acesso, você é fraco',
+            'Para ter acesso ao aplicativo, tente usar um email USP (@usp.br).',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
