@@ -47,7 +47,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       Rider rider = Rider(
           imagePath: user.photoURL!,
-          name: user.displayName!,
+          name: personalInfo["Nome"],
           email: user.email!,
           telefone: personalInfo["Telefone"],
           instituto: personalInfo["Instituto"],
@@ -65,6 +65,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(await logout());
         return;
       }
+      _rider = rider;
       emit(LoggedIn());
     });
   }
