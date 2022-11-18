@@ -1,6 +1,6 @@
-import 'package:caronas_usp/model/location.dart';
-import 'package:caronas_usp/utils/maps_directions.dart';
-import 'package:caronas_usp/utils/maps_bounds_utils.dart';
+import 'package:caronas_usp/app/models/location.dart';
+import 'package:caronas_usp/app/utils/maps_directions.dart';
+import 'package:caronas_usp/app/utils/maps_bounds_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ class _MapsState extends State<Maps> {
       }
 
       markers.add(Marker(
-          markerId: MarkerId(location.id ?? "0000"),
+          markerId: MarkerId((location.id ?? 0).toString()),
           icon: BitmapDescriptor.defaultMarkerWithHue(bitMapDescriptor),
           infoWindow: InfoWindow(
             title: location.description,

@@ -1,20 +1,20 @@
 import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/detalhes/ui/detalhes_page.dart';
-import 'package:caronas_usp/model/ride.dart';
+import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class RideInfos extends StatelessWidget {
-  final Ride rideInfos;
-  final bool isMyRide;
+class RideInfosWidget extends StatelessWidget {
+  final Ride ride;
+  final Rider rider;
   final AppPage page;
 
-  const RideInfos(
-      {Key? key,
-      required this.rideInfos,
-      required this.page,
-      this.isMyRide = false})
-      : super(key: key);
+  const RideInfosWidget({
+    Key? key,
+    required this.ride,
+    required this.rider,
+    required this.page,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,7 @@ class RideInfos extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      DetalhesPage(ride: rideInfos, page: page)));
+                  builder: (context) => DetalhesPage(ride: ride, page: page)));
             },
             child: Padding(
               padding:
@@ -40,26 +39,22 @@ class RideInfos extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        buildImage(rideInfos.driverUsers.imagePath),
+                        buildImage(ride.driver.imagePath),
                         const SizedBox(
                           width: 12,
                         ),
-                        buildRideLocation(
-                            rideInfos.destinyPlace,
-                            rideInfos.sourcePlace,
-                            rideInfos.rideDestinyDatetime),
+                        buildRideLocation(ride.destination.description,
+                            ride.origin.description, ride.arrivalTime),
                         const SizedBox(
                           width: 12,
                         ),
                       ],
                     ),
                   ),
-                  isMyRide
-                      ? buildRideStatus(rideInfos.myRideStatus!)
-                      : buildRidePriceAndPeople(
-                          rideInfos.price,
-                          rideInfos.currentOccupation,
-                          rideInfos.totalOccupation),
+                  ride.isPassenger(rider)
+                      ? buildRideStatus(ride.getStatus(rider))
+                      : buildRidePriceAndPeople(ride.price,
+                          ride.currentNumPassengers, ride.maxNumPassengers),
                 ],
               ),
             ),
@@ -82,18 +77,17 @@ class RideInfos extends StatelessWidget {
     ));
   }
 
-  Widget buildRideLocation(String destiny, String source, String rideDate) {
-    DateFormat format = DateFormat("yyyy-MM-dd hh:mm:ss");
-    DateTime rideTime = format.parse(rideDate);
-    String rideHour = rideTime.hour.toString().padLeft(2, "0");
-    String rideMinute = rideTime.minute.toString().padLeft(2, "0");
+  Widget buildRideLocation(
+      String destination, String origin, DateTime rideDate) {
+    String rideHour = rideDate.hour.toString().padLeft(2, "0");
+    String rideMinute = rideDate.minute.toString().padLeft(2, "0");
 
     return Flexible(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          destiny,
+          destination,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
@@ -105,7 +99,7 @@ class RideInfos extends StatelessWidget {
               children: [
                 for (var value in [
                   "Chegando às $rideHour:$rideMinute",
-                  "Partindo de $source"
+                  "Partindo de $origin"
                 ])
                   Text(value,
                       overflow: TextOverflow.ellipsis,
@@ -150,7 +144,7 @@ class RideInfos extends StatelessWidget {
     ]);
   }
 
-  Widget buildRideStatus(String status) {
+  Widget buildRideStatus(RidePassengerStatus status) {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -158,7 +152,7 @@ class RideInfos extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          _getCorrectIcon(status),
+          _getIcon(status),
           const SizedBox(
             width: 10,
           ),
@@ -167,19 +161,19 @@ class RideInfos extends StatelessWidget {
     ]);
   }
 
-  Icon _getCorrectIcon(String status) {
+  Icon _getIcon(RidePassengerStatus status) {
     switch (status) {
-      case 'approved':
+      case RidePassengerStatus.approved:
         return const Icon(
           Icons.check,
           size: 30,
         );
-      case 'waiting':
+      case RidePassengerStatus.waiting:
         return const Icon(
           Icons.access_time_filled,
           size: 30,
         );
-      case 'rejected':
+      case RidePassengerStatus.rejected:
         return const Icon(
           Icons.close,
           size: 30,

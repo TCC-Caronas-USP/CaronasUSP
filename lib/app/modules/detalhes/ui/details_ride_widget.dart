@@ -1,28 +1,25 @@
-import 'package:caronas_usp/model/ride.dart';
-import 'package:caronas_usp/widget/maps_widget.dart';
-import 'package:caronas_usp/widget/user_image_widget.dart';
+import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/widgets/maps_widget.dart';
+import 'package:caronas_usp/app/modules/detalhes/ui/user_image_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class DetailsRide extends StatelessWidget {
+class DetailsRideWidget extends StatelessWidget {
   final Ride ride;
 
-  const DetailsRide({Key? key, required this.ride}) : super(key: key);
+  const DetailsRideWidget({Key? key, required this.ride}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    DateFormat format = DateFormat("yyyy-MM-dd hh:mm:ss");
-    DateTime rideTime = format.parse(ride.rideDestinyDatetime);
-    String rideHour = rideTime.hour.toString().padLeft(2, "0");
-    String rideMinute = rideTime.minute.toString().padLeft(2, "0");
-    String rideTimeToArrive = "$rideHour:$rideMinute";
+    DateTime arrivalTime = ride.arrivalTime;
+    String arrivalHour = arrivalTime.hour.toString().padLeft(2, "0");
+    String arrivalMinute = arrivalTime.minute.toString().padLeft(2, "0");
+    String arrivalTimeString = "$arrivalHour:$arrivalMinute";
 
-    DateTime rideSourceTime = format.parse(ride.rideDestinyDatetime);
-    rideSourceTime =
-        rideSourceTime.subtract(const Duration(hours: 1, minutes: 30));
-    String rideSourceHour = rideSourceTime.hour.toString().padLeft(2, "0");
-    String rideSourceMinute = rideSourceTime.minute.toString().padLeft(2, "0");
-    String rideSourceTimeToLeft = "$rideSourceHour:$rideSourceMinute";
+    DateTime departureTime = ride.departureTime;
+    // departureTime = departureTime.subtract(const Duration(hours: 1, minutes: 30)); // TODO confirmar porque é feito esse subtract
+    String departureHour = departureTime.hour.toString().padLeft(2, "0");
+    String departureMinute = departureTime.minute.toString().padLeft(2, "0");
+    String departureTimeString = "$departureHour:$departureMinute";
 
     return ListView(
       padding: const EdgeInsets.symmetric(
@@ -38,10 +35,10 @@ class DetailsRide extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        buildInfoDetails(ride.sourcePlace, "Origem",
-            icon: Icons.map, time: rideSourceTimeToLeft),
-        buildInfoDetails(ride.destinyPlace, "Destino",
-            icon: Icons.map, time: rideTimeToArrive),
+        buildInfoDetails(ride.origin.description, "Origem",
+            icon: Icons.map, time: departureTimeString),
+        buildInfoDetails(ride.destination.description, "Destino",
+            icon: Icons.map, time: arrivalTimeString),
         Maps(height: 400, locations: ride.locations),
         const Text(
           "Preço",
@@ -56,19 +53,19 @@ class DetailsRide extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        buildInfoDetails(ride.driverUsers.name, ride.driverUsers.instituto,
-            image: true, imagePath: ride.driverUsers.imagePath),
+        buildInfoDetails(ride.driver.name, ride.driver.instituto,
+            image: true, imagePath: ride.driver.imagePath),
         buildInfoDetails(
-            ride.driverUsers.vehicles.first.model, ride.driverUsers.vehicles.first.licensePlate,
+            ride.driver.vehicles.first.model, ride.driver.vehicles.first.licensePlate,
             icon: Icons.directions_car_filled),
         const Text(
           "Caronista",
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        for (var consumerUser in ride.consumersUsers)
-          buildInfoDetails(consumerUser.name, consumerUser.instituto,
-              image: true, imagePath: consumerUser.imagePath),
+        for (var passenger in ride.passengers)
+          buildInfoDetails(passenger.riderName, passenger.riderInstituto,
+              image: true, imagePath: passenger.riderImagePath),
       ],
     );
   }

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:caronas_usp/app/repositories/network/base_requester.dart';
-import 'package:caronas_usp/model/rider.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 
 class RiderRequester extends BaseRequester {
   static Future<Rider> getRider() async {

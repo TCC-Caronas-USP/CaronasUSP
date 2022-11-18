@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:caronas_usp/model/rider.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 
 import 'network/rider_requester.dart';
 

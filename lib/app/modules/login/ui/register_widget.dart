@@ -1,8 +1,8 @@
-import 'package:caronas_usp/utils/input_validators.dart';
-import 'package:caronas_usp/widget/appbar_widget.dart';
-import 'package:caronas_usp/widget/personal_information_fields.dart';
-import 'package:caronas_usp/widget/profile_widget.dart';
-import 'package:caronas_usp/widget/text_field_widget.dart';
+import 'package:caronas_usp/app/utils/input_validators.dart';
+import 'package:caronas_usp/app/widgets/appbar_widget.dart';
+import 'package:caronas_usp/app/widgets/personal_information_fields.dart';
+import 'package:caronas_usp/app/widgets/profile_widget.dart';
+import 'package:caronas_usp/app/widgets/text_field_widget.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 

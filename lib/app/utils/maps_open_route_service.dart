@@ -1,4 +1,4 @@
-import 'package:caronas_usp/utils/maps_autocomplete.dart';
+import 'package:caronas_usp/app/utils/maps_autocomplete.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

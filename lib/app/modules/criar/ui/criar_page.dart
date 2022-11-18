@@ -4,15 +4,15 @@ import 'package:caronas_usp/app/modules/criar/bloc/criar_bloc.dart';
 import 'package:caronas_usp/app/modules/criar/bloc/criar_event.dart';
 import 'package:caronas_usp/app/modules/criar/bloc/criar_state.dart';
 import 'package:caronas_usp/app/modules/oferecer/ui/oferecer_page.dart';
-import 'package:caronas_usp/model/location.dart';
-import 'package:caronas_usp/model/ride.dart';
-import 'package:caronas_usp/model/rider.dart';
-import 'package:caronas_usp/utils/maps_autocomplete.dart';
-import 'package:caronas_usp/utils/maps_open_route_service.dart';
-import 'package:caronas_usp/widget/appbar_backbutton_widget.dart';
-import 'package:caronas_usp/widget/datetime_field_widget.dart';
-import 'package:caronas_usp/widget/field_wrapper_widget.dart';
-import 'package:caronas_usp/widget/text_field_widget.dart';
+import 'package:caronas_usp/app/models/location.dart';
+import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
+import 'package:caronas_usp/app/utils/maps_autocomplete.dart';
+import 'package:caronas_usp/app/utils/maps_open_route_service.dart';
+import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
+import 'package:caronas_usp/app/widgets/datetime_field_widget.dart';
+import 'package:caronas_usp/app/widgets/field_wrapper_widget.dart';
+import 'package:caronas_usp/app/widgets/text_field_widget.dart';
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -328,51 +328,39 @@ class _CriarPageState extends State<CriarPage> {
                                       content: Text('Criando a carona')),
                                 );
                                 newRide = Ride(
-                                    rideId: "0",
-                                    driverUsers: driver,
-                                    rideDestinyDatetime: DateTime(
-                                            rideDay.year,
-                                            rideDay.month,
-                                            rideDay.day,
-                                            rideDestinyDatetime.hour,
-                                            rideDestinyDatetime.minute)
-                                        .toString(),
-                                    destinyPlace: startPosition
-                                        .properties!.label
-                                        .toString(),
-                                    rideSourceDatetime: DateTime(
-                                            rideDay.year,
-                                            rideDay.month,
-                                            rideDay.day,
-                                            rideSourceDatetime.hour,
-                                            rideSourceDatetime.minute)
-                                        .toString(),
-                                    sourcePlace: endPosition.properties!.label
-                                        .toString(),
-                                    price: price,
-                                    totalOccupation: totalOccupation,
-                                    currentOccupation: 0,
-                                    consumersUsers: [],
-                                    locations: [
-                                      Location(
-                                          id: "0",
-                                          description: startPosition
-                                              .properties!.label
-                                              .toString(),
-                                          lat: startPosition
-                                              .geometry!.coordinates![1],
-                                          lon: startPosition
-                                              .geometry!.coordinates![0]),
-                                      Location(
-                                          id: "1",
-                                          description: endPosition
-                                              .properties!.label
-                                              .toString(),
-                                          lat: endPosition
-                                              .geometry!.coordinates![1],
-                                          lon: endPosition
-                                              .geometry!.coordinates![0])
-                                    ]);
+                                  id: 0,
+                                  driver: driver,
+                                  arrivalTime: DateTime(
+                                      rideDay.year,
+                                      rideDay.month,
+                                      rideDay.day,
+                                      rideDestinyDatetime.hour,
+                                      rideDestinyDatetime.minute),
+                                  destination: Location(
+                                      description: endPosition.properties!.label
+                                          .toString(),
+                                      lat:
+                                          endPosition.geometry!.coordinates![1],
+                                      lon: endPosition
+                                          .geometry!.coordinates![0]),
+                                  departureTime: DateTime(
+                                      rideDay.year,
+                                      rideDay.month,
+                                      rideDay.day,
+                                      rideSourceDatetime.hour,
+                                      rideSourceDatetime.minute),
+                                  origin: Location(
+                                      description: startPosition
+                                          .properties!.label
+                                          .toString(),
+                                      lat: startPosition
+                                          .geometry!.coordinates![1],
+                                      lon: startPosition
+                                          .geometry!.coordinates![0]),
+                                  price: price,
+                                  maxNumPassengers: totalOccupation,
+                                  passengers: [],
+                                );
 
                                 _criarBloc!.add(FetchCreate(newRide));
                               }

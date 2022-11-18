@@ -1,7 +1,7 @@
 import 'package:caronas_usp/app/modules/historico/bloc/historico_event.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_state.dart';
 import 'package:caronas_usp/app/repositories/rides_repository.dart';
-import 'package:caronas_usp/model/ride.dart';
+import 'package:caronas_usp/app/models/ride.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HistoricoBloc extends Bloc<HistoricoEvent, HistoricoState> {

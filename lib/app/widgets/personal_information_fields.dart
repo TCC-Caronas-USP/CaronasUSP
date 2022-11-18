@@ -1,5 +1,5 @@
-import 'package:caronas_usp/utils/input_validators.dart';
-import 'package:caronas_usp/widget/text_field_widget.dart';
+import 'package:caronas_usp/app/utils/input_validators.dart';
+import 'package:caronas_usp/app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 

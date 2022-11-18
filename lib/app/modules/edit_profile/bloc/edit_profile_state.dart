@@ -1,4 +1,4 @@
-import 'package:caronas_usp/model/rider.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class EditProfileState extends Equatable {
