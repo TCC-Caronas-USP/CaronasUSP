@@ -1,11 +1,12 @@
 import 'package:caronas_usp/app/core/constants.dart';
+import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/modules/pegar/bloc/pegar_bloc.dart';
 import 'package:caronas_usp/app/modules/pegar/bloc/pegar_event.dart';
 import 'package:caronas_usp/app/modules/pegar/bloc/pegar_state.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:caronas_usp/model/rider.dart';
 import 'package:caronas_usp/widget/appbar_widget.dart';
-import 'package:caronas_usp/widget/offer_ride_widget.dart';
+import 'package:caronas_usp/widget/rides_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -21,7 +22,7 @@ class _PegarPageState extends State<PegarPage> {
   PegarBloc? _pegarBloc;
   DateTime date = DateTime.now();
 
-  Rider? user;
+  late Rider rider = context.read<LoginBloc>().currentRider!;
   List<List<Ride>>? offeredRides;
   bool _loading = true;
 
@@ -71,8 +72,9 @@ class _PegarPageState extends State<PegarPage> {
                     color: Colors.green,
                     size: 50.0,
                   )
-                : OfferRide(
-                    userOfferedRides: offeredRides!,
+                : RidesListWidget(
+                    ridesPerDate: offeredRides!,
+                    rider: rider,
                     page: AppPage.pegar,
                   ),
           );

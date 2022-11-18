@@ -2,10 +2,11 @@ import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_bloc.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_event.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_state.dart';
+import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:caronas_usp/model/rider.dart';
 import 'package:caronas_usp/widget/appbar_widget.dart';
-import 'package:caronas_usp/widget/offer_ride_widget.dart';
+import 'package:caronas_usp/widget/rides_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -20,7 +21,7 @@ class HistoricoPage extends StatefulWidget {
 class _HistoricoPageState extends State<HistoricoPage> {
   HistoricoBloc? _historicoBloc;
 
-  Rider? user;
+  late Rider rider = context.read<LoginBloc>().currentRider!;
   List<List<Ride>>? myRides;
   bool _loading = true;
 
@@ -62,7 +63,11 @@ class _HistoricoPageState extends State<HistoricoPage> {
                       color: Colors.green,
                       size: 50.0,
                     )
-                  : OfferRide(userOfferedRides: myRides!, page: AppPage.historico,));
+                  : RidesListWidget(
+                      ridesPerDate: myRides!,
+                      page: AppPage.historico,
+                      rider: rider,
+                    ));
         });
   }
 }

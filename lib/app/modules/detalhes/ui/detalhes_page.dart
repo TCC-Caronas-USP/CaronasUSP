@@ -6,7 +6,7 @@ import 'package:caronas_usp/app/modules/entrar/ui/entrar_page.dart';
 import 'package:caronas_usp/app/modules/oferecer/ui/oferecer_page.dart';
 import 'package:caronas_usp/model/ride.dart';
 import 'package:caronas_usp/widget/appbar_backbutton_widget.dart';
-import 'package:caronas_usp/widget/details_ride_widget.dart';
+import 'package:caronas_usp/app/modules/detalhes/ui/details_ride_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -66,7 +66,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
         builder: (BuildContext context, DetalhesState state) {
           return Scaffold(
             appBar: buildAppBarBackButton(context, "Detalhes da Carona"),
-            body: DetailsRide(
+            body: DetailsRideWidget(
               ride: ride,
             ),
             floatingActionButton: buildFloatingActionButton(widget.page),
@@ -102,7 +102,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _detalhesBloc!.add(CancelRide(ride.rideId));
+                                  _detalhesBloc!.add(CancelRide(ride.id));
                                 },
                                 child: const Text('Sim',
                                     style: TextStyle(
