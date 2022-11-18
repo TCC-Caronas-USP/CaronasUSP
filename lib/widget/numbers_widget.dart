@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 class NumbersWidget extends StatelessWidget {
   final int caronasUtilizadas;
   final int caronasRealizadas;
-  final double ranking;
 
-  const NumbersWidget({Key? key, required this.caronasRealizadas, required this.caronasUtilizadas, required this.ranking}) : super(key: key);
+  const NumbersWidget({Key? key, required this.caronasRealizadas, required this.caronasUtilizadas}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      buildButton(context, ranking.toString(), "Nota"),
-      buildDivider(),
       buildButton(context, caronasUtilizadas.toString(), "Utilizadas"),
       buildDivider(),
       buildButton(context, caronasRealizadas.toString(), "Realizadas"),

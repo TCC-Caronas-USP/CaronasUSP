@@ -83,15 +83,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       NumbersWidget(
                           caronasRealizadas: user!.caronasMotorista,
-                          caronasUtilizadas: user!.caronasPassageiro,
-                          ranking: user!.ranking),
+                          caronasUtilizadas: user!.caronasPassageiro),
                       const SizedBox(
                         height: 24,
                       ),
-                      // InfosWidget(infoTitle: "CPF", infoValues: [user!.cpf]),
-                      // const SizedBox(
-                      //   height: 12,
-                      // ),
                       InfosWidget(
                           infoTitle: "Telefone", infoValues: [user!.telefone]),
                       const SizedBox(
