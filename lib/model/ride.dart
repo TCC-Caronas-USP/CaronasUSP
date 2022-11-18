@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/model/location.dart';
 import 'package:caronas_usp/model/passenger.dart';
 import 'package:caronas_usp/model/rider.dart';
@@ -15,9 +16,25 @@ class Ride {
   final DateTime departureTime;
   final Location origin;
   final double price;
-  final int totalOccupation;
-  final int currentOccupation;
-  final List<Passenger> passengers;
+  final int maxNumPassengers;
+  List<Passenger> passengers;
+
+  bool isPassenger(Rider rider) {
+    String riderId = rider.id!;
+    return passengers.any((passenger) => passenger.riderId == riderId);
+  }
+
+  RidePassengerStatus getStatus(Rider rider) {
+    String riderId = rider.id!;
+    return passengers
+        .singleWhere((passenger) => passenger.riderId == riderId)
+        .status;
+  }
+
+  List<Location> get locations =>
+      passengers.map((passenger) => passenger.meetingPoint).toList();
+
+  int get currentNumPassengers => passengers.length;
 
   factory Ride.fromJson(Map<String, dynamic> json) => _$RideFromJson(json);
 
@@ -31,8 +48,7 @@ class Ride {
     required this.departureTime,
     required this.origin,
     required this.price,
-    required this.totalOccupation,
-    required this.currentOccupation,
+    required this.maxNumPassengers,
     required this.passengers,
   });
 }

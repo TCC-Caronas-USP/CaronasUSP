@@ -7,6 +7,7 @@ part of 'rider.dart';
 // **************************************************************************
 
 Rider _$RiderFromJson(Map<String, dynamic> json) => Rider(
+      id: json['id'] as String?,
       imagePath: json['image_path'] as String,
       name: json['name'] as String,
       email: json['email'] as String,
@@ -23,6 +24,7 @@ Rider _$RiderFromJson(Map<String, dynamic> json) => Rider(
     );
 
 Map<String, dynamic> _$RiderToJson(Rider instance) => <String, dynamic>{
+      'id': instance.id,
       'image_path': instance.imagePath,
       'name': instance.name,
       'email': instance.email,

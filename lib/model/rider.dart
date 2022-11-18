@@ -5,6 +5,7 @@ part 'rider.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Rider {
+  final String? id;
   final String imagePath;
   final String name;
   final String email;
@@ -24,6 +25,7 @@ class Rider {
   Map<String, dynamic> toJson() => _$RiderToJson(this);
 
   const Rider({
+    this.id,
     required this.imagePath,
     required this.name,
     required this.email,
