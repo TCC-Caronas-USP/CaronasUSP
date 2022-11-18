@@ -45,10 +45,10 @@ dependencies:
   json_annotation: ^4.7.0
 
   # Google Sign In
-  firebase_auth: ^1.1.4
+  firebase_auth: ^4.1.1
   google_sign_in: ^5.0.3
 
-  font_awesome_flutter: ^9.0.0
+  font_awesome_flutter: ^10.2.1
   google_maps_flutter: ^2.1.1
   flutter_polyline_points: ^1.0.0
   http: ^0.13.5
@@ -58,7 +58,7 @@ dependencies:
   quantity_input: ^1.0.2
   onesignal_flutter: ^3.0.0
   firebase_core_platform_interface: ^4.5.1
-  firebase_messaging: ^13.0.4
+  firebase_messaging: ^14.0.4
 
 dev_dependencies:
   flutter_test:
