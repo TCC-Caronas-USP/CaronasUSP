@@ -15,7 +15,8 @@ const String TIME_ZONE = 'America/Sao_Paulo';
 enum AppPage {
   pegar,
   historico,
-  oferecer
+  oferecer,
+  aceitar
 }
 
 enum RidePassengerStatus {
