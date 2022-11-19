@@ -32,9 +32,6 @@ class Ride {
         .status;
   }
 
-  // List<Location> get locations =>
-  //     passengers.map((passenger) => passenger.meetingPoint).toList();
-
   double distanceFromOriginLocation(Location meetingPointing) {
     double distance = Geolocator.distanceBetween(
         origin.lon,
@@ -45,13 +42,23 @@ class Ride {
     return distance;
   }
 
-  List<Location> get locations {
+  List<Map<String, dynamic>> locationWithDistance({newPasseger}) {
     // make this an empty list by intializing with []
     List<Map<String, dynamic>> locationListWithDistance = [];
 
     // associate location with distance
     for(var passenger in passengers) {
-      Location passengerMeetingPoint = passenger.meetingPoint;
+      if (passenger.status == RidePassengerStatus.approved) {
+        Location passengerMeetingPoint = passenger.meetingPoint;
+        double distance = distanceFromOriginLocation(passengerMeetingPoint);
+        locationListWithDistance.add({
+          'location': passengerMeetingPoint,
+          'distance': distance,
+        });
+      }
+    }
+    if (newPasseger != null) {
+      Location passengerMeetingPoint = newPasseger.meetingPoint;
       double distance = distanceFromOriginLocation(passengerMeetingPoint);
       locationListWithDistance.add({
         'location': passengerMeetingPoint,
@@ -59,6 +66,10 @@ class Ride {
       });
     }
 
+    return locationListWithDistance;
+  }
+
+  List<Map<String, dynamic>> sortLocationListWithDistance(locationListWithDistance) {
     // sort by distance
     locationListWithDistance.sort((a, b) {
       double d1 = a['distance'];
@@ -72,13 +83,35 @@ class Ride {
       }
     });
 
+    return locationListWithDistance;
+  }
+
+  List<Location> get locations {
+
+    List<Map<String, dynamic>> locationListWithDistance = locationWithDistance();
+
+    List<Map<String, dynamic>> sortedLocationListWithDistance = sortLocationListWithDistance(locationListWithDistance);
+
     List<Location> rideLocations = [origin];
-    for (var meetPointing in locationListWithDistance) {
+    for (var meetPointing in sortedLocationListWithDistance) {
       rideLocations.add(meetPointing['location']);
     }
     rideLocations.add(destination);
 
-    print(rideLocations);
+    return rideLocations;
+  }
+
+  List<Location> getLocationsWithNewSuggestion(Passenger newPassager) {
+
+    List<Map<String, dynamic>> locationListWithDistance = locationWithDistance(newPasseger: newPassager);
+
+    List<Map<String, dynamic>> sortedLocationListWithDistance = sortLocationListWithDistance(locationListWithDistance);
+
+    List<Location> rideLocations = [origin];
+    for (var meetPointing in sortedLocationListWithDistance) {
+      rideLocations.add(meetPointing['location']);
+    }
+    rideLocations.add(destination);
 
     return rideLocations;
   }
