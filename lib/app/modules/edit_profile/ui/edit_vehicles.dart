@@ -143,7 +143,7 @@ class _EditVehicleState extends State<EditVehicle> {
                                   SnackBar(
                                       content: widget.vehicle == null
                                           ? const Text('Adicionando carro')
-                                          : const Text('Alterrando carro')),
+                                          : const Text('Alterando carro')),
                                 );
 
                                 Vehicle newVehicle = Vehicle(
