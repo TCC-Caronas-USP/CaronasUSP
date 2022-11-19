@@ -24,8 +24,8 @@ enum RidePassengerStatus {
   rejected
 }
 
-enum DetailsTrailing {
-  time,
+enum InfoDetails {
+  location,
   passenger
 }
 

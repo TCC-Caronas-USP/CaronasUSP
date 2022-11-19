@@ -122,7 +122,7 @@ class RidesRepository {
                       "Expresso Aeroporto - Guarulhos, São Paulo, Brazil",
                   lat: -23.535298,
                   lon: -46.634253),
-              status: RidePassengerStatus.approved),
+              status: RidePassengerStatus.waiting),
           Passenger(
               id: 101,
               rideId: 100,

@@ -1,15 +1,15 @@
 import 'package:caronas_usp/app/core/constants.dart';
-import 'package:caronas_usp/app/models/passenger.dart';
 import 'package:caronas_usp/app/models/ride.dart';
-import 'package:caronas_usp/app/utils/getStatusIcon.dart';
+import 'package:caronas_usp/app/widgets/info_details_widget.dart';
 import 'package:caronas_usp/app/widgets/maps_widget.dart';
-import 'package:caronas_usp/app/modules/detalhes/ui/user_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class DetailsRideWidget extends StatelessWidget {
   final Ride ride;
+  final AppPage page;
 
-  const DetailsRideWidget({Key? key, required this.ride}) : super(key: key);
+  const DetailsRideWidget({Key? key, required this.ride, required this.page})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +38,13 @@ class DetailsRideWidget extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        buildInfoDetails(ride.origin.description, "Origem",
+        InfoDetailsWidget(ride.origin.description, "Origem", context, ride, page,
             icon: Icons.map,
-            trailing: DetailsTrailing.time,
+            infoDetails: InfoDetails.location,
             time: departureTimeString),
-        buildInfoDetails(ride.destination.description, "Destino",
+        InfoDetailsWidget(ride.destination.description, "Destino", context, ride, page,
             icon: Icons.map,
-            trailing: DetailsTrailing.time,
+            infoDetails: InfoDetails.location,
             time: arrivalTimeString),
         Maps(height: 400, locations: ride.locations),
         const Text(
@@ -52,18 +52,18 @@ class DetailsRideWidget extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        buildInfoDetails(
-            "R\$ ${ride.price.toStringAsFixed(2)}", "Pago ao final da carona",
+        InfoDetailsWidget("R\$ ${ride.price.toStringAsFixed(2)}",
+            "Pago ao final da carona", context, ride, page,
             icon: Icons.monetization_on_outlined),
         const Text(
           "Motorista",
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        buildInfoDetails(ride.driver.name, ride.driver.instituto,
+        InfoDetailsWidget(ride.driver.name, ride.driver.instituto, context, ride, page,
             image: true, imagePath: ride.driver.imagePath),
-        buildInfoDetails(ride.driver.vehicles.first.model,
-            ride.driver.vehicles.first.licensePlate,
+        InfoDetailsWidget(ride.driver.vehicles.first.model,
+            ride.driver.vehicles.first.licensePlate, context, ride, page,
             icon: Icons.directions_car_filled),
         const Text(
           "Caronista",
@@ -71,69 +71,16 @@ class DetailsRideWidget extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         for (var passenger in ride.passengers)
-          buildInfoDetails(passenger.riderName, passenger.riderInstituto,
+          InfoDetailsWidget(
+              passenger.riderName, passenger.riderInstituto, context, ride, page,
               image: true,
               imagePath: passenger.riderImagePath,
-              trailing: DetailsTrailing.passenger,
+              infoDetails: InfoDetails.passenger,
               passenger: passenger),
         const SizedBox(
           height: 124,
         )
       ],
     );
-  }
-
-  Widget buildInfoDetails(String title, String subtitle,
-      {bool image = false,
-      IconData? icon,
-      String? imagePath,
-      DetailsTrailing? trailing,
-      String? time,
-      Passenger? passenger}) {
-    return Card(
-      margin: const EdgeInsets.all(12),
-      elevation: 2,
-      child: ListTile(
-        title: Text(
-          title,
-          overflow: TextOverflow.fade,
-          style: const TextStyle(fontSize: 16),
-        ),
-        subtitle: Text(
-          subtitle,
-          style: const TextStyle(fontSize: 12),
-        ),
-        leading: FittedBox(
-          alignment: Alignment.center,
-          fit: BoxFit.contain,
-          child: image
-              ? UserImage(
-                  imagePath: imagePath!,
-                )
-              : Icon(
-                  icon,
-                  size: 1000,
-                ),
-        ),
-        trailing: buildInfoDetailsTrailing(trailing, time, passenger),
-        minLeadingWidth: 20,
-      ),
-    );
-  }
-
-  Widget? buildInfoDetailsTrailing(
-      DetailsTrailing? trailing, String? time, Passenger? passenger) {
-    switch (trailing) {
-      case DetailsTrailing.time:
-        return Text(
-          time!,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(fontSize: 20),
-        );
-      case DetailsTrailing.passenger:
-        return getStatusIcon(passenger!.status);
-      default:
-        return null;
-    }
   }
 }
