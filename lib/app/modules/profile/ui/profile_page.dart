@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/modules/edit_profile/ui/edit_vehicles.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_bloc.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_event.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_state.dart';
@@ -31,7 +32,6 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
     _profileBloc = context.read<ProfileBloc>();
     _profileBloc!.add(FetchUserInfo());
-
   }
 
   Future<void> _handleListener(BuildContext context, ProfileState state) async {
@@ -57,7 +57,9 @@ class _ProfilePageState extends State<ProfilePage> {
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const EditProfilePage()));
+                      builder: (context) => EditProfilePage(
+                            rider: user!,
+                          )));
                 },
                 backgroundColor: Colors.green[400],
                 child: const Icon(Icons.edit)),
@@ -68,6 +70,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   )
                 : ListView(
                     physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
                     children: [
                       const SizedBox(
                         height: 24,
@@ -83,15 +86,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       NumbersWidget(
                           caronasRealizadas: user!.caronasMotorista,
-                          caronasUtilizadas: user!.caronasPassageiro,
-                          ranking: user!.ranking),
+                          caronasUtilizadas: user!.caronasPassageiro),
                       const SizedBox(
                         height: 24,
                       ),
-                      // InfosWidget(infoTitle: "CPF", infoValues: [user!.cpf]),
-                      // const SizedBox(
-                      //   height: 12,
-                      // ),
                       InfosWidget(
                           infoTitle: "Telefone", infoValues: [user!.telefone]),
                       const SizedBox(
@@ -103,15 +101,36 @@ class _ProfilePageState extends State<ProfilePage> {
                       const SizedBox(
                         height: 12,
                       ),
-                      if (vehicle != null) InfosWidget(infoTitle: "Veículo", infoValues: [
-                        vehicle!.model,
-                        vehicle!.color,
-                        vehicle!.licensePlate,
-                        vehicle!.brand
-                      ]),
+                      InfosWidget(
+                          infoTitle: "Curso", infoValues: [user!.curso]),
                       const SizedBox(
-                        height: 24,
+                        height: 12,
                       ),
+                      InfosWidget(
+                          infoTitle: "Ano", infoValues: [user!.ano.toString()]),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      if (vehicle != null)
+                        InfosWidget(infoTitle: "Veículo", infoValues: [
+                          vehicle!.model,
+                          vehicle!.color,
+                          vehicle!.licensePlate,
+                          vehicle!.brand
+                        ]),
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    EditVehicle(vehicle: vehicle)));
+
+                            _profileBloc!.add(FetchUserInfo());
+                          },
+                          child: vehicle == null
+                              ? const Text("Adicionar veículo")
+                              : const Text("Alterar veículo")),
+                      const SizedBox(height: 24),
                     ],
                   ),
           );
@@ -122,7 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Text(
             user.name,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            style: const TextStyle(fontSize: 24),
           ),
           const SizedBox(
             height: 4,

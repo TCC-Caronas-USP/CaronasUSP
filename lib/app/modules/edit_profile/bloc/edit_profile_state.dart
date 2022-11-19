@@ -25,3 +25,9 @@ class EditedProfile extends EditProfileState {
 
   EditedProfile(this.updated) : super([updated]);
 }
+
+class EditedVehicle extends EditProfileState {
+  final bool updated;
+
+  EditedVehicle(this.updated) : super([updated]);
+}

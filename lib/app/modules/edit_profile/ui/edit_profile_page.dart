@@ -14,7 +14,9 @@ import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+  Rider rider;
+
+  EditProfilePage({Key? key, required this.rider}) : super(key: key);
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -22,7 +24,6 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   EditProfileBloc? _editProfileBloc;
-  Rider? rider;
   bool _loading = true;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -51,16 +52,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
       BuildContext context, EditProfileState state) async {
     if (state is EditProfileLoading) {
       _loading = true;
-      rider = null;
     }
     if (state is EditProfileLoaded) {
-      rider = state.user;
+      widget.rider = state.user;
 
-      _name.text = rider!.name;
-      _instituto.text = rider!.instituto;
-      _curso.text = rider!.curso;
-      _ano.text = rider!.ano.toString();
-      _telefone.text = rider!.telefone;
+      _name.text = widget.rider.name;
+      _instituto.text = widget.rider.instituto;
+      _curso.text = widget.rider.curso;
+      _ano.text = widget.rider.ano.toString();
+      _telefone.text = widget.rider.telefone;
 
       _loading = false;
     }
@@ -93,7 +93,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           height: 24,
                         ),
                         ProfileWidget(
-                            imagePath: rider!.imagePath,
+                            imagePath: widget.rider.imagePath,
                             onClicked: () async {}),
                         const SizedBox(
                           height: 24,
@@ -114,17 +114,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 );
 
                                 Rider updatedRider = Rider(
-                                    imagePath: rider!.imagePath,
+                                    imagePath: widget.rider.imagePath,
                                     name: _name.text,
-                                    email: rider!.email,
+                                    email: widget.rider.email,
                                     telefone: _telefone.text,
                                     instituto: _instituto.text,
                                     curso: _curso.text,
                                     ano: int.parse(_ano.text),
-                                    caronasMotorista: rider!.caronasMotorista,
-                                    caronasPassageiro: rider!.caronasPassageiro,
-                                    ranking: rider!.ranking,
-                                    vehicles: rider!.vehicles);
+                                    caronasMotorista:
+                                        widget.rider.caronasMotorista,
+                                    caronasPassageiro:
+                                        widget.rider.caronasPassageiro,
+                                    ranking: widget.rider.ranking,
+                                    vehicles: widget.rider.vehicles);
 
                                 _editProfileBloc!
                                     .add(UpdateRiderInfo(updatedRider));
