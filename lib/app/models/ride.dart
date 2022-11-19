@@ -2,6 +2,7 @@ import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/models/location.dart';
 import 'package:caronas_usp/app/models/passenger.dart';
 import 'package:caronas_usp/app/models/rider.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 
@@ -31,8 +32,56 @@ class Ride {
         .status;
   }
 
-  List<Location> get locations =>
-      passengers.map((passenger) => passenger.meetingPoint).toList();
+  // List<Location> get locations =>
+  //     passengers.map((passenger) => passenger.meetingPoint).toList();
+
+  double distanceFromOriginLocation(Location meetingPointing) {
+    double distance = Geolocator.distanceBetween(
+        origin.lon,
+        origin.lat,
+        meetingPointing.lon,
+        meetingPointing.lat) /
+        1000;
+    return distance;
+  }
+
+  List<Location> get locations {
+    // make this an empty list by intializing with []
+    List<Map<String, dynamic>> locationListWithDistance = [];
+
+    // associate location with distance
+    for(var passenger in passengers) {
+      Location passengerMeetingPoint = passenger.meetingPoint;
+      double distance = distanceFromOriginLocation(passengerMeetingPoint);
+      locationListWithDistance.add({
+        'location': passengerMeetingPoint,
+        'distance': distance,
+      });
+    }
+
+    // sort by distance
+    locationListWithDistance.sort((a, b) {
+      double d1 = a['distance'];
+      double d2 = b['distance'];
+      if (d1 > d2) {
+        return 1;
+      } else if (d1 < d2) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+
+    List<Location> rideLocations = [origin];
+    for (var meetPointing in locationListWithDistance) {
+      rideLocations.add(meetPointing['location']);
+    }
+    rideLocations.add(destination);
+
+    print(rideLocations);
+
+    return rideLocations;
+  }
 
   int get currentNumPassengers => passengers.length;
 
