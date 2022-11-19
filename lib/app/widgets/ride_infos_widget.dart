@@ -2,6 +2,7 @@ import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/detalhes/ui/detalhes_page.dart';
 import 'package:caronas_usp/app/models/ride.dart';
 import 'package:caronas_usp/app/models/rider.dart';
+import 'package:caronas_usp/app/utils/getStatusIcon.dart';
 import 'package:flutter/material.dart';
 
 class RideInfosWidget extends StatelessWidget {
@@ -152,37 +153,12 @@ class RideInfosWidget extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          _getIcon(status),
+          getStatusIcon(status),
           const SizedBox(
             width: 10,
           ),
         ],
       )
     ]);
-  }
-
-  Icon _getIcon(RidePassengerStatus status) {
-    switch (status) {
-      case RidePassengerStatus.approved:
-        return const Icon(
-          Icons.check,
-          size: 30,
-        );
-      case RidePassengerStatus.waiting:
-        return const Icon(
-          Icons.access_time_filled,
-          size: 30,
-        );
-      case RidePassengerStatus.rejected:
-        return const Icon(
-          Icons.close,
-          size: 30,
-        );
-      default:
-        return const Icon(
-          Icons.question_mark,
-          size: 30,
-        );
-    }
   }
 }

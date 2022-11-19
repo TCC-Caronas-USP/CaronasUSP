@@ -1,4 +1,7 @@
+import 'package:caronas_usp/app/core/constants.dart';
+import 'package:caronas_usp/app/models/passenger.dart';
 import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/utils/getStatusIcon.dart';
 import 'package:caronas_usp/app/widgets/maps_widget.dart';
 import 'package:caronas_usp/app/modules/detalhes/ui/user_image_widget.dart';
 import 'package:flutter/material.dart';
@@ -36,9 +39,13 @@ class DetailsRideWidget extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         buildInfoDetails(ride.origin.description, "Origem",
-            icon: Icons.map, time: departureTimeString),
+            icon: Icons.map,
+            trailing: DetailsTrailing.time,
+            time: departureTimeString),
         buildInfoDetails(ride.destination.description, "Destino",
-            icon: Icons.map, time: arrivalTimeString),
+            icon: Icons.map,
+            trailing: DetailsTrailing.time,
+            time: arrivalTimeString),
         Maps(height: 400, locations: ride.locations),
         const Text(
           "Preço",
@@ -55,8 +62,8 @@ class DetailsRideWidget extends StatelessWidget {
         ),
         buildInfoDetails(ride.driver.name, ride.driver.instituto,
             image: true, imagePath: ride.driver.imagePath),
-        buildInfoDetails(
-            ride.driver.vehicles.first.model, ride.driver.vehicles.first.licensePlate,
+        buildInfoDetails(ride.driver.vehicles.first.model,
+            ride.driver.vehicles.first.licensePlate,
             icon: Icons.directions_car_filled),
         const Text(
           "Caronista",
@@ -65,13 +72,24 @@ class DetailsRideWidget extends StatelessWidget {
         ),
         for (var passenger in ride.passengers)
           buildInfoDetails(passenger.riderName, passenger.riderInstituto,
-              image: true, imagePath: passenger.riderImagePath),
+              image: true,
+              imagePath: passenger.riderImagePath,
+              trailing: DetailsTrailing.passenger,
+              passenger: passenger),
+        const SizedBox(
+          height: 124,
+        )
       ],
     );
   }
 
   Widget buildInfoDetails(String title, String subtitle,
-      {bool image = false, IconData? icon, String? imagePath, String? time}) {
+      {bool image = false,
+      IconData? icon,
+      String? imagePath,
+      DetailsTrailing? trailing,
+      String? time,
+      Passenger? passenger}) {
     return Card(
       margin: const EdgeInsets.all(12),
       elevation: 2,
@@ -97,16 +115,25 @@ class DetailsRideWidget extends StatelessWidget {
                   size: 1000,
                 ),
         ),
-        trailing: time != null
-            ? Text(
-                time,
-                overflow: TextOverflow.ellipsis,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              )
-            : null,
+        trailing: buildInfoDetailsTrailing(trailing, time, passenger),
         minLeadingWidth: 20,
       ),
     );
+  }
+
+  Widget? buildInfoDetailsTrailing(
+      DetailsTrailing? trailing, String? time, Passenger? passenger) {
+    switch (trailing) {
+      case DetailsTrailing.time:
+        return Text(
+          time!,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(fontSize: 20),
+        );
+      case DetailsTrailing.passenger:
+        return getStatusIcon(passenger!.status);
+      default:
+        return null;
+    }
   }
 }
