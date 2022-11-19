@@ -1,4 +1,5 @@
 import 'package:caronas_usp/app/models/rider.dart';
+import 'package:caronas_usp/app/models/vehicle.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class EditProfileEvent extends Equatable {

@@ -2,10 +2,9 @@ import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_bloc.dart
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_event.dart';
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_state.dart';
 import 'package:caronas_usp/app/modules/profile/ui/profile_page.dart';
-import 'package:caronas_usp/model/vehicle.dart';
-import 'package:caronas_usp/widget/appbar_backbutton_widget.dart';
-import 'package:caronas_usp/widget/field_wrapper_widget.dart';
-import 'package:caronas_usp/widget/text_field_widget.dart';
+import 'package:caronas_usp/app/models/vehicle.dart';
+import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
+import 'package:caronas_usp/app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -76,64 +75,49 @@ class _EditVehicleState extends State<EditVehicle> {
                       physics: const BouncingScrollPhysics(),
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       children: [
-                        FieldWrapper(
-                          fieldInput: TextFieldWidget(
-                            label: "Modelo",
-                            fieldController: _model,
-                            text: _model.text,
-                            suffixIcon: const Icon(Icons.directions_car_filled),
-                            onValidation: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório';
-                              }
-                              return null;
-                            },
-                          ),
+                        TextFieldWidget(
+                          label: "Modelo",
+                          fieldController: _model,
+                          suffixIcon: const Icon(Icons.directions_car_filled),
+                          onValidation: (String? value) {
+                            if (value!.isEmpty) {
+                              return 'Campo obrigatório';
+                            }
+                            return null;
+                          },
                         ),
-                        const SizedBox(height: 12),
-                        FieldWrapper(
-                          fieldInput: TextFieldWidget(
-                            label: "Marca",
-                            fieldController: _brand,
-                            text: _brand.text,
-                            suffixIcon: const Icon(Icons.directions_car_filled),
-                            onValidation: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório';
-                              }
-                              return null;
-                            },
-                          ),
+                        TextFieldWidget(
+                          label: "Marca",
+                          fieldController: _brand,
+                          suffixIcon: const Icon(Icons.directions_car_filled),
+                          onValidation: (String? value) {
+                            if (value!.isEmpty) {
+                              return 'Campo obrigatório';
+                            }
+                            return null;
+                          },
                         ),
-                        const SizedBox(height: 12),
-                        FieldWrapper(
-                          fieldInput: TextFieldWidget(
-                            label: "Cor",
-                            fieldController: _color,
-                            text: _color.text,
-                            suffixIcon: const Icon(Icons.color_lens),
-                            onValidation: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório';
-                              }
-                              return null;
-                            },
-                          ),
+                        TextFieldWidget(
+                          label: "Cor",
+                          fieldController: _color,
+                          suffixIcon: const Icon(Icons.color_lens),
+                          onValidation: (String? value) {
+                            if (value!.isEmpty) {
+                              return 'Campo obrigatório';
+                            }
+                            return null;
+                          },
                         ),
-                        const SizedBox(height: 12),
-                        FieldWrapper(
-                          fieldInput: TextFieldWidget(
-                            label: "Placa",
-                            fieldController: _licensePlate,
-                            text: _licensePlate.text,
-                            suffixIcon: const Icon(Icons.badge),
-                            onValidation: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório';
-                              }
-                              return null;
-                            },
-                          ),
+                        TextFieldWidget(
+                          label: "Placa",
+                          fieldController: _licensePlate,
+                          suffixIcon: const Icon(Icons.badge),
+                          onValidation: (String? value) {
+                            if (value!.isEmpty) {
+                              return 'Campo obrigatório';
+                            }
+                            return null;
+                          },
                         ),
                         const SizedBox(height: 12),
                         ElevatedButton(
