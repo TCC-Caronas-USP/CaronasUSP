@@ -90,7 +90,7 @@ class RideInfosWidget extends StatelessWidget {
         Text(
           destination,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 4),
         Container(
@@ -104,7 +104,7 @@ class RideInfosWidget extends StatelessWidget {
                 ])
                   Text(value,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 16, color: Colors.grey)),
+                      style: const TextStyle(fontSize: 12, color: Colors.grey)),
               ],
             ))
       ],
@@ -120,7 +120,7 @@ class RideInfosWidget extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       Text(
         "R\$ $ridePrice",
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        style: const TextStyle(fontSize: 16),
         textAlign: TextAlign.center,
         softWrap: true,
       ),
@@ -136,7 +136,7 @@ class RideInfosWidget extends StatelessWidget {
           ),
           Text(
             "$rideCurrentOccupation/$rideTotalOccupation",
-            style: const TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 14),
             textAlign: TextAlign.left,
             softWrap: true,
           ),

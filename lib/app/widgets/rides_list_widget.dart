@@ -44,7 +44,7 @@ class RidesListWidget extends StatelessWidget {
     return Column(children: [
       Text(
         "$rideDay/$rideMonth/$rideYear",
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        style: const TextStyle(fontSize: 20),
         textAlign: TextAlign.center,
         softWrap: true,
       ),

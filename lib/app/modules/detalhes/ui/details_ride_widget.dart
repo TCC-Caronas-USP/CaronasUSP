@@ -26,18 +26,12 @@ class DetailsRideWidget extends StatelessWidget {
 
     return ListView(
       padding: const EdgeInsets.symmetric(
-        horizontal: 8.0,
         vertical: 24,
       ),
       scrollDirection: Axis.vertical,
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       children: [
-        const Text(
-          "Localização",
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-        ),
         InfoDetailsWidget(ride.origin.description, "Origem", context, ride, page,
             icon: Icons.map,
             infoDetails: InfoDetails.location,
@@ -47,28 +41,29 @@ class DetailsRideWidget extends StatelessWidget {
             infoDetails: InfoDetails.location,
             time: arrivalTimeString),
         Maps(height: 400, locations: ride.locations),
-        const Text(
-          "Preço",
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-        ),
         InfoDetailsWidget("R\$ ${ride.price.toStringAsFixed(2)}",
             "Pago ao final da carona", context, ride, page,
             icon: Icons.monetization_on_outlined),
-        const Text(
-          "Motorista",
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        const Padding(
+          padding: EdgeInsets.only(left: 24, right: 24, top: 25),
+          child: Text(
+            "Motorista",
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 16),
+          ),
         ),
         InfoDetailsWidget(ride.driver.name, ride.driver.instituto, context, ride, page,
             image: true, imagePath: ride.driver.imagePath),
         InfoDetailsWidget(ride.driver.vehicles.first.model,
             ride.driver.vehicles.first.licensePlate, context, ride, page,
             icon: Icons.directions_car_filled),
-        const Text(
-          "Caronista",
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        const Padding(
+          padding: EdgeInsets.only(left: 24, right: 24, top: 25),
+          child:  Text(
+            "Caronistas",
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 16),
+          ),
         ),
         for (var passenger in ride.passengers)
           InfoDetailsWidget(
