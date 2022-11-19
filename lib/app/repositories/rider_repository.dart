@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:caronas_usp/model/rider.dart';
-import 'package:caronas_usp/model/vehicle.dart';
+import 'package:caronas_usp/app/models/rider.dart';
+import 'package:caronas_usp/app/models/vehicle.dart';
 
 import 'network/rider_requester.dart';
 

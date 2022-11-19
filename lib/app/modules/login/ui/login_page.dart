@@ -1,10 +1,10 @@
 import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/modules/login/bloc/login_event.dart';
 import 'package:caronas_usp/app/modules/login/bloc/login_state.dart';
-import 'package:caronas_usp/widget/forbidden_email_access_widget.dart';
-import 'package:caronas_usp/widget/logged_in_widget.dart';
-import 'package:caronas_usp/widget/personal_information_widget.dart';
-import 'package:caronas_usp/widget/sign_up_widget.dart';
+import 'package:caronas_usp/app/modules/login/ui/forbidden_email_access_widget.dart';
+import 'package:caronas_usp/app/modules/login/ui/logged_in_widget.dart';
+import 'package:caronas_usp/app/modules/login/ui/register_widget.dart';
+import 'package:caronas_usp/app/modules/login/ui/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
       return LoggedInWidget();
     }
     if (state is LoggedInFirstTime) {
-      return PersonalInformationWidget(onRegisterPressed);
+      return RegisterWidget(onRegisterPressed);
     } else {
       return const Center(child: CircularProgressIndicator());
     }

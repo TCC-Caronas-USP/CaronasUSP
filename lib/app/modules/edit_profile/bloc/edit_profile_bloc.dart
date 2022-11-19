@@ -1,7 +1,7 @@
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_event.dart';
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_state.dart';
 import 'package:caronas_usp/app/repositories/rider_repository.dart';
-import 'package:caronas_usp/model/rider.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {

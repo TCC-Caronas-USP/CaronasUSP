@@ -10,7 +10,7 @@ abstract class DetalhesEvent extends Equatable {
 }
 
 class CancelRide extends DetalhesEvent {
-  final String rideId;
+  final int rideId;
 
   CancelRide(this.rideId) : super([rideId]);
 }

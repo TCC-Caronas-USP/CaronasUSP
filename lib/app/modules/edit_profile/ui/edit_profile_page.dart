@@ -2,11 +2,11 @@ import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_bloc.dart
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_event.dart';
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_state.dart';
 import 'package:caronas_usp/app/modules/profile/ui/profile_page.dart';
-import 'package:caronas_usp/model/rider.dart';
-import 'package:caronas_usp/widget/appbar_backbutton_widget.dart';
-import 'package:caronas_usp/widget/field_wrapper_widget.dart';
-import 'package:caronas_usp/widget/profile_widget.dart';
-import 'package:caronas_usp/widget/text_field_widget.dart';
+import 'package:caronas_usp/app/models/rider.dart';
+import 'package:caronas_usp/app/utils/input_validators.dart';
+import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
+import 'package:caronas_usp/app/widgets/personal_information_fields.dart';
+import 'package:caronas_usp/app/widgets/profile_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +33,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _curso = TextEditingController();
   final TextEditingController _ano = TextEditingController();
   final MaskedTextController _telefone =
-      MaskedTextController(mask: '(00) 00000-0000');
+      MaskedTextController(mask: PHONE_MASK, translator: {
+        'A': RegExp(r'[A-Za-z]'),
+        '0': RegExp(r'[0-9]'),
+        '@': RegExp(r'[A-Za-z0-9]'),
+        '*': RegExp(r'.*'),
+        '#': RegExp(r'[0-9]?')
+      });
 
   @override
   void initState() {
@@ -92,87 +98,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         const SizedBox(
                           height: 24,
                         ),
-                        FieldWrapper(
-                            fieldInput: TextFieldWidget(
-                          fieldController: _name,
-                          label: "Nome",
-                          text: _name.text,
-                          suffixIcon: const Icon(Icons.text_fields_outlined),
-                          onValidation: (String? value) {
-                            if (value!.isEmpty) {
-                              return 'Campo obrigatório';
-                            }
-                            return null;
-                          },
-                        )),
-                        FieldWrapper(
-                          fieldInput: TextFieldWidget(
-                            fieldController: _instituto,
-                            label: "Instituto",
-                            suffixIcon: const Icon(Icons.school_outlined),
-                            text: _instituto.text,
-                            onFieldChanged: (widget, instituto) {},
-                            onValidation: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        FieldWrapper(
-                          fieldInput: TextFieldWidget(
-                            fieldController: _curso,
-                            label: "Curso",
-                            text: _curso.text,
-                            suffixIcon: const Icon(Icons.school_outlined),
-                            onFieldChanged: (widget, instituto) {},
-                            onValidation: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        FieldWrapper(
-                          fieldInput: TextFieldWidget(
-                            fieldController: _ano,
-                            label: "Ano",
-                            text: _ano.text,
-                            suffixIcon: const Icon(Icons.timelapse_outlined),
-                            onFieldChanged: (widget, instituto) {},
-                            onValidation: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        FieldWrapper(
-                          fieldInput: TextFieldWidget(
-                            fieldController: _telefone,
-                            label: "Telefone",
-                            text: _telefone.text,
-                            suffixIcon: const Icon(Icons.phone_enabled),
-                            textInputType:
-                                const TextInputType.numberWithOptions(
-                                    decimal: false, signed: false),
-                            onFieldChanged: (widget, telefone) {},
-                            onValidation: (String? value) {
-                              String patttern =
-                                  r'^\([1-9]{2}\) 9[1-9]{1}[0-9]{3}\-[0-9]{4}$';
-                              RegExp regExp = RegExp(patttern);
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório';
-                              } else if (!regExp.hasMatch(value)) {
-                                return 'Digite um número válido';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
+                        ...getPersonalInformationFields(
+                            name: _name,
+                            instituto: _instituto,
+                            curso: _curso,
+                            ano: _ano,
+                            telefone: _telefone),
                         const SizedBox(height: 12),
                         ElevatedButton(
                             onPressed: () {

@@ -3,12 +3,12 @@ import 'package:caronas_usp/app/modules/profile/bloc/profile_bloc.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_event.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_state.dart';
 import 'package:caronas_usp/app/modules/edit_profile/ui/edit_profile_page.dart';
-import 'package:caronas_usp/model/rider.dart';
-import 'package:caronas_usp/model/vehicle.dart';
-import 'package:caronas_usp/widget/appbar_widget.dart';
-import 'package:caronas_usp/widget/infos_widget.dart';
-import 'package:caronas_usp/widget/numbers_widget.dart';
-import 'package:caronas_usp/widget/profile_widget.dart';
+import 'package:caronas_usp/app/models/rider.dart';
+import 'package:caronas_usp/app/models/vehicle.dart';
+import 'package:caronas_usp/app/widgets/appbar_widget.dart';
+import 'package:caronas_usp/app/modules/profile/ui/infos_widget.dart';
+import 'package:caronas_usp/app/modules/profile/ui/numbers_widget.dart';
+import 'package:caronas_usp/app/widgets/profile_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

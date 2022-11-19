@@ -1,4 +1,4 @@
-import 'package:caronas_usp/model/ride.dart';
+import 'package:caronas_usp/app/models/ride.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class CriarEvent extends Equatable {
