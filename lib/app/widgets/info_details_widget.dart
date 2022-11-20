@@ -28,6 +28,10 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
                     builder: (context) =>
                         AceitarPage(ride: ride, passenger: passenger)));
               }
+              else if (infoDetails == InfoDetails.maps) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Abrir Google Maps.")));
+              }
             },
             title: Text(
               title,
@@ -81,7 +85,7 @@ Widget buildInfoDetailsLeading(InfoDetails infoDetails, {imagePath}) {
   switch (infoDetails) {
     case InfoDetails.location:
       return const Icon(
-        Icons.map,
+        Icons.place,
         size: 1000,
       );
     case InfoDetails.price:
@@ -97,6 +101,11 @@ Widget buildInfoDetailsLeading(InfoDetails infoDetails, {imagePath}) {
     case InfoDetails.whatsapp:
       return const Icon(
         Icons.whatsapp,
+        size: 1000,
+      );
+    case InfoDetails.maps:
+      return const Icon(
+        Icons.map,
         size: 1000,
       );
     default:
