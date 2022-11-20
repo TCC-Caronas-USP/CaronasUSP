@@ -5,7 +5,6 @@ import 'package:caronas_usp/app/modules/aceitar/ui/aceitar_page.dart';
 import 'package:caronas_usp/app/utils/getStatusIcon.dart';
 import 'package:caronas_usp/app/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
