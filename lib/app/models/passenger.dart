@@ -11,6 +11,7 @@ class Passenger {
   final int rideId;
   final int riderId;
   final String riderName;
+  final String riderTelefone;
   final String riderInstituto;
   final String riderImagePath;
   final Location meetingPoint;
@@ -26,6 +27,7 @@ class Passenger {
       required this.rideId,
       required this.riderId,
       required this.riderName,
+      required this.riderTelefone,
       required this.riderInstituto,
       required this.riderImagePath,
       required this.meetingPoint,

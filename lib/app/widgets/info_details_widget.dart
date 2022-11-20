@@ -5,6 +5,7 @@ import 'package:caronas_usp/app/modules/aceitar/ui/aceitar_page.dart';
 import 'package:caronas_usp/app/utils/getStatusIcon.dart';
 import 'package:caronas_usp/app/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
@@ -55,8 +56,22 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
           padding: const EdgeInsets.only(right: 12),
           tooltip: "Conversar no Whatsapp",
           onPressed: () async => {
-            if (infoDetails == InfoDetails.driver)
-              await canLaunchUrlString("https://wa.me/5511998521261") ? launchUrlString("https://wa.me/55998521261") : print("não foi possível abrir")
+
+            if (infoDetails == InfoDetails.driver){
+              if (await canLaunchUrlString("https://wa.me/${ride.driver.telefone}"))
+                await launchUrlString("https://wa.me/${ride.driver.telefone}", mode: LaunchMode.externalApplication)
+              else
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
+            }
+            else if (infoDetails == InfoDetails.passenger){
+              if (await canLaunchUrlString("https://wa.me/${ride.driver.telefone}"))
+                await launchUrlString("https://wa.me/${ride.driver.telefone}", mode: LaunchMode.externalApplication)
+              else
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
+            }
+
           },
         )
     ],

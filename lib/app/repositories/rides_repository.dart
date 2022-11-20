@@ -82,7 +82,7 @@ class RidesRepository {
                 "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
             name: "João Souza",
             email: "joao.souza@usp.br",
-            telefone: "(99) 99999-9999",
+            telefone: "5511967286914",
             instituto: "FAU",
             curso: 'Arquitetura',
             ano: 2019,
@@ -114,6 +114,7 @@ class RidesRepository {
               rideId: 100,
               riderId: 100,
               riderName: "Maria Clara",
+              riderTelefone: "5511969899676",
               riderInstituto: "FFLCH",
               riderImagePath:
                   "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
@@ -128,6 +129,7 @@ class RidesRepository {
               rideId: 100,
               riderId: 100,
               riderName: "João Souza",
+              riderTelefone: "5511967286914",
               riderInstituto: "FAU",
               riderImagePath:
                   "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
@@ -144,7 +146,7 @@ class RidesRepository {
             "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
             name: "João Souza",
             email: "joao.souza@usp.br",
-            telefone: "(99) 99999-9999",
+            telefone: "5511967286914",
             instituto: "FAU",
             curso: 'Arquitetura',
             ano: 2019,
