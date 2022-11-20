@@ -65,8 +65,8 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
                     const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
             }
             else if (infoDetails == InfoDetails.passenger){
-              if (await canLaunchUrlString("https://wa.me/${ride.driver.telefone}"))
-                await launchUrlString("https://wa.me/${ride.driver.telefone}", mode: LaunchMode.externalApplication)
+              if (await canLaunchUrlString("https://wa.me/${passenger!.riderTelefone}"))
+                await launchUrlString("https://wa.me/${passenger.riderTelefone}", mode: LaunchMode.externalApplication)
               else
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
