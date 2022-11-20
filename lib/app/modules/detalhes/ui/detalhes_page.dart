@@ -75,41 +75,33 @@ class _DetalhesPageState extends State<DetalhesPage> {
   Widget? buildFloatingActionButton(page) {
     switch (page) {
       case AppPage.oferecer:
-        return Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          FloatingActionButton(
-              heroTag: "btnCancel",
-              onPressed: () => showDialog(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                        title: const Text("Deseja realmente cancelar a carona?",
-                            textAlign: TextAlign.center),
-                        content: const Text(
-                            "Caso cancele os caronistas serão alertados.",
-                            textAlign: TextAlign.center),
-                        alignment: Alignment.center,
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'Não'),
-                            child: const Text('Não'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              _detalhesBloc!.add(CancelRide(ride.id));
-                            },
-                            child: const Text('Sim',
-                                style: TextStyle(color: Colors.red)),
-                          ),
-                        ],
-                      )),
-              backgroundColor: Colors.red[400],
-              child: const Icon(Icons.cancel)),
-          const SizedBox(height: 6),
-          FloatingActionButton(
-              heroTag: "btnEdit",
-              onPressed: () {},
-              backgroundColor: Colors.green[400],
-              child: const Icon(Icons.edit)),
-        ]);
+        return FloatingActionButton(
+            heroTag: "btnCancel",
+            onPressed: () => showDialog(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                      title: const Text("Deseja realmente cancelar a carona?",
+                          textAlign: TextAlign.center),
+                      content: const Text(
+                          "Caso cancele os caronistas serão alertados.",
+                          textAlign: TextAlign.center),
+                      alignment: Alignment.center,
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Não'),
+                          child: const Text('Não'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _detalhesBloc!.add(CancelRide(ride.id));
+                          },
+                          child: const Text('Sim',
+                              style: TextStyle(color: Colors.red)),
+                        ),
+                      ],
+                    )),
+            backgroundColor: Colors.red[400],
+            child: const Icon(Icons.cancel));
 
       case AppPage.pegar:
         return FloatingActionButton(

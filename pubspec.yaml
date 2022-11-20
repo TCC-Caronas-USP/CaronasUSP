@@ -44,6 +44,7 @@ dependencies:
   flutter_spinkit: ^5.1.0
   json_annotation: ^4.7.0
   geolocator: ^9.0.2
+  url_launcher: ^6.1.6
 
   # Google Sign In
   firebase_auth: ^4.1.1

@@ -82,7 +82,7 @@ class RidesRepository {
                 "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
             name: "João Souza",
             email: "joao.souza@usp.br",
-            telefone: "(99) 99999-9999",
+            telefone: "5511967286914",
             instituto: "FAU",
             curso: 'Arquitetura',
             ano: 2019,
@@ -114,6 +114,7 @@ class RidesRepository {
               rideId: 100,
               riderId: 100,
               riderName: "Maria Clara",
+              riderTelefone: "5511969899676",
               riderInstituto: "FFLCH",
               riderImagePath:
                   "https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
@@ -128,6 +129,7 @@ class RidesRepository {
               rideId: 100,
               riderId: 100,
               riderName: "João Souza",
+              riderTelefone: "5511967286914",
               riderInstituto: "FAU",
               riderImagePath:
                   "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
@@ -136,6 +138,41 @@ class RidesRepository {
                   lat: -23.456768,
                   lon: -47.483346),
               status: RidePassengerStatus.approved)
+        ]),
+    Ride(
+        id: 1,
+        driver: Rider(
+            imagePath:
+            "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+            name: "João Souza",
+            email: "joao.souza@usp.br",
+            telefone: "5511967286914",
+            instituto: "FAU",
+            curso: 'Arquitetura',
+            ano: 2019,
+            caronasPassageiro: 10,
+            caronasMotorista: 0,
+            ranking: 4.9,
+            vehicles: [
+              Vehicle(
+                  model: 'Ka',
+                  color: 'Prata',
+                  brand: 'Ford',
+                  licensePlate: 'ABC1D34')
+            ]),
+        arrivalTime: DateTime(2022, 11, 28, 6, 30),
+        destination: Location(
+            description: "Parque Ibirapuera, São Paulo, Brazil",
+            lat: -23.588306,
+            lon: -46.658794),
+        departureTime: DateTime(2022, 11, 28, 8),
+        origin: Location(
+            description: "Centro Histórico da Cidade de Itu, Itu, SP, Brazil",
+            lat: -23.260085,
+            lon: -47.300106),
+        price: 8.50,
+        maxNumPassengers: 4,
+        passengers: [
         ])
   ];
 

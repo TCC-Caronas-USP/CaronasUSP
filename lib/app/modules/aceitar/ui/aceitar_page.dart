@@ -63,13 +63,12 @@ class _AceitarPageState extends State<AceitarPage> {
                         context,
                         widget.ride,
                         AppPage.aceitar,
-                        image: true,
+                        InfoDetails.passenger,
                         imagePath: widget.passenger.riderImagePath,
-                        infoDetails: InfoDetails.passenger,
                         passenger: widget.passenger),
                     InfoDetailsWidget(widget.passenger.meetingPoint.description,
                         "Ponto de encontro", context, widget.ride, AppPage.aceitar,
-                        icon: Icons.map, infoDetails: InfoDetails.location, time: ""),
+                        InfoDetails.location, time: ""),
                     Maps(
                         height: 400,
                         locations: widget.ride

@@ -32,50 +32,61 @@ class DetailsRideWidget extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       children: [
-        InfoDetailsWidget(ride.origin.description, "Origem", context, ride, page,
-            icon: Icons.map,
-            infoDetails: InfoDetails.location,
+        InfoDetailsWidget(ride.origin.description, "Origem", context, ride,
+            page, InfoDetails.location,
             time: departureTimeString),
-        InfoDetailsWidget(ride.destination.description, "Destino", context, ride, page,
-            icon: Icons.map,
-            infoDetails: InfoDetails.location,
+        InfoDetailsWidget(ride.destination.description, "Destino", context,
+            ride, page, InfoDetails.location,
             time: arrivalTimeString),
         Maps(height: 400, locations: ride.locations),
-        InfoDetailsWidget("R\$ ${ride.price.toStringAsFixed(2)}",
-            "Pago ao final da carona", context, ride, page,
-            icon: Icons.monetization_on_outlined),
-        const Padding(
-          padding: EdgeInsets.only(left: 24, right: 24, top: 25),
-          child: Text(
-            "Motorista",
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 16),
-          ),
+        InfoDetailsWidget(
+          "R\$ ${ride.price.toStringAsFixed(2)}",
+          "Pago ao final da carona",
+          context,
+          ride,
+          page,
+          InfoDetails.price,
         ),
-        InfoDetailsWidget(ride.driver.name, ride.driver.instituto, context, ride, page,
-            image: true, imagePath: ride.driver.imagePath),
-        InfoDetailsWidget(ride.driver.vehicles.first.model,
-            ride.driver.vehicles.first.licensePlate, context, ride, page,
-            icon: Icons.directions_car_filled),
-        const Padding(
-          padding: EdgeInsets.only(left: 24, right: 24, top: 25),
-          child:  Text(
-            "Caronistas",
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 16),
-          ),
+        detailsText("Motorista"),
+        InfoDetailsWidget(ride.driver.name, ride.driver.instituto, context,
+            ride, page, InfoDetails.driver,
+            imagePath: ride.driver.imagePath),
+        InfoDetailsWidget(
+          ride.driver.vehicles.first.model,
+          ride.driver.vehicles.first.licensePlate,
+          context,
+          ride,
+          page,
+          InfoDetails.car,
         ),
+        detailsText("Caronistas"),
+        if (ride.passengers.isEmpty)
+          detailsText("Essa carona ainda não possui passageiros", fontSize: 12),
         for (var passenger in ride.passengers)
           InfoDetailsWidget(
-              passenger.riderName, passenger.riderInstituto, context, ride, page,
-              image: true,
+              passenger.riderName,
+              passenger.riderInstituto,
+              context,
+              ride,
+              page,
               imagePath: passenger.riderImagePath,
-              infoDetails: InfoDetails.passenger,
+              InfoDetails.passenger,
               passenger: passenger),
         const SizedBox(
-          height: 124,
+          height: 64,
         )
       ],
+    );
+  }
+
+  Widget detailsText(String text, {double? fontSize = 16.0}) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 25),
+      child: Text(
+        text,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(fontSize: fontSize),
+      ),
     );
   }
 }
