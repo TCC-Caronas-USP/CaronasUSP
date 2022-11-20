@@ -44,27 +44,14 @@ class DetailsRideWidget extends StatelessWidget {
         InfoDetailsWidget("R\$ ${ride.price.toStringAsFixed(2)}",
             "Pago ao final da carona", context, ride, page,
             icon: Icons.monetization_on_outlined),
-        const Padding(
-          padding: EdgeInsets.only(left: 24, right: 24, top: 25),
-          child: Text(
-            "Motorista",
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
+        detailsText("Motorista"),
         InfoDetailsWidget(ride.driver.name, ride.driver.instituto, context, ride, page,
             image: true, imagePath: ride.driver.imagePath),
         InfoDetailsWidget(ride.driver.vehicles.first.model,
             ride.driver.vehicles.first.licensePlate, context, ride, page,
             icon: Icons.directions_car_filled),
-        const Padding(
-          padding: EdgeInsets.only(left: 24, right: 24, top: 25),
-          child:  Text(
-            "Caronistas",
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
+        detailsText("Caronistas"),
+        if (ride.passengers.isEmpty) detailsText("Essa carona ainda não possui passageiros", fontSize: 12),
         for (var passenger in ride.passengers)
           InfoDetailsWidget(
               passenger.riderName, passenger.riderInstituto, context, ride, page,
@@ -76,6 +63,17 @@ class DetailsRideWidget extends StatelessWidget {
           height: 124,
         )
       ],
+    );
+  }
+
+  Widget detailsText(String text, {double? fontSize = 16.0}) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 25),
+      child:  Text(
+        text,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(fontSize: fontSize),
+      ),
     );
   }
 }
