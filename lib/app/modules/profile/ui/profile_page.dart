@@ -130,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: vehicle == null
                               ? const Text("Adicionar veículo")
                               : const Text("Alterar veículo")),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 124),
                     ],
                   ),
           );

@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/modules/aceitar/bloc/aceitar_bloc.dart';
 import 'package:caronas_usp/app/modules/criar/bloc/criar_bloc.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_bloc.dart';
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
 import 'package:caronas_usp/app/modules/pegar/bloc/pegar_bloc.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_bloc.dart';
+import 'package:caronas_usp/app/repositories/passenger_repository.dart';
 import 'package:caronas_usp/app/repositories/rides_repository.dart';
 import 'package:caronas_usp/app/repositories/rider_repository.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +58,11 @@ Future<void> main() async {
         BlocProvider(
           create: (context) => DetalhesBloc(
             RidesRepository(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => AceitarBloc(
+            PassengerRepository(),
           ),
         ),
       ],

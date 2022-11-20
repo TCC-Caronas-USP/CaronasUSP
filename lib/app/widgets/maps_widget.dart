@@ -11,7 +11,7 @@ class Maps extends StatefulWidget {
   final double height;
   final List<Location> locations;
 
-  const Maps({Key? key, required this.height, required this.locations})
+  Maps({Key? key, required this.height, required this.locations})
       : super(key: key);
 
   @override
@@ -122,7 +122,8 @@ class _MapsState extends State<Maps> {
                         style: TextStyle(fontSize: 14)),
                   ],
                 );
-              } else {
+              }
+              else {
                 return SizedBox(
                   height: widget.height,
                   child: const DecoratedBox(
