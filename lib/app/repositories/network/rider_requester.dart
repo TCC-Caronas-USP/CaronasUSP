@@ -33,4 +33,17 @@ class RiderRequester extends BaseRequester {
       throw HttpException(msg);
     }
   }
+
+  static Future<bool> patchRider(Map<String, dynamic> params) async {
+    const path = '/rider/';
+    final response = await BaseRequester.patch(path, params: params);
+
+    if (response.statusCode == HttpStatus.ok) {
+      return true;
+    } else {
+      var msg =
+          'Unexpected ${response.statusCode} status code: ${response.reasonPhrase}, ${response.body}';
+      throw HttpException(msg);
+    }
+  }
 }
