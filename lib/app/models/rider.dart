@@ -6,18 +6,17 @@ part 'rider.g.dart';
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Rider {
   int? id;
-  final String imagePath;
+  final String profileImage;
   final String name;
   final String email;
-  final String telefone;
-  final String instituto;
-  final String curso;
-  final int ano;
+  final String phoneNumber;
+  final String college;
+  final String course;
+  final int ingressYear;
   @JsonKey(name: 'rides_as_driver')
-  final int caronasMotorista;
+  final int? caronasMotorista;
   @JsonKey(name: 'rides_as_passenger')
-  final int caronasPassageiro;
-  final double ranking;
+  final int? caronasPassageiro;
   final List<Vehicle> vehicles;
 
   factory Rider.fromJson(Map<String, dynamic> json) => _$RiderFromJson(json);
@@ -26,16 +25,15 @@ class Rider {
 
   Rider({
     this.id,
-    required this.imagePath,
+    required this.profileImage,
     required this.name,
     required this.email,
-    required this.telefone,
-    required this.instituto,
-    required this.curso,
-    required this.ano,
-    required this.caronasMotorista,
-    required this.caronasPassageiro,
-    required this.ranking,
+    required this.phoneNumber,
+    required this.college,
+    required this.course,
+    required this.ingressYear,
+    this.caronasMotorista,
+    this.caronasPassageiro,
     required this.vehicles
   });
 }

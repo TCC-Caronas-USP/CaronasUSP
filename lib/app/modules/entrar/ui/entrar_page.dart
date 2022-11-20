@@ -169,7 +169,7 @@ class _EntrarState extends State<Entrar> {
                                 );
 
                                 Location newLocation = Location(
-                                    description: _localToMeet.text,
+                                    address: _localToMeet.text,
                                     lat: localToMeetPosition
                                         .geometry!.coordinates!.last,
                                     lon: localToMeetPosition

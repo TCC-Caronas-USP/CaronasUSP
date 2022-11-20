@@ -11,11 +11,12 @@ Passenger _$PassengerFromJson(Map<String, dynamic> json) => Passenger(
       rideId: json['ride_id'] as int,
       riderId: json['rider_id'] as int,
       riderName: json['rider_name'] as String,
+      riderTelefone: json['rider_telefone'] as String,
       riderInstituto: json['rider_instituto'] as String,
       riderImagePath: json['rider_image_path'] as String,
       meetingPoint:
           Location.fromJson(json['meeting_point'] as Map<String, dynamic>),
-      status: $enumDecode(_$RidePassengerStatusEnumMap, json['status']), riderTelefone: '',
+      status: $enumDecode(_$RidePassengerStatusEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$PassengerToJson(Passenger instance) => <String, dynamic>{
@@ -23,6 +24,7 @@ Map<String, dynamic> _$PassengerToJson(Passenger instance) => <String, dynamic>{
       'ride_id': instance.rideId,
       'rider_id': instance.riderId,
       'rider_name': instance.riderName,
+      'rider_telefone': instance.riderTelefone,
       'rider_instituto': instance.riderInstituto,
       'rider_image_path': instance.riderImagePath,
       'meeting_point': instance.meetingPoint,

@@ -57,10 +57,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
       widget.rider = state.user;
 
       _name.text = widget.rider.name;
-      _instituto.text = widget.rider.instituto;
-      _curso.text = widget.rider.curso;
-      _ano.text = widget.rider.ano.toString();
-      _telefone.text = widget.rider.telefone;
+      _instituto.text = widget.rider.college;
+      _curso.text = widget.rider.course;
+      _ano.text = widget.rider.ingressYear.toString();
+      _telefone.text = widget.rider.phoneNumber;
 
       _loading = false;
     }
@@ -93,7 +93,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           height: 24,
                         ),
                         ProfileWidget(
-                            imagePath: widget.rider.imagePath,
+                            imagePath: widget.rider.profileImage,
                             onClicked: () async {}),
                         const SizedBox(
                           height: 24,
@@ -114,18 +114,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 );
 
                                 Rider updatedRider = Rider(
-                                    imagePath: widget.rider.imagePath,
+                                    profileImage: widget.rider.profileImage,
                                     name: _name.text,
                                     email: widget.rider.email,
-                                    telefone: _telefone.text,
-                                    instituto: _instituto.text,
-                                    curso: _curso.text,
-                                    ano: int.parse(_ano.text),
+                                    phoneNumber: _telefone.text,
+                                    college: _instituto.text,
+                                    course: _curso.text,
+                                    ingressYear: int.parse(_ano.text),
                                     caronasMotorista:
                                         widget.rider.caronasMotorista,
                                     caronasPassageiro:
                                         widget.rider.caronasPassageiro,
-                                    ranking: widget.rider.ranking,
                                     vehicles: widget.rider.vehicles);
 
                                 _editProfileBloc!

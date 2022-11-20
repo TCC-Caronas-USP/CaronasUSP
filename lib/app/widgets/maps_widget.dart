@@ -42,7 +42,7 @@ class _MapsState extends State<Maps> {
           markerId: MarkerId((location.id ?? 0).toString()),
           icon: BitmapDescriptor.defaultMarkerWithHue(bitMapDescriptor),
           infoWindow: InfoWindow(
-            title: location.description,
+            title: location.address,
           ),
           consumeTapEvents: true,
           position: LatLng(location.lat, location.lon)));

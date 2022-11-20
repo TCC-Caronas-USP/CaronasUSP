@@ -40,12 +40,12 @@ class RideInfosWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        buildImage(ride.driver.imagePath),
+                        buildImage(ride.driver.profileImage),
                         const SizedBox(
                           width: 12,
                         ),
-                        buildRideLocation(ride.destination.description,
-                            ride.origin.description, ride.arrivalTime),
+                        buildRideLocation(ride.destination.address,
+                            ride.origin.address, ride.arrivalTime),
                         const SizedBox(
                           width: 12,
                         ),

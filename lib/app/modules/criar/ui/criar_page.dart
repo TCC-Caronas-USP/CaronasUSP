@@ -342,7 +342,7 @@ class _CriarPageState extends State<CriarPage> {
                                       rideDestinyDatetime.hour,
                                       rideDestinyDatetime.minute),
                                   destination: Location(
-                                      description: endPosition.properties!.label
+                                      address: endPosition.properties!.label
                                           .toString(),
                                       lat:
                                           endPosition.geometry!.coordinates![1],
@@ -355,7 +355,7 @@ class _CriarPageState extends State<CriarPage> {
                                       rideSourceDatetime.hour,
                                       rideSourceDatetime.minute),
                                   origin: Location(
-                                      description: startPosition
+                                      address: startPosition
                                           .properties!.label
                                           .toString(),
                                       lat: startPosition
