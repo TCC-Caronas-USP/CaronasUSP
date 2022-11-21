@@ -114,6 +114,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 );
 
                                 Rider updatedRider = Rider(
+                                    id: widget.rider.id,
                                     profileImage: widget.rider.profileImage,
                                     name: _name.text,
                                     email: widget.rider.email,

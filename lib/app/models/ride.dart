@@ -27,7 +27,7 @@ class Ride {
   }
 
   bool isPassenger(Rider rider) {
-    int riderId = rider.id!;
+    int riderId = rider.id;
     return riders!.any((rider) => rider.id == riderId);
   }
 

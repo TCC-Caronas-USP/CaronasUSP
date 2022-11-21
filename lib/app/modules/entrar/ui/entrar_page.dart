@@ -1,8 +1,12 @@
+import 'package:caronas_usp/app/core/constants.dart';
+import 'package:caronas_usp/app/models/passenger.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:caronas_usp/app/modules/entrar/bloc/entrar_bloc.dart';
 import 'package:caronas_usp/app/modules/entrar/bloc/entrar_event.dart';
 import 'package:caronas_usp/app/modules/entrar/bloc/entrar_state.dart';
 import 'package:caronas_usp/app/models/location.dart';
 import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/utils/maps_autocomplete.dart';
 import 'package:caronas_usp/app/utils/maps_open_route_service.dart';
 import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
@@ -24,6 +28,7 @@ class _EntrarState extends State<Entrar> {
   EntrarBloc? _entrarBloc;
 
   late Ride ride;
+  late Rider rider = context.read<LoginBloc>().currentRider!;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -168,15 +173,20 @@ class _EntrarState extends State<Entrar> {
                                       content: Text('Entrando na carona')),
                                 );
 
-                                Location newLocation = Location(
-                                    address: _localToMeet.text,
-                                    lat: localToMeetPosition
-                                        .geometry!.coordinates!.last,
-                                    lon: localToMeetPosition
-                                        .geometry!.coordinates!.first);
+                                Passenger newPassenger = Passenger(
+                                    id: 0,
+                                    rideId: ride.id,
+                                    riderId: rider.id,
+                                    meetingPoint: Location(
+                                        address: _localToMeet.text,
+                                        lat: localToMeetPosition
+                                            .geometry!.coordinates!.last,
+                                        lon: localToMeetPosition
+                                            .geometry!.coordinates!.first),
+                                    status: RidePassengerStatus.waiting);
 
                                 _entrarBloc!
-                                    .add(SuggestPlace(ride, newLocation));
+                                    .add(SuggestPlace(newPassenger));
                               }
                             },
                             child: const Text("Entrar")),

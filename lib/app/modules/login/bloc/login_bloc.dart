@@ -46,6 +46,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       Map<String, dynamic> personalInfo = event.personalInfo;
 
       Rider rider = Rider(
+          id: 0,
           profileImage: user.photoURL!,
           name: personalInfo["Nome"],
           email: user.email!,
