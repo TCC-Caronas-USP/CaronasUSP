@@ -43,20 +43,16 @@ class RidesRepository {
     return RideRequester.postRide(params);
   }
 
+  Future<bool> cancelRide(int rideId) async {
+    return RideRequester.deleteRide(rideId);
+  }
+
   static List<Ride> myOfferedRides = <Ride>[
   ];
 
   static List<Ride> offeredRides = <Ride>[];
 
   static List<Ride> myRides = <Ride>[];
-
-  Future<bool> cancelRide(rideId) async {
-    await Future.delayed(const Duration(seconds: 1));
-
-    print(rideId);
-
-    return true;
-  }
 
   Future<bool> enterRide(Ride ride, Location newLocation) async {
     await Future.delayed(const Duration(seconds: 1));

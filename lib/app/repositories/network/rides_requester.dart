@@ -62,4 +62,17 @@ class RideRequester extends BaseRequester {
       throw HttpException(msg);
     }
   }
+
+  static Future<bool> deleteRide(int rideId) async {
+    String path = '/rides/$rideId';
+    final response = await BaseRequester.delete(path);
+
+    if (response.statusCode == HttpStatus.noContent) {
+      return true;
+    } else {
+      var msg =
+          'Unexpected ${response.statusCode} status code: ${response.reasonPhrase}, ${response.body}';
+      throw HttpException(msg);
+    }
+  }
 }

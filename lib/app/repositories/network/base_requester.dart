@@ -62,7 +62,7 @@ class BaseRequester {
       {Map<String, String>? headers}) async {
     Uri uri = getUri(path);
     headers = await getHeaders(headers);
-    final response = await http.post(uri, headers: headers);
+    final response = await http.delete(uri, headers: headers);
     return response;
   }
 }
