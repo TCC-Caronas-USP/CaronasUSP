@@ -34,17 +34,19 @@ class RidesRepository {
     return RideRequester.getRide(rideId);
   }
 
+  Future<List<List<Ride>>> getUserOfferedRides() async {
+    return rideDates(await RideRequester.getRidesAsDriver());
+  }
+
+  Future<bool> createRide(Ride ride) async {
+    Map<String, dynamic> params = ride.toJson();
+    return RideRequester.postRide(params);
+  }
+
   static List<Ride> myOfferedRides = <Ride>[
   ];
 
   static List<Ride> offeredRides = <Ride>[];
-
-  Future<List<List<Ride>>> getUserOfferedRides() async {
-    // return UserGraphQLRequester.getUserOfferedRides(email); TODO implementar requester
-    await Future.delayed(
-        const Duration(seconds: 1)); // TODO remover sleep e user mock
-    return rideDates(myOfferedRides);
-  }
 
   static List<Ride> myRides = <Ride>[];
 
@@ -52,22 +54,6 @@ class RidesRepository {
     await Future.delayed(const Duration(seconds: 1));
 
     print(rideId);
-
-    return true;
-  }
-
-  Future<bool?> createRide(Ride ride) async {
-    await Future.delayed(const Duration(seconds: 1));
-
-    print(ride.toString());
-    print(ride.toJson());
-    print(ride.driver.toJson());
-    print(ride.startingPoint.toJson());
-    print(ride.endingPoint.toJson());
-    // for (var p in ride.riders) {
-    //   print(p.toJson());
-    //   print(p.meetingPoint.toJson());
-    // }
 
     return true;
   }

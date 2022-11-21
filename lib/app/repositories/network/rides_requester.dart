@@ -34,4 +34,32 @@ class RideRequester extends BaseRequester {
       throw HttpException(msg);
     }
   }
+
+  static Future<List<Ride>> getRidesAsDriver() async {
+    const path = '/rides/driver';
+    final response = await BaseRequester.get(path);
+
+    if (response.statusCode == HttpStatus.ok) {
+      var responseDecoded = const Utf8Decoder().convert(response.body.codeUnits);
+      final List<dynamic> ridesListJson = json.decode(responseDecoded);
+      return ridesListJson.map((data) => Ride.fromJson(data)).toList();
+    } else {
+      var msg =
+          'Unexpected ${response.statusCode} status code: ${response.reasonPhrase}, ${response.body}';
+      throw HttpException(msg);
+    }
+  }
+
+  static Future<bool> postRide(Map<String, dynamic> params) async {
+    const path = '/rides';
+    final response = await BaseRequester.post(path, params: params);
+
+    if (response.statusCode == HttpStatus.created) {
+      return true;
+    } else {
+      var msg =
+          'Unexpected ${response.statusCode} status code: ${response.reasonPhrase}, ${response.body}';
+      throw HttpException(msg);
+    }
+  }
 }

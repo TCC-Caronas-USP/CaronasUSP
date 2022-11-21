@@ -19,8 +19,8 @@ class CriarBloc extends Bloc<CriarEvent, CriarState> {
     });
 
     on<FetchCreate>((event, emit) async {
-      final bool? created = await ridesRepository.createRide(event.ride);
-      emit(Created(created!));
+      final bool created = await ridesRepository.createRide(event.ride);
+      emit(Created(created));
     });
   }
 }
