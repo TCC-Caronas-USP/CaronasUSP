@@ -17,8 +17,8 @@ Rider _$RiderFromJson(Map<String, dynamic> json) => Rider(
       ingressYear: json['ingress_year'] as int,
       caronasMotorista: json['rides_as_driver'] as int?,
       caronasPassageiro: json['rides_as_passenger'] as int?,
-      vehicles: (json['vehicles'] as List<dynamic>)
-          .map((e) => Vehicle.fromJson(e as Map<String, dynamic>))
+      vehicles: (json['vehicles'] as List<dynamic>?)
+          ?.map((e) => Vehicle.fromJson(e as Map<String, dynamic>))
           .toList(),
       passenger: json['passenger'] == null
           ? null

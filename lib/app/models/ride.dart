@@ -18,7 +18,7 @@ class Ride {
   final Location startingPoint;
   @JsonKey(fromJson: stringToDouble)
   final double price;
-  final int? passengerCount;
+  final int? passengerCount; //TODO tirar e usar função currentNumPassengers
   final int maxPassengers;
   List<Rider>? riders;
 

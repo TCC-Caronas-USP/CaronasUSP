@@ -18,7 +18,7 @@ class Rider {
   final int? caronasMotorista;
   @JsonKey(name: 'rides_as_passenger')
   final int? caronasPassageiro;
-  final List<Vehicle> vehicles;
+  final List<Vehicle>? vehicles;
   final Passenger? passenger;
 
   factory Rider.fromJson(Map<String, dynamic> json) => _$RiderFromJson(json);
@@ -36,7 +36,7 @@ class Rider {
     required this.ingressYear,
     this.caronasMotorista,
     this.caronasPassageiro,
-    required this.vehicles,
+    this.vehicles,
     this.passenger
   });
 }

@@ -9,7 +9,7 @@ class PassengerRequester extends BaseRequester {
     String path = '/passengers';
     final response = await BaseRequester.post(path, params: params);
 
-    if (response.statusCode == HttpStatus.ok) {
+    if (response.statusCode == HttpStatus.created) {
       return true;
     } else {
       var msg =

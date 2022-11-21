@@ -41,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     if (state is ProfileLoaded) {
       user = state.user;
-      vehicle = user!.vehicles.isNotEmpty ? user?.vehicles.first : null;
+      vehicle = user!.vehicles!.isNotEmpty ? user?.vehicles!.first : null;
       _loading = false;
     }
   }

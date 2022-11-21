@@ -24,7 +24,7 @@ Map<String, dynamic> _$PassengerToJson(Passenger instance) => <String, dynamic>{
     };
 
 const _$RidePassengerStatusEnumMap = {
-  RidePassengerStatus.approved: 'approved',
-  RidePassengerStatus.waiting: 'waiting',
-  RidePassengerStatus.rejected: 'rejected',
+  RidePassengerStatus.rejected: 0,
+  RidePassengerStatus.waiting: 1,
+  RidePassengerStatus.approved: 2,
 };

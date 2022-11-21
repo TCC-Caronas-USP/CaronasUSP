@@ -52,8 +52,8 @@ class DetailsRideWidget extends StatelessWidget {
             ride, page, InfoDetails.driver,
             imagePath: ride.driver.profileImage),
         InfoDetailsWidget(
-          ride.driver.vehicles.first.model,
-          ride.driver.vehicles.first.licensePlate,
+          ride.driver.vehicles!.first.model,
+          ride.driver.vehicles!.first.licensePlate,
           context,
           ride,
           page,
