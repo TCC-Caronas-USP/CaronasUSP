@@ -10,7 +10,6 @@ class BaseRequester {
     return Uri(
       scheme: constants.URI_SCHEME,
       host: constants.SERVER_HOST,
-      port: constants.SERVER_PORT,
       path: path,
     );
   }

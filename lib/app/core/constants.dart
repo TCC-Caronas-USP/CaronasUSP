@@ -2,11 +2,11 @@ const String DEV_URL = '10.0.2.2:8551';
 const String HOMOL_URL = 'caronasuspuserservice-production.up.railway.app';
 const String PROD_URL = 'caronasuspuserservice-production.up.railway.app';
 
-const String SERVER_URL = DEV_URL;
-const String SERVER_HOST = "10.0.2.2";
+const String SERVER_URL = PROD_URL;
+const String SERVER_HOST = PROD_URL;
 const int SERVER_PORT = 8551;
 
-const String URI_SCHEME = "http";
+const String URI_SCHEME = "https";
 
 const String ALLOWED_EMAIL_DOMAIN = 'usp.br';
 
