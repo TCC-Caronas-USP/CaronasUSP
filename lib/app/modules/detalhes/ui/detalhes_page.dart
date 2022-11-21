@@ -9,12 +9,13 @@ import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
 import 'package:caronas_usp/app/modules/detalhes/ui/details_ride_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DetalhesPage extends StatefulWidget {
-  final Ride ride;
+  final int rideId;
   final AppPage page;
 
-  const DetalhesPage({Key? key, required this.ride, required this.page})
+  const DetalhesPage({Key? key, required this.rideId, required this.page})
       : super(key: key);
 
   @override
@@ -24,6 +25,7 @@ class DetalhesPage extends StatefulWidget {
 class _DetalhesPageState extends State<DetalhesPage> {
   DetalhesBloc? _detalhesBloc;
 
+  bool _loading = true;
   late Ride ride;
 
   @override
@@ -31,13 +33,20 @@ class _DetalhesPageState extends State<DetalhesPage> {
     super.initState();
 
     _detalhesBloc = context.read<DetalhesBloc>();
-
-    ride = widget.ride;
+    _detalhesBloc!.add(FetchRideDetails(widget.rideId));
   }
 
   Future<void> _handleListener(
       BuildContext context, DetalhesState state) async {
+    if (state is RideDetailsLoading) {
+      _loading = true;
+    }
+    if (state is RideDetails) {
+      _loading = false;
+      ride = state.ride;
+    }
     if (state is Canceled) {
+      _loading = false;
       if (state.canceled == true) {
         Navigator.pop(context, "cancelada");
         Navigator.of(context)
@@ -65,7 +74,12 @@ class _DetalhesPageState extends State<DetalhesPage> {
         builder: (BuildContext context, DetalhesState state) {
           return Scaffold(
             appBar: buildAppBarBackButton(context, "Detalhes da Carona"),
-            body: DetailsRideWidget(ride: ride, page: widget.page),
+            body: _loading
+                ? const SpinKitRotatingCircle(
+                    color: Colors.green,
+                    size: 50.0,
+                  )
+                : DetailsRideWidget(ride: ride, page: widget.page),
             floatingActionButton: buildFloatingActionButton(widget.page),
           );
         },
@@ -108,7 +122,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
             heroTag: "btnEntrar",
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Entrar(ride: widget.ride)));
+                  builder: (context) => Entrar(ride: ride)));
             },
             backgroundColor: Colors.green[400],
             child: const Icon(Icons.input));

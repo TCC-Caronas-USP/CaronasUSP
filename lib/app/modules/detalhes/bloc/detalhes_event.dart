@@ -9,6 +9,12 @@ abstract class DetalhesEvent extends Equatable {
   List<Object> get props => _props as List<Object>;
 }
 
+class FetchRideDetails extends DetalhesEvent {
+  final int rideId;
+
+  FetchRideDetails(this.rideId) : super([rideId]);
+}
+
 class CancelRide extends DetalhesEvent {
   final int rideId;
 

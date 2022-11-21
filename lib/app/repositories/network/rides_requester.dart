@@ -20,4 +20,18 @@ class RideRequester extends BaseRequester {
       throw HttpException(msg);
     }
   }
+
+  static Future<Ride> getRide(int rideId) async {
+    String path = '/rides/$rideId';
+    final response = await BaseRequester.get(path);
+
+    if (response.statusCode == HttpStatus.ok) {
+      var responseDecoded = const Utf8Decoder().convert(response.body.codeUnits);
+      return Ride.fromJson(json.decode(responseDecoded));
+    } else {
+      var msg =
+          'Unexpected ${response.statusCode} status code: ${response.reasonPhrase}, ${response.body}';
+      throw HttpException(msg);
+    }
+  }
 }

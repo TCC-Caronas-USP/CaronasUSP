@@ -30,6 +30,10 @@ class RidesRepository {
     return rideDates(await RideRequester.getRides());
   }
 
+  Future<Ride> getRide(rideId) async {
+    return RideRequester.getRide(rideId);
+  }
+
   static List<Ride> myOfferedRides = <Ride>[
   ];
 
@@ -43,17 +47,6 @@ class RidesRepository {
   }
 
   static List<Ride> myRides = <Ride>[];
-
-  Future<Ride?> getRide(rideId) async {
-    await Future.delayed(const Duration(seconds: 1));
-    Ride? ride;
-    ride = (myOfferedRides + offeredRides)
-        .firstWhere((element) => element.id == rideId);
-
-    ride = (myOfferedRides + offeredRides)
-        .firstWhere((element) => element.id == rideId);
-    return ride;
-  }
 
   Future<bool> cancelRide(rideId) async {
     await Future.delayed(const Duration(seconds: 1));

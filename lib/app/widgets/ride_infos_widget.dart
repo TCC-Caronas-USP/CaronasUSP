@@ -26,7 +26,7 @@ class RideInfosWidget extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => DetalhesPage(ride: ride, page: page)));
+                  builder: (context) => DetalhesPage(rideId: ride.id, page: page)));
             },
             child: Padding(
               padding:

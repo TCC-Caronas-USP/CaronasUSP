@@ -36,7 +36,7 @@ class _AceitarPageState extends State<AceitarPage> {
     if (state is PassengerValidated) {
       Navigator.of(context).pop(MaterialPageRoute(
           builder: (context) =>
-              DetalhesPage(ride: widget.ride, page: AppPage.oferecer)));
+              DetalhesPage(rideId: widget.ride.id, page: AppPage.oferecer)));
     }
   }
 

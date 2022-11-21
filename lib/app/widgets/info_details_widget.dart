@@ -1,5 +1,4 @@
 import 'package:caronas_usp/app/core/constants.dart';
-import 'package:caronas_usp/app/models/passenger.dart';
 import 'package:caronas_usp/app/models/ride.dart';
 import 'package:caronas_usp/app/models/rider.dart';
 import 'package:caronas_usp/app/modules/aceitar/ui/aceitar_page.dart';
@@ -44,7 +43,7 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
                 fit: BoxFit.contain,
                 child:
                     buildInfoDetailsLeading(infoDetails, imagePath: imagePath)),
-            trailing: buildInfoDetailsTrailing(infoDetails, time, rider!.passenger),
+            trailing: buildInfoDetailsTrailing(infoDetails, time, rider),
             minLeadingWidth: 20,
           ),
         ),
@@ -59,14 +58,14 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
 
             if (infoDetails == InfoDetails.driver){
               if (await canLaunchUrlString("https://wa.me/${ride.driver.phoneNumber}"))
-                await launchUrlString("https://wa.me/${ride.driver.phoneNumber}", mode: LaunchMode.externalApplication)
+                await launchUrlString("https://wa.me/${ride.driver.phoneNumber.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "")}", mode: LaunchMode.externalApplication)
               else
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
             }
             else if (infoDetails == InfoDetails.passenger){
-              if (await canLaunchUrlString("https://wa.me/${rider.phoneNumber}"))
-                await launchUrlString("https://wa.me/${rider.phoneNumber}", mode: LaunchMode.externalApplication)
+              if (await canLaunchUrlString("https://wa.me/${rider!.phoneNumber}"))
+                await launchUrlString("https://wa.me/55${rider.phoneNumber.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "")}", mode: LaunchMode.externalApplication)
               else
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
@@ -108,7 +107,7 @@ Widget buildInfoDetailsLeading(InfoDetails infoDetails, {imagePath}) {
 }
 
 Widget? buildInfoDetailsTrailing(
-    InfoDetails? trailing, String? time, Passenger? passenger) {
+    InfoDetails? trailing, String? time, Rider? rider) {
   switch (trailing) {
     case InfoDetails.location:
       return Text(
@@ -117,7 +116,7 @@ Widget? buildInfoDetailsTrailing(
         style: const TextStyle(fontSize: 20),
       );
     case InfoDetails.passenger:
-      return getStatusIcon(passenger!.status);
+      return getStatusIcon(rider!.passenger!.status);
     default:
       return null;
   }
