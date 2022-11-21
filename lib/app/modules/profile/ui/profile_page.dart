@@ -1,13 +1,14 @@
+import 'package:caronas_usp/app/modules/edit_profile/ui/edit_vehicles.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_bloc.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_event.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_state.dart';
-import 'package:caronas_usp/app/modules/profile/ui/edit_profile_page.dart';
-import 'package:caronas_usp/model/auth_user.dart';
-import 'package:caronas_usp/model/user.dart';
-import 'package:caronas_usp/widget/appbar_widget.dart';
-import 'package:caronas_usp/widget/infos_widget.dart';
-import 'package:caronas_usp/widget/numbers_widget.dart';
-import 'package:caronas_usp/widget/profile_widget.dart';
+import 'package:caronas_usp/app/modules/edit_profile/ui/edit_profile_page.dart';
+import 'package:caronas_usp/app/models/rider.dart';
+import 'package:caronas_usp/app/models/vehicle.dart';
+import 'package:caronas_usp/app/widgets/appbar_widget.dart';
+import 'package:caronas_usp/app/modules/profile/ui/infos_widget.dart';
+import 'package:caronas_usp/app/modules/profile/ui/numbers_widget.dart';
+import 'package:caronas_usp/app/widgets/profile_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,21 +23,15 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   ProfileBloc? _profileBloc;
-
-  // TODO remover authUser mock
-  AuthUser? authUser = AuthUser(
-      imagePath:
-          "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
-      name: "João Souza",
-      email: "joao.souza@usp.br");
-  User? user;
+  Rider? user;
+  Vehicle? vehicle;
   bool _loading = true;
 
   @override
   void initState() {
     super.initState();
     _profileBloc = context.read<ProfileBloc>();
-    _profileBloc!.add(FetchUserInfo(authUser!.email));
+    _profileBloc!.add(FetchUserInfo());
   }
 
   Future<void> _handleListener(BuildContext context, ProfileState state) async {
@@ -46,6 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     if (state is ProfileLoaded) {
       user = state.user;
+      vehicle = user!.vehicles.isNotEmpty ? user?.vehicles.first : null;
       _loading = false;
     }
   }
@@ -61,7 +57,9 @@ class _ProfilePageState extends State<ProfilePage> {
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const EditProfilePage()));
+                      builder: (context) => EditProfilePage(
+                            rider: user!,
+                          )));
                 },
                 backgroundColor: Colors.green[400],
                 child: const Icon(Icons.edit)),
@@ -72,6 +70,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   )
                 : ListView(
                     physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
                     children: [
                       const SizedBox(
                         height: 24,
@@ -86,15 +85,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 24,
                       ),
                       NumbersWidget(
-                          caronasRealizadas: user!.caronasRealizadas,
-                          caronasUtilizadas: user!.caronasUtilizadas,
-                          ranking: user!.ranking),
+                          caronasRealizadas: user!.caronasMotorista,
+                          caronasUtilizadas: user!.caronasPassageiro),
                       const SizedBox(
                         height: 24,
-                      ),
-                      InfosWidget(infoTitle: "CPF", infoValues: [user!.cpf]),
-                      const SizedBox(
-                        height: 12,
                       ),
                       InfosWidget(
                           infoTitle: "Telefone", infoValues: [user!.telefone]),
@@ -107,26 +101,47 @@ class _ProfilePageState extends State<ProfilePage> {
                       const SizedBox(
                         height: 12,
                       ),
-                      InfosWidget(infoTitle: "Veículo", infoValues: [
-                        user!.veiculoModelo,
-                        user!.veiculoCor,
-                        user!.veiculoPlaca,
-                        user!.veiculoMarca
-                      ]),
+                      InfosWidget(
+                          infoTitle: "Curso", infoValues: [user!.curso]),
                       const SizedBox(
-                        height: 24,
+                        height: 12,
                       ),
+                      InfosWidget(
+                          infoTitle: "Ano", infoValues: [user!.ano.toString()]),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      if (vehicle != null)
+                        InfosWidget(infoTitle: "Veículo", infoValues: [
+                          vehicle!.model,
+                          vehicle!.color,
+                          vehicle!.licensePlate,
+                          vehicle!.brand
+                        ]),
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    EditVehicle(vehicle: vehicle)));
+
+                            _profileBloc!.add(FetchUserInfo());
+                          },
+                          child: vehicle == null
+                              ? const Text("Adicionar veículo")
+                              : const Text("Alterar veículo")),
+                      const SizedBox(height: 124),
                     ],
                   ),
           );
         });
   }
 
-  Widget buildName(User user) => Column(
+  Widget buildName(Rider user) => Column(
         children: [
           Text(
             user.name,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            style: const TextStyle(fontSize: 24),
           ),
           const SizedBox(
             height: 4,

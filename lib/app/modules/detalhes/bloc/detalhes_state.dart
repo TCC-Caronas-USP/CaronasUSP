@@ -1,4 +1,3 @@
-import 'package:caronas_usp/model/ride.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class DetalhesState extends Equatable {
@@ -10,14 +9,8 @@ abstract class DetalhesState extends Equatable {
   List get props => _props;
 }
 
-class DetalhesLoading extends DetalhesState {
-  DetalhesLoading() : super([]);
-}
-
-class DetalhesLoaded extends DetalhesState {
-  final Ride? ride;
-
-  DetalhesLoaded(this.ride) : super([ride]);
+class RideDetails extends DetalhesState {
+  RideDetails() : super([]);
 }
 
 class Canceling extends DetalhesState {

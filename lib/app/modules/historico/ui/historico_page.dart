@@ -1,11 +1,12 @@
+import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_bloc.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_event.dart';
 import 'package:caronas_usp/app/modules/historico/bloc/historico_state.dart';
-import 'package:caronas_usp/model/auth_user.dart';
-import 'package:caronas_usp/model/ride.dart';
-import 'package:caronas_usp/model/user.dart';
-import 'package:caronas_usp/widget/appbar_widget.dart';
-import 'package:caronas_usp/widget/offer_ride_widget.dart';
+import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
+import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
+import 'package:caronas_usp/app/widgets/appbar_widget.dart';
+import 'package:caronas_usp/app/widgets/rides_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -20,14 +21,7 @@ class HistoricoPage extends StatefulWidget {
 class _HistoricoPageState extends State<HistoricoPage> {
   HistoricoBloc? _historicoBloc;
 
-  // TODO precisa para ter o usuário?
-  AuthUser? authUser = const AuthUser(
-      imagePath:
-          "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
-      name: "João Souza",
-      email: "joao.souza@usp.br");
-
-  User? user;
+  late Rider rider = context.read<LoginBloc>().currentRider!;
   List<List<Ride>>? myRides;
   bool _loading = true;
 
@@ -69,7 +63,11 @@ class _HistoricoPageState extends State<HistoricoPage> {
                       color: Colors.green,
                       size: 50.0,
                     )
-                  : OfferRide(userOfferedRides: myRides!));
+                  : RidesListWidget(
+                      ridesPerDate: myRides!,
+                      page: AppPage.historico,
+                      rider: rider,
+                    ));
         });
   }
 }

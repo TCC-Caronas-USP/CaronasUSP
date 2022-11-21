@@ -9,7 +9,16 @@ abstract class LoginEvent extends Equatable {
   List<Object> get props => _props as List<Object>;
 }
 
-class FetchLogin extends LoginEvent {
+class TryLogin extends LoginEvent {
+  TryLogin() : super();
+}
 
-  FetchLogin() : super();
+class Register extends LoginEvent {
+  Map<String, dynamic> personalInfo;
+
+  Register(this.personalInfo) : super([personalInfo]);
+}
+
+class Logout extends LoginEvent {
+  Logout() : super();
 }

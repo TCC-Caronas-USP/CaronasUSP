@@ -1,4 +1,4 @@
-import 'package:caronas_usp/model/user.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ProfileState extends Equatable {
@@ -15,7 +15,7 @@ class ProfileLoading extends ProfileState {
 }
 
 class ProfileLoaded extends ProfileState {
-  final User user;
+  final Rider user;
 
   ProfileLoaded(this.user) : super([user]);
 }
