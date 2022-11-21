@@ -335,26 +335,26 @@ class _CriarPageState extends State<CriarPage> {
                                 newRide = Ride(
                                   id: 0,
                                   driver: driver,
-                                  arrivalTime: DateTime(
+                                  endTime: DateTime(
                                       rideDay.year,
                                       rideDay.month,
                                       rideDay.day,
                                       rideDestinyDatetime.hour,
                                       rideDestinyDatetime.minute),
-                                  destination: Location(
+                                  endingPoint: Location(
                                       address: endPosition.properties!.label
                                           .toString(),
                                       lat:
                                           endPosition.geometry!.coordinates![1],
                                       lon: endPosition
                                           .geometry!.coordinates![0]),
-                                  departureTime: DateTime(
+                                  startTime: DateTime(
                                       rideDay.year,
                                       rideDay.month,
                                       rideDay.day,
                                       rideSourceDatetime.hour,
                                       rideSourceDatetime.minute),
-                                  origin: Location(
+                                  startingPoint: Location(
                                       address: startPosition
                                           .properties!.label
                                           .toString(),
@@ -363,8 +363,8 @@ class _CriarPageState extends State<CriarPage> {
                                       lon: startPosition
                                           .geometry!.coordinates![0]),
                                   price: price,
-                                  maxNumPassengers: totalOccupation,
-                                  passengers: [],
+                                  maxPassengers: totalOccupation,
+                                  riders: [],
                                 );
 
                                 _criarBloc!.add(FetchCreate(newRide));

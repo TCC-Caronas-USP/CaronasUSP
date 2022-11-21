@@ -44,18 +44,15 @@ class RideInfosWidget extends StatelessWidget {
                         const SizedBox(
                           width: 12,
                         ),
-                        buildRideLocation(ride.destination.address,
-                            ride.origin.address, ride.arrivalTime),
+                        buildRideLocation(ride.endingPoint.address,
+                            ride.startingPoint.address, ride.endTime),
                         const SizedBox(
                           width: 12,
                         ),
                       ],
                     ),
                   ),
-                  ride.isPassenger(rider)
-                      ? buildRideStatus(ride.getStatus(rider))
-                      : buildRidePriceAndPeople(ride.price,
-                          ride.currentNumPassengers, ride.maxNumPassengers),
+                  buildTrailing(),
                 ],
               ),
             ),
@@ -143,6 +140,16 @@ class RideInfosWidget extends StatelessWidget {
         ],
       )
     ]);
+  }
+
+  Widget buildTrailing() {
+    switch (page) {
+      case AppPage.historico:
+        return buildRideStatus(rider.passenger!.status);
+      default:
+        return buildRidePriceAndPeople(
+            ride.price, ride.passengerCount!, ride.maxPassengers);
+    }
   }
 
   Widget buildRideStatus(RidePassengerStatus status) {

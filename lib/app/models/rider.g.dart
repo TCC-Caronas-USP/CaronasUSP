@@ -20,6 +20,9 @@ Rider _$RiderFromJson(Map<String, dynamic> json) => Rider(
       vehicles: (json['vehicles'] as List<dynamic>)
           .map((e) => Vehicle.fromJson(e as Map<String, dynamic>))
           .toList(),
+      passenger: json['passenger'] == null
+          ? null
+          : Passenger.fromJson(json['passenger'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RiderToJson(Rider instance) => <String, dynamic>{
@@ -34,4 +37,5 @@ Map<String, dynamic> _$RiderToJson(Rider instance) => <String, dynamic>{
       'rides_as_driver': instance.caronasMotorista,
       'rides_as_passenger': instance.caronasPassageiro,
       'vehicles': instance.vehicles,
+      'passenger': instance.passenger,
     };

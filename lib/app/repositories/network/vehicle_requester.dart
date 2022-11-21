@@ -5,7 +5,7 @@ import 'package:caronas_usp/app/repositories/network/base_requester.dart';
 
 class VehicleRequester extends BaseRequester {
   static Future<bool> postVehicle(Map<String, dynamic> params) async {
-    const path = '/vehicle/';
+    const path = '/vehicles';
     final response = await BaseRequester.post(path, params: params);
 
     if (response.statusCode == HttpStatus.created) {
@@ -18,7 +18,7 @@ class VehicleRequester extends BaseRequester {
   }
 
   static Future<bool> patchVehicle(Map<String, dynamic> params) async {
-    const path = '/vehicle/';
+    const path = '/vehicles';
     final response = await BaseRequester.patch(path, params: params);
 
     if (response.statusCode == HttpStatus.ok) {

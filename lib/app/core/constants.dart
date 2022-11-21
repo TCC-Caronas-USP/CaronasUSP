@@ -31,7 +31,8 @@ enum InfoDetails {
   driver,
   car,
   passenger,
-  whatsapp
+  whatsapp,
+  maps
 }
 
 const String ONESIGNAL_APP_ID = '36a6876f-a1dd-490e-ad39-f38befcff578';

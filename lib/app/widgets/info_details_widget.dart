@@ -1,6 +1,7 @@
 import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/models/passenger.dart';
 import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:caronas_usp/app/modules/aceitar/ui/aceitar_page.dart';
 import 'package:caronas_usp/app/utils/getStatusIcon.dart';
 import 'package:caronas_usp/app/widgets/user_image_widget.dart';
@@ -9,7 +10,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
     Ride ride, AppPage page, InfoDetails infoDetails,
-    {String? imagePath, String? time, Passenger? passenger}) {
+    {String? imagePath, String? time, Rider? rider}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,10 +24,10 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
             onTap: () {
               if (page == AppPage.oferecer &&
                   infoDetails == InfoDetails.passenger &&
-                  passenger!.status == RidePassengerStatus.waiting) {
+                  rider!.passenger!.status == RidePassengerStatus.waiting) {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
-                        AceitarPage(ride: ride, passenger: passenger)));
+                        AceitarPage(ride: ride, rider: rider)));
               }
             },
             title: Text(
@@ -43,7 +44,7 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
                 fit: BoxFit.contain,
                 child:
                     buildInfoDetailsLeading(infoDetails, imagePath: imagePath)),
-            trailing: buildInfoDetailsTrailing(infoDetails, time, passenger),
+            trailing: buildInfoDetailsTrailing(infoDetails, time, rider!.passenger),
             minLeadingWidth: 20,
           ),
         ),
@@ -64,8 +65,8 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
                     const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
             }
             else if (infoDetails == InfoDetails.passenger){
-              if (await canLaunchUrlString("https://wa.me/${passenger!.riderTelefone}"))
-                await launchUrlString("https://wa.me/${passenger.riderTelefone}", mode: LaunchMode.externalApplication)
+              if (await canLaunchUrlString("https://wa.me/${rider.phoneNumber}"))
+                await launchUrlString("https://wa.me/${rider.phoneNumber}", mode: LaunchMode.externalApplication)
               else
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))

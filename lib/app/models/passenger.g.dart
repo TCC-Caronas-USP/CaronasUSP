@@ -8,12 +8,8 @@ part of 'passenger.dart';
 
 Passenger _$PassengerFromJson(Map<String, dynamic> json) => Passenger(
       id: json['id'] as int,
-      rideId: json['ride_id'] as int,
-      riderId: json['rider_id'] as int,
-      riderName: json['rider_name'] as String,
-      riderTelefone: json['rider_telefone'] as String,
-      riderInstituto: json['rider_instituto'] as String,
-      riderImagePath: json['rider_image_path'] as String,
+      rideId: json['ride'] as int,
+      riderId: json['rider'] as int,
       meetingPoint:
           Location.fromJson(json['meeting_point'] as Map<String, dynamic>),
       status: $enumDecode(_$RidePassengerStatusEnumMap, json['status']),
@@ -21,12 +17,8 @@ Passenger _$PassengerFromJson(Map<String, dynamic> json) => Passenger(
 
 Map<String, dynamic> _$PassengerToJson(Passenger instance) => <String, dynamic>{
       'id': instance.id,
-      'ride_id': instance.rideId,
-      'rider_id': instance.riderId,
-      'rider_name': instance.riderName,
-      'rider_telefone': instance.riderTelefone,
-      'rider_instituto': instance.riderInstituto,
-      'rider_image_path': instance.riderImagePath,
+      'ride': instance.rideId,
+      'rider': instance.riderId,
       'meeting_point': instance.meetingPoint,
       'status': _$RidePassengerStatusEnumMap[instance.status]!,
     };

@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/models/passenger.dart';
 import 'package:caronas_usp/app/models/vehicle.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -18,6 +19,7 @@ class Rider {
   @JsonKey(name: 'rides_as_passenger')
   final int? caronasPassageiro;
   final List<Vehicle> vehicles;
+  final Passenger? passenger;
 
   factory Rider.fromJson(Map<String, dynamic> json) => _$RiderFromJson(json);
 
@@ -34,6 +36,7 @@ class Rider {
     required this.ingressYear,
     this.caronasMotorista,
     this.caronasPassageiro,
-    required this.vehicles
+    required this.vehicles,
+    this.passenger
   });
 }
