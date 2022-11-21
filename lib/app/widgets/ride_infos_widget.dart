@@ -17,6 +17,11 @@ class RideInfosWidget extends StatelessWidget {
     required this.page,
   }) : super(key: key);
 
+  RidePassengerStatus getRiderStatus(Ride ride, Rider rider) {
+    Rider actualRider = ride.riders!.singleWhere((element) => element.id == rider.id);
+    return actualRider.passenger!.status;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -145,7 +150,7 @@ class RideInfosWidget extends StatelessWidget {
   Widget buildTrailing() {
     switch (page) {
       case AppPage.historico:
-        return buildRideStatus(rider.passenger!.status);
+        return buildRideStatus(getRiderStatus(ride, rider));
       default:
         return buildRidePriceAndPeople(
             ride.price, ride.passengerCount!, ride.maxPassengers);

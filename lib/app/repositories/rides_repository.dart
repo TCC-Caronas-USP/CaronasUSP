@@ -38,6 +38,10 @@ class RidesRepository {
     return rideDates(await RideRequester.getRidesAsDriver());
   }
 
+  Future<List<List<Ride>>> getMyRides() async {
+    return rideDates(await RideRequester.getRidesAsPassenger());
+  }
+
   Future<bool> createRide(Ride ride) async {
     Map<String, dynamic> params = ride.toJson();
     return RideRequester.postRide(params);
@@ -69,12 +73,5 @@ class RidesRepository {
     }
 
     return true;
-  }
-
-  Future<List<List<Ride>>> getMyRides() async {
-    // return UserGraphQLRequester.getMyRides(); TODO implementar requester
-    await Future.delayed(const Duration(seconds: 1));
-
-    return rideDates(myRides);
   }
 }
