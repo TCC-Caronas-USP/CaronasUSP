@@ -10,7 +10,7 @@ class PassengerRequester extends BaseRequester {
     String path = '/passenger/$passengerId/accept';
     final response = await BaseRequester.patch(path);
 
-    if (response.statusCode == HttpStatus.created) {
+    if (response.statusCode == HttpStatus.ok) {
       return true;
     } else {
       var msg =
@@ -19,9 +19,10 @@ class PassengerRequester extends BaseRequester {
     }
   }
 
-  static Future<bool> patchPassenger(Map<String, dynamic> params) async {
-    const path = '/passenger/';
-    final response = await BaseRequester.patch(path, params: params);
+  static Future<bool> reject(Passenger passenger) async {
+    int passengerId = passenger.id;
+    String path = '/passenger/$passengerId/reject';
+    final response = await BaseRequester.patch(path);
 
     if (response.statusCode == HttpStatus.ok) {
       return true;
