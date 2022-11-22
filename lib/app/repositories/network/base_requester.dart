@@ -28,7 +28,7 @@ class BaseRequester {
 
     headers = (headers ?? HashMap<String, String>());
     headers["Authorization"] = "Bearer $bearerToken";
-    headers["Content-Type"] = "application/json";
+    headers["Content-Type"] = "application/json; charset=utf-8";
     return headers;
   }
 
