@@ -8,12 +8,10 @@ part 'passenger.g.dart';
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Passenger {
   int id;
+  @JsonKey(name: 'ride')
   final int rideId;
+  @JsonKey(name: 'rider')
   final int riderId;
-  final String riderName;
-  final String riderTelefone;
-  final String riderInstituto;
-  final String riderImagePath;
   final Location meetingPoint;
   final RidePassengerStatus status;
 
@@ -26,10 +24,6 @@ class Passenger {
       {required this.id,
       required this.rideId,
       required this.riderId,
-      required this.riderName,
-      required this.riderTelefone,
-      required this.riderInstituto,
-      required this.riderImagePath,
       required this.meetingPoint,
       required this.status});
 }

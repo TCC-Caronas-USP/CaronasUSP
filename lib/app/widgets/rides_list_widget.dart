@@ -29,7 +29,7 @@ class RidesListWidget extends StatelessWidget {
         itemCount: ridesPerDate.length,
         itemBuilder: (context, index) {
           final item = ridesPerDate[index];
-          final date = item[0].arrivalTime;
+          final date = item[0].endTime;
 
           return buildRideDailyOffered(date, item, page);
         });

@@ -47,4 +47,21 @@ class BaseRequester {
     final response = await http.post(uri, headers: headers, body: body);
     return response;
   }
+
+  static Future<http.Response> patch(String path,
+      {Map<String, String>? headers, Map<String, dynamic>? params}) async {
+    Uri uri = getUri(path);
+    headers = await getHeaders(headers);
+    final body = jsonEncode(params);
+    final response = await http.patch(uri, headers: headers, body: body);
+    return response;
+  }
+
+  static Future<http.Response> delete(String path,
+      {Map<String, String>? headers}) async {
+    Uri uri = getUri(path);
+    headers = await getHeaders(headers);
+    final response = await http.delete(uri, headers: headers);
+    return response;
+  }
 }

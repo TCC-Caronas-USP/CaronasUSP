@@ -68,6 +68,7 @@ class _AppState extends State<App> {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
+        debugShowCheckedModeBanner: false,
         home: BlocBuilder<LoginBloc, LoginState>(
           builder: (BuildContext context, LoginState state) {
             if (state is LoggedIn) {
