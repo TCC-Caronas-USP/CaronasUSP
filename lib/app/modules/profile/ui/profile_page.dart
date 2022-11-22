@@ -41,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     if (state is ProfileLoaded) {
       user = state.user;
-      vehicle = user!.vehicles.isNotEmpty ? user?.vehicles.first : null;
+      vehicle = user!.vehicles!.isNotEmpty ? user?.vehicles!.first : null;
       _loading = false;
     }
   }
@@ -76,7 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 24,
                       ),
                       ProfileWidget(
-                          imagePath: user!.imagePath, onClicked: () {}),
+                          imagePath: user!.profileImage, onClicked: () {}),
                       const SizedBox(
                         height: 24,
                       ),
@@ -85,29 +85,29 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 24,
                       ),
                       NumbersWidget(
-                          caronasRealizadas: user!.caronasMotorista,
-                          caronasUtilizadas: user!.caronasPassageiro),
+                          caronasRealizadas: user!.caronasMotorista?? 0,
+                          caronasUtilizadas: user!.caronasPassageiro?? 0),
                       const SizedBox(
                         height: 24,
                       ),
                       InfosWidget(
-                          infoTitle: "Telefone", infoValues: [user!.telefone]),
+                          infoTitle: "Telefone", infoValues: [user!.phoneNumber]),
                       const SizedBox(
                         height: 12,
                       ),
                       InfosWidget(
                           infoTitle: "Instituto",
-                          infoValues: [user!.instituto]),
+                          infoValues: [user!.college]),
                       const SizedBox(
                         height: 12,
                       ),
                       InfosWidget(
-                          infoTitle: "Curso", infoValues: [user!.curso]),
+                          infoTitle: "Curso", infoValues: [user!.course]),
                       const SizedBox(
                         height: 12,
                       ),
                       InfosWidget(
-                          infoTitle: "Ano", infoValues: [user!.ano.toString()]),
+                          infoTitle: "Ano", infoValues: [user!.ingressYear.toString()]),
                       const SizedBox(
                         height: 12,
                       ),

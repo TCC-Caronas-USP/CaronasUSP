@@ -7,33 +7,35 @@ part of 'rider.dart';
 // **************************************************************************
 
 Rider _$RiderFromJson(Map<String, dynamic> json) => Rider(
-      id: json['id'] as int?,
-      imagePath: json['image_path'] as String,
+      id: json['id'] as int,
+      profileImage: json['profile_image'] as String,
       name: json['name'] as String,
       email: json['email'] as String,
-      telefone: json['telefone'] as String,
-      instituto: json['instituto'] as String,
-      curso: json['curso'] as String,
-      ano: json['ano'] as int,
-      caronasMotorista: json['rides_as_driver'] as int,
-      caronasPassageiro: json['rides_as_passenger'] as int,
-      ranking: (json['ranking'] as num).toDouble(),
-      vehicles: (json['vehicles'] as List<dynamic>)
-          .map((e) => Vehicle.fromJson(e as Map<String, dynamic>))
+      phoneNumber: json['phone_number'] as String,
+      college: json['college'] as String,
+      course: json['course'] as String,
+      ingressYear: json['ingress_year'] as int,
+      caronasMotorista: json['rides_as_driver'] as int?,
+      caronasPassageiro: json['rides_as_passenger'] as int?,
+      vehicles: (json['vehicles'] as List<dynamic>?)
+          ?.map((e) => Vehicle.fromJson(e as Map<String, dynamic>))
           .toList(),
+      passenger: json['passenger'] == null
+          ? null
+          : Passenger.fromJson(json['passenger'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RiderToJson(Rider instance) => <String, dynamic>{
       'id': instance.id,
-      'image_path': instance.imagePath,
+      'profile_image': instance.profileImage,
       'name': instance.name,
       'email': instance.email,
-      'telefone': instance.telefone,
-      'instituto': instance.instituto,
-      'curso': instance.curso,
-      'ano': instance.ano,
+      'phone_number': instance.phoneNumber,
+      'college': instance.college,
+      'course': instance.course,
+      'ingress_year': instance.ingressYear,
       'rides_as_driver': instance.caronasMotorista,
       'rides_as_passenger': instance.caronasPassageiro,
-      'ranking': instance.ranking,
       'vehicles': instance.vehicles,
+      'passenger': instance.passenger,
     };

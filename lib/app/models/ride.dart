@@ -12,32 +12,28 @@ part 'ride.g.dart';
 class Ride {
   int id;
   final Rider driver;
-  final DateTime arrivalTime;
-  final Location destination;
-  final DateTime departureTime;
-  final Location origin;
+  final DateTime endTime;
+  final Location endingPoint;
+  final DateTime startTime;
+  final Location startingPoint;
+  @JsonKey(fromJson: stringToDouble)
   final double price;
-  final int maxNumPassengers;
-  List<Passenger> passengers;
+  final int? passengerCount; //TODO tirar e usar função currentNumPassengers
+  final int maxPassengers;
+  List<Rider>? riders;
 
-  bool isPassenger(Rider rider) {
-    int riderId = rider.id!;
-    return passengers.any((passenger) => passenger.riderId == riderId);
+  static double stringToDouble(String string) {
+    return double.parse(string);
   }
 
-  RidePassengerStatus getStatus(Rider rider) {
-    int riderId = rider.id!;
-    return passengers
-        .singleWhere((passenger) => passenger.riderId == riderId)
-        .status;
+  bool isPassenger(Rider rider) {
+    int riderId = rider.id;
+    return riders!.any((rider) => rider.id == riderId);
   }
 
   double distanceFromOriginLocation(Location meetingPointing) {
-    double distance = Geolocator.distanceBetween(
-        origin.lon,
-        origin.lat,
-        meetingPointing.lon,
-        meetingPointing.lat) /
+    double distance = Geolocator.distanceBetween(startingPoint.lon,
+            startingPoint.lat, meetingPointing.lon, meetingPointing.lat) /
         1000;
     return distance;
   }
@@ -47,7 +43,8 @@ class Ride {
     List<Map<String, dynamic>> locationListWithDistance = [];
 
     // associate location with distance
-    for(var passenger in passengers) {
+    for (var rider in riders!) {
+      Passenger passenger = rider.passenger!;
       if (passenger.status == RidePassengerStatus.approved) {
         Location passengerMeetingPoint = passenger.meetingPoint;
         double distance = distanceFromOriginLocation(passengerMeetingPoint);
@@ -69,7 +66,8 @@ class Ride {
     return locationListWithDistance;
   }
 
-  List<Map<String, dynamic>> sortLocationListWithDistance(locationListWithDistance) {
+  List<Map<String, dynamic>> sortLocationListWithDistance(
+      locationListWithDistance) {
     // sort by distance
     locationListWithDistance.sort((a, b) {
       double d1 = a['distance'];
@@ -87,36 +85,41 @@ class Ride {
   }
 
   List<Location> get locations {
+    List<Map<String, dynamic>> locationListWithDistance =
+        locationWithDistance();
 
-    List<Map<String, dynamic>> locationListWithDistance = locationWithDistance();
+    List<Map<String, dynamic>> sortedLocationListWithDistance =
+        sortLocationListWithDistance(locationListWithDistance);
 
-    List<Map<String, dynamic>> sortedLocationListWithDistance = sortLocationListWithDistance(locationListWithDistance);
-
-    List<Location> rideLocations = [origin];
+    List<Location> rideLocations = [startingPoint];
     for (var meetPointing in sortedLocationListWithDistance) {
       rideLocations.add(meetPointing['location']);
     }
-    rideLocations.add(destination);
+    rideLocations.add(endingPoint);
 
     return rideLocations;
   }
 
   List<Location> getLocationsWithNewSuggestion(Passenger newPassager) {
+    List<Map<String, dynamic>> locationListWithDistance =
+        locationWithDistance(newPasseger: newPassager);
 
-    List<Map<String, dynamic>> locationListWithDistance = locationWithDistance(newPasseger: newPassager);
+    List<Map<String, dynamic>> sortedLocationListWithDistance =
+        sortLocationListWithDistance(locationListWithDistance);
 
-    List<Map<String, dynamic>> sortedLocationListWithDistance = sortLocationListWithDistance(locationListWithDistance);
-
-    List<Location> rideLocations = [origin];
+    List<Location> rideLocations = [startingPoint];
     for (var meetPointing in sortedLocationListWithDistance) {
       rideLocations.add(meetPointing['location']);
     }
-    rideLocations.add(destination);
+    rideLocations.add(endingPoint);
 
     return rideLocations;
   }
 
-  int get currentNumPassengers => passengers.length;
+  Passenger getPassenger(Rider rider) {
+    Rider actualRider = riders!.singleWhere((element) => element.id == rider.id);
+    return actualRider.passenger!;
+  }
 
   factory Ride.fromJson(Map<String, dynamic> json) => _$RideFromJson(json);
 
@@ -125,12 +128,13 @@ class Ride {
   Ride({
     required this.id,
     required this.driver,
-    required this.arrivalTime,
-    required this.destination,
-    required this.departureTime,
-    required this.origin,
+    required this.endTime,
+    required this.endingPoint,
+    required this.startTime,
+    required this.startingPoint,
     required this.price,
-    required this.maxNumPassengers,
-    required this.passengers,
+    required this.maxPassengers,
+    this.riders,
+    this.passengerCount,
   });
 }

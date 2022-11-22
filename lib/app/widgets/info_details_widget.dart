@@ -1,15 +1,15 @@
 import 'package:caronas_usp/app/core/constants.dart';
-import 'package:caronas_usp/app/models/passenger.dart';
 import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:caronas_usp/app/modules/aceitar/ui/aceitar_page.dart';
-import 'package:caronas_usp/app/utils/getStatusIcon.dart';
+import 'package:caronas_usp/app/utils/get_status.dart';
 import 'package:caronas_usp/app/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
     Ride ride, AppPage page, InfoDetails infoDetails,
-    {String? imagePath, String? time, Passenger? passenger}) {
+    {String? imagePath, String? time, Rider? rider}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,10 +23,10 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
             onTap: () {
               if (page == AppPage.oferecer &&
                   infoDetails == InfoDetails.passenger &&
-                  passenger!.status == RidePassengerStatus.waiting) {
+                  rider!.passenger!.status == RidePassengerStatus.waiting) {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
-                        AceitarPage(ride: ride, passenger: passenger)));
+                        AceitarPage(ride: ride, rider: rider)));
               }
               else if (infoDetails == InfoDetails.maps) {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -47,7 +47,7 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
                 fit: BoxFit.contain,
                 child:
                     buildInfoDetailsLeading(infoDetails, imagePath: imagePath)),
-            trailing: buildInfoDetailsTrailing(infoDetails, time, passenger),
+            trailing: buildInfoDetailsTrailing(infoDetails, time, rider),
             minLeadingWidth: 20,
           ),
         ),
@@ -61,15 +61,15 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
           onPressed: () async => {
 
             if (infoDetails == InfoDetails.driver){
-              if (await canLaunchUrlString("https://wa.me/${ride.driver.telefone}"))
-                await launchUrlString("https://wa.me/${ride.driver.telefone}", mode: LaunchMode.externalApplication)
+              if (await canLaunchUrlString("https://wa.me/${ride.driver.phoneNumber}"))
+                await launchUrlString("https://wa.me/${ride.driver.phoneNumber.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "")}", mode: LaunchMode.externalApplication)
               else
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
             }
             else if (infoDetails == InfoDetails.passenger){
-              if (await canLaunchUrlString("https://wa.me/${passenger!.riderTelefone}"))
-                await launchUrlString("https://wa.me/${passenger.riderTelefone}", mode: LaunchMode.externalApplication)
+              if (await canLaunchUrlString("https://wa.me/${rider!.phoneNumber}"))
+                await launchUrlString("https://wa.me/55${rider.phoneNumber.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "")}", mode: LaunchMode.externalApplication)
               else
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
@@ -116,7 +116,7 @@ Widget buildInfoDetailsLeading(InfoDetails infoDetails, {imagePath}) {
 }
 
 Widget? buildInfoDetailsTrailing(
-    InfoDetails? trailing, String? time, Passenger? passenger) {
+    InfoDetails? trailing, String? time, Rider? rider) {
   switch (trailing) {
     case InfoDetails.location:
       return Text(
@@ -125,7 +125,7 @@ Widget? buildInfoDetailsTrailing(
         style: const TextStyle(fontSize: 20),
       );
     case InfoDetails.passenger:
-      return getStatusIcon(passenger!.status);
+      return getStatusIcon(rider!.passenger!.status);
     default:
       return null;
   }
