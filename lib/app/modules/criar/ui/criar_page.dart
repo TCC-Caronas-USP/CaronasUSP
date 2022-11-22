@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:caronas_usp/app/modules/criar/bloc/criar_bloc.dart';
 import 'package:caronas_usp/app/modules/criar/bloc/criar_event.dart';
 import 'package:caronas_usp/app/modules/criar/bloc/criar_state.dart';
+import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
+import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_event.dart';
 import 'package:caronas_usp/app/modules/oferecer/ui/oferecer_page.dart';
 import 'package:caronas_usp/app/models/location.dart';
 import 'package:caronas_usp/app/models/ride.dart';
@@ -30,6 +32,7 @@ class CriarPage extends StatefulWidget {
 
 class _CriarPageState extends State<CriarPage> {
   CriarBloc? _criarBloc;
+  OferecerBloc? _oferecerBloc;
 
   bool _loading = true;
 
@@ -71,6 +74,7 @@ class _CriarPageState extends State<CriarPage> {
     super.initState();
 
     _criarBloc = context.read<CriarBloc>();
+    _oferecerBloc = context.read<OferecerBloc>();
     _criarBloc!.add(FetchCreating());
   }
 
@@ -368,6 +372,7 @@ class _CriarPageState extends State<CriarPage> {
                                 );
 
                                 _criarBloc!.add(FetchCreate(newRide));
+                                _oferecerBloc!.add(FetchUserOfferedRides());
                               }
                             },
                             child: const Text("Criar")),
