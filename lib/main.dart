@@ -57,7 +57,7 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (context) => DetalhesBloc(
-            RidesRepository(),
+            RidesRepository(), PassengerRepository()
           ),
         ),
         BlocProvider(

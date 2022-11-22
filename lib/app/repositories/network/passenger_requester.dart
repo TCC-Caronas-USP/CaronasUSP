@@ -45,4 +45,18 @@ class PassengerRequester extends BaseRequester {
       throw HttpException(msg);
     }
   }
+
+  static Future<bool> deletePassenger(Passenger passenger) async {
+    int passengerId = passenger.id;
+    String path = '/passengers/$passengerId';
+    final response = await BaseRequester.delete(path);
+
+    if (response.statusCode == HttpStatus.noContent) {
+      return true;
+    } else {
+      var msg =
+          'Unexpected ${response.statusCode} status code: ${response.reasonPhrase}, ${response.body}';
+      throw HttpException(msg);
+    }
+  }
 }

@@ -116,6 +116,11 @@ class Ride {
     return rideLocations;
   }
 
+  Passenger getPassenger(Rider rider) {
+    Rider actualRider = riders!.singleWhere((element) => element.id == rider.id);
+    return actualRider.passenger!;
+  }
+
   factory Ride.fromJson(Map<String, dynamic> json) => _$RideFromJson(json);
 
   Map<String, dynamic> toJson() => _$RideToJson(this);

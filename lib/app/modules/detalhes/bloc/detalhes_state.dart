@@ -29,3 +29,13 @@ class Canceled extends DetalhesState {
 
   Canceled(this.canceled) : super([canceled]);
 }
+
+class Exiting extends DetalhesState {
+  Exiting() : super([]);
+}
+
+class Exited extends DetalhesState {
+  final bool? canceled;
+
+  Exited(this.canceled) : super([canceled]);
+}

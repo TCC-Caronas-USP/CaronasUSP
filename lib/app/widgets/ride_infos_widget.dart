@@ -2,7 +2,7 @@ import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/detalhes/ui/detalhes_page.dart';
 import 'package:caronas_usp/app/models/ride.dart';
 import 'package:caronas_usp/app/models/rider.dart';
-import 'package:caronas_usp/app/utils/getStatusIcon.dart';
+import 'package:caronas_usp/app/utils/get_status.dart';
 import 'package:flutter/material.dart';
 
 class RideInfosWidget extends StatelessWidget {
@@ -16,11 +16,6 @@ class RideInfosWidget extends StatelessWidget {
     required this.rider,
     required this.page,
   }) : super(key: key);
-
-  RidePassengerStatus getRiderStatus(Ride ride, Rider rider) {
-    Rider actualRider = ride.riders!.singleWhere((element) => element.id == rider.id);
-    return actualRider.passenger!.status;
-  }
 
   @override
   Widget build(BuildContext context) {

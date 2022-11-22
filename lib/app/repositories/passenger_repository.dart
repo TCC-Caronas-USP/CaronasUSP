@@ -14,4 +14,8 @@ class PassengerRepository {
   Future<bool> rejectPassenger(Passenger passenger) async {
     return PassengerRequester.reject(passenger);
   }
+
+  Future<bool> exitRide(Passenger passenger) async {
+    return PassengerRequester.deletePassenger(passenger);
+  }
 }

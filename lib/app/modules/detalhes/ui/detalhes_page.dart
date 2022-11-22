@@ -1,8 +1,10 @@
 import 'package:caronas_usp/app/core/constants.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_bloc.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_event.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_state.dart';
 import 'package:caronas_usp/app/modules/entrar/ui/entrar_page.dart';
+import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/ui/oferecer_page.dart';
 import 'package:caronas_usp/app/models/ride.dart';
 import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
@@ -27,6 +29,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
 
   bool _loading = true;
   late Ride ride;
+  late Rider rider = context.read<LoginBloc>().currentRider!;
 
   @override
   void initState() {
@@ -48,9 +51,8 @@ class _DetalhesPageState extends State<DetalhesPage> {
     if (state is Canceled) {
       _loading = false;
       if (state.canceled == true) {
-        Navigator.pop(context, "cancelada");
-        Navigator.of(context)
-            .pop(MaterialPageRoute(builder: (context) => const OferecerPage()));
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
       } else {
         Navigator.pop(context, "não cancelada");
         ScaffoldMessenger.of(context).showSnackBar(
@@ -63,6 +65,13 @@ class _DetalhesPageState extends State<DetalhesPage> {
                     style: TextStyle(color: Colors.white)),
               )),
         );
+      }
+    }
+    if (state is Exited) {
+      _loading = false;
+      if (state.canceled == true) {
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
       }
     }
   }
@@ -130,8 +139,27 @@ class _DetalhesPageState extends State<DetalhesPage> {
       case AppPage.historico:
         return FloatingActionButton(
             heroTag: "btnSair",
-            onPressed: () {},
-            backgroundColor: Colors.green[400],
+            onPressed: () => showDialog(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text("Deseja realmente sair a carona?",
+                  textAlign: TextAlign.center),
+              alignment: Alignment.center,
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Não'),
+                  child: const Text('Não'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    _detalhesBloc!.add(ExitRide(ride.getPassenger(rider)));
+                  },
+                  child: const Text('Sim',
+                      style: TextStyle(color: Colors.red)),
+                ),
+              ],
+            )),
+            backgroundColor: Colors.red,
             child: const Icon(Icons.output));
     }
     return null;
