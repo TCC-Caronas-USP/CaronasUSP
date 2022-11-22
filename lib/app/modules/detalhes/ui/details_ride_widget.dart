@@ -14,11 +14,13 @@ class DetailsRideWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime arrivalTime = ride.endTime;
+    arrivalTime = arrivalTime.toLocal();
     String arrivalHour = arrivalTime.hour.toString().padLeft(2, "0");
     String arrivalMinute = arrivalTime.minute.toString().padLeft(2, "0");
     String arrivalTimeString = "$arrivalHour:$arrivalMinute";
 
     DateTime departureTime = ride.startTime;
+    departureTime = departureTime.toLocal();
     // departureTime = departureTime.subtract(const Duration(hours: 1, minutes: 30)); // TODO confirmar porque é feito esse subtract
     String departureHour = departureTime.hour.toString().padLeft(2, "0");
     String departureMinute = departureTime.minute.toString().padLeft(2, "0");

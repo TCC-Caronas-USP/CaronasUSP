@@ -77,6 +77,7 @@ class RideInfosWidget extends StatelessWidget {
 
   Widget buildRideLocation(
       String destination, String origin, DateTime rideDate) {
+    rideDate = rideDate.toLocal();
     String rideHour = rideDate.hour.toString().padLeft(2, "0");
     String rideMinute = rideDate.minute.toString().padLeft(2, "0");
 
