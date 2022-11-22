@@ -1,4 +1,5 @@
 import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class PegarState extends Equatable {
@@ -16,6 +17,7 @@ class PegarLoading extends PegarState {
 
 class PegarLoaded extends PegarState {
   final List<List<Ride>> offeredRides;
+  final Rider rider;
 
-  PegarLoaded(this.offeredRides) : super([offeredRides]);
+  PegarLoaded(this.offeredRides, this.rider) : super([offeredRides, rider]);
 }

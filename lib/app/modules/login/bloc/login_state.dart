@@ -1,3 +1,4 @@
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class LoginState extends Equatable {
@@ -18,7 +19,9 @@ class UserBanned extends LoginState {
 }
 
 class LoggedIn extends LoginState {
-  LoggedIn() : super([]);
+  final Rider rider;
+
+  LoggedIn(this.rider) : super([rider]);
 }
 
 class GoogleLoggedIn extends LoginState {

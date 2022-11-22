@@ -30,6 +30,14 @@ class _AppState extends State<App> {
     return pages[_selectedIndex]();
   }
 
+  void navigationTapped(int page) {
+    setState(() {
+      _selectedIndex = page;
+    });
+  }
+
+  set selectedIndex(int index) => _selectedIndex;
+
   Widget getBottomNavigationBar() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
@@ -39,7 +47,7 @@ class _AppState extends State<App> {
       iconSize: 25,
       showUnselectedLabels: false,
       currentIndex: _selectedIndex,
-      onTap: (index) => setState(() => _selectedIndex = index),
+      onTap: navigationTapped,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.thumb_up_rounded),
@@ -72,7 +80,8 @@ class _AppState extends State<App> {
         home: BlocBuilder<LoginBloc, LoginState>(
           builder: (BuildContext context, LoginState state) {
             if (state is LoggedIn) {
-              String riderEmail = context.read<LoginBloc>().currentRider!.email;
+              var currentRider = state.rider;
+              String riderEmail = currentRider.email;
               OneSignalRequester.subscribe(riderEmail);
               return Scaffold(
                 body: getIndexedPage(),
