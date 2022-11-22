@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 const String DEV_URL = '10.0.2.2:8551';
-const String HOMOL_URL = 'caronasuspuserservice-production.up.railway.app';
+const String HOMOL_URL = 'caronasuspuserservice-homolog.up.railway.app';
 const String PROD_URL = 'caronasuspuserservice-production.up.railway.app';
 
 const String SERVER_URL = PROD_URL;
