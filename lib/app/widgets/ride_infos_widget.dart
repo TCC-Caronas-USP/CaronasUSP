@@ -2,7 +2,7 @@ import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/detalhes/ui/detalhes_page.dart';
 import 'package:caronas_usp/app/models/ride.dart';
 import 'package:caronas_usp/app/models/rider.dart';
-import 'package:caronas_usp/app/utils/getStatusIcon.dart';
+import 'package:caronas_usp/app/utils/get_status.dart';
 import 'package:flutter/material.dart';
 
 class RideInfosWidget extends StatelessWidget {
@@ -26,7 +26,7 @@ class RideInfosWidget extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => DetalhesPage(ride: ride, page: page)));
+                  builder: (context) => DetalhesPage(rideId: ride.id, page: page)));
             },
             child: Padding(
               padding:
@@ -40,22 +40,19 @@ class RideInfosWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        buildImage(ride.driver.imagePath),
+                        buildImage(ride.driver.profileImage),
                         const SizedBox(
                           width: 12,
                         ),
-                        buildRideLocation(ride.destination.description,
-                            ride.origin.description, ride.arrivalTime),
+                        buildRideLocation(ride.endingPoint.address,
+                            ride.startingPoint.address, ride.endTime),
                         const SizedBox(
                           width: 12,
                         ),
                       ],
                     ),
                   ),
-                  ride.isPassenger(rider)
-                      ? buildRideStatus(ride.getStatus(rider))
-                      : buildRidePriceAndPeople(ride.price,
-                          ride.currentNumPassengers, ride.maxNumPassengers),
+                  buildTrailing(),
                 ],
               ),
             ),
@@ -143,6 +140,16 @@ class RideInfosWidget extends StatelessWidget {
         ],
       )
     ]);
+  }
+
+  Widget buildTrailing() {
+    switch (page) {
+      case AppPage.historico:
+        return buildRideStatus(getRiderStatus(ride, rider));
+      default:
+        return buildRidePriceAndPeople(
+            ride.price, ride.passengerCount!, ride.maxPassengers);
+    }
   }
 
   Widget buildRideStatus(RidePassengerStatus status) {

@@ -42,7 +42,7 @@ class _MapsState extends State<Maps> {
           markerId: MarkerId((location.id ?? 0).toString()),
           icon: BitmapDescriptor.defaultMarkerWithHue(bitMapDescriptor),
           infoWindow: InfoWindow(
-            title: location.description,
+            title: location.address,
           ),
           consumeTapEvents: true,
           position: LatLng(location.lat, location.lon)));
@@ -83,7 +83,9 @@ class _MapsState extends State<Maps> {
                       child: SizedBox(
                         height: widget.height,
                         child: GoogleMap(
+                          minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
                           markers: markersLocation(widget.locations),
+
                           polylines: polylines,
                           myLocationEnabled: false,
                           initialCameraPosition: CameraPosition(

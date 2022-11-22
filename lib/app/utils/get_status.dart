@@ -1,4 +1,6 @@
 import 'package:caronas_usp/app/core/constants.dart';
+import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:flutter/material.dart';
 
 Icon getStatusIcon(RidePassengerStatus status) {
@@ -24,4 +26,9 @@ Icon getStatusIcon(RidePassengerStatus status) {
         size: 30,
       );
   }
+}
+
+RidePassengerStatus getRiderStatus(Ride ride, Rider rider) {
+  Rider actualRider = ride.riders!.singleWhere((element) => element.id == rider.id);
+  return actualRider.passenger!.status;
 }

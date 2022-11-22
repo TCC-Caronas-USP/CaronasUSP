@@ -1,21 +1,21 @@
 import 'package:caronas_usp/app/models/passenger.dart';
+import 'network/passenger_requester.dart';
 
 class PassengerRepository {
+  Future<bool> postPassenger(Passenger passenger) async {
+    Map<String, dynamic> params = passenger.toJson();
+    return PassengerRequester.post(params);
+  }
+
   Future<bool> acceptPassenger(Passenger passenger) async {
-    await Future.delayed(const Duration(seconds: 1));
-
-    print("aceito");
-    print(passenger.toJson());
-
-    return true;
+    return PassengerRequester.accept(passenger);
   }
 
   Future<bool> rejectPassenger(Passenger passenger) async {
-    await Future.delayed(const Duration(seconds: 1));
+    return PassengerRequester.reject(passenger);
+  }
 
-    print("rejeitado");
-    print(passenger.toJson());
-
-    return true;
+  Future<bool> exitRide(Passenger passenger) async {
+    return PassengerRequester.deletePassenger(passenger);
   }
 }

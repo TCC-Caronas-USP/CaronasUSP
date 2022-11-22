@@ -13,12 +13,12 @@ class DetailsRideWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime arrivalTime = ride.arrivalTime;
+    DateTime arrivalTime = ride.endTime;
     String arrivalHour = arrivalTime.hour.toString().padLeft(2, "0");
     String arrivalMinute = arrivalTime.minute.toString().padLeft(2, "0");
     String arrivalTimeString = "$arrivalHour:$arrivalMinute";
 
-    DateTime departureTime = ride.departureTime;
+    DateTime departureTime = ride.startTime;
     // departureTime = departureTime.subtract(const Duration(hours: 1, minutes: 30)); // TODO confirmar porque é feito esse subtract
     String departureHour = departureTime.hour.toString().padLeft(2, "0");
     String departureMinute = departureTime.minute.toString().padLeft(2, "0");
@@ -32,10 +32,10 @@ class DetailsRideWidget extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       children: [
-        InfoDetailsWidget(ride.origin.description, "Origem", context, ride,
+        InfoDetailsWidget(ride.startingPoint.address, "Origem", context, ride,
             page, InfoDetails.location,
             time: departureTimeString),
-        InfoDetailsWidget(ride.destination.description, "Destino", context,
+        InfoDetailsWidget(ride.endingPoint.address, "Destino", context,
             ride, page, InfoDetails.location,
             time: arrivalTimeString),
         Maps(height: 400, locations: ride.locations),
@@ -48,30 +48,30 @@ class DetailsRideWidget extends StatelessWidget {
           InfoDetails.price,
         ),
         detailsText("Motorista"),
-        InfoDetailsWidget(ride.driver.name, ride.driver.instituto, context,
+        InfoDetailsWidget(ride.driver.name, ride.driver.college, context,
             ride, page, InfoDetails.driver,
-            imagePath: ride.driver.imagePath),
+            imagePath: ride.driver.profileImage),
         InfoDetailsWidget(
-          ride.driver.vehicles.first.model,
-          ride.driver.vehicles.first.licensePlate,
+          ride.driver.vehicles!.first.model,
+          ride.driver.vehicles!.first.licensePlate,
           context,
           ride,
           page,
           InfoDetails.car,
         ),
         detailsText("Caronistas"),
-        if (ride.passengers.isEmpty)
+        if (ride.riders!.isEmpty)
           detailsText("Essa carona ainda não possui passageiros", fontSize: 12),
-        for (var passenger in ride.passengers)
+        for (var rider in ride.riders!)
           InfoDetailsWidget(
-              passenger.riderName,
-              passenger.riderInstituto,
+              rider.name,
+              rider.college,
               context,
               ride,
               page,
-              imagePath: passenger.riderImagePath,
+              imagePath: rider.profileImage,
               InfoDetails.passenger,
-              passenger: passenger),
+              rider: rider),
         const SizedBox(
           height: 64,
         )

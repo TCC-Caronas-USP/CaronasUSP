@@ -1,3 +1,5 @@
+import 'package:json_annotation/json_annotation.dart';
+
 const String DEV_URL = '10.0.2.2:8551';
 const String HOMOL_URL = 'caronasuspuserservice-production.up.railway.app';
 const String PROD_URL = 'caronasuspuserservice-production.up.railway.app';
@@ -20,9 +22,9 @@ enum AppPage {
 }
 
 enum RidePassengerStatus {
-  approved,
-  waiting,
-  rejected
+  @JsonValue(0) rejected,
+  @JsonValue(1) waiting,
+  @JsonValue(2) approved
 }
 
 enum InfoDetails {
@@ -31,7 +33,8 @@ enum InfoDetails {
   driver,
   car,
   passenger,
-  whatsapp
+  whatsapp,
+  maps
 }
 
 const String ONESIGNAL_APP_ID = '36a6876f-a1dd-490e-ad39-f38befcff578';
