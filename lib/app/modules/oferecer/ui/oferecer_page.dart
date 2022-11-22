@@ -1,7 +1,5 @@
-import 'package:caronas_usp/app/app.dart';
 import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/criar/ui/criar_page.dart';
-import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_event.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_state.dart';
