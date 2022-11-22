@@ -83,7 +83,9 @@ class _MapsState extends State<Maps> {
                       child: SizedBox(
                         height: widget.height,
                         child: GoogleMap(
+                          minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
                           markers: markersLocation(widget.locations),
+
                           polylines: polylines,
                           myLocationEnabled: false,
                           initialCameraPosition: CameraPosition(

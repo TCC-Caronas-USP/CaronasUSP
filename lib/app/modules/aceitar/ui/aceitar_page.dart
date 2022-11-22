@@ -4,7 +4,6 @@ import 'package:caronas_usp/app/models/rider.dart';
 import 'package:caronas_usp/app/modules/aceitar/bloc/aceitar_bloc.dart';
 import 'package:caronas_usp/app/modules/aceitar/bloc/aceitar_event.dart';
 import 'package:caronas_usp/app/modules/aceitar/bloc/aceitar_state.dart';
-import 'package:caronas_usp/app/modules/detalhes/ui/detalhes_page.dart';
 import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
 import 'package:caronas_usp/app/widgets/info_details_widget.dart';
 import 'package:caronas_usp/app/widgets/maps_widget.dart';
@@ -34,9 +33,7 @@ class _AceitarPageState extends State<AceitarPage> {
 
   Future<void> _handleListener(BuildContext context, AceitarState state) async {
     if (state is PassengerValidated) {
-      Navigator.of(context).pop(MaterialPageRoute(
-          builder: (context) =>
-              DetalhesPage(rideId: widget.ride.id, page: AppPage.oferecer)));
+      Navigator.of(context).pop();
     }
   }
 

@@ -116,8 +116,6 @@ class Ride {
     return rideLocations;
   }
 
-  int get currentNumPassengers => riders!.length;
-
   factory Ride.fromJson(Map<String, dynamic> json) => _$RideFromJson(json);
 
   Map<String, dynamic> toJson() => _$RideToJson(this);
