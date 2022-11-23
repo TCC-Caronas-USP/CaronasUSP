@@ -11,7 +11,11 @@ class OneSignalRequester {
     // OneSignal.shared.sendTags(tags);
   }
 
-  static Future<void> disablePush(bool disable) async {
-    OneSignal.shared.disablePush(disable);
+  static Future<void> disablePush() async {
+    OneSignal.shared.disablePush(true);
+  }
+
+  static Future<void> enablePush() async {
+    OneSignal.shared.disablePush(false);
   }
 }

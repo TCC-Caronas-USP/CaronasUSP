@@ -83,6 +83,7 @@ class _AppState extends State<App> {
               var currentRider = state.rider;
               String riderEmail = currentRider.email;
               OneSignalRequester.subscribe(riderEmail);
+              OneSignalRequester.enablePush();
               return Scaffold(
                 body: getIndexedPage(),
                 bottomNavigationBar: getBottomNavigationBar(),
