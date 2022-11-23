@@ -1,4 +1,6 @@
 import 'package:caronas_usp/app/modules/edit_profile/ui/edit_vehicles.dart';
+import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
+import 'package:caronas_usp/app/modules/login/bloc/login_event.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_bloc.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_event.dart';
 import 'package:caronas_usp/app/modules/profile/bloc/profile_state.dart';
@@ -23,6 +25,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   ProfileBloc? _profileBloc;
+  LoginBloc? _loginBloc;
   Rider? user;
   Vehicle? vehicle;
   bool _loading = true;
@@ -31,6 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     _profileBloc = context.read<ProfileBloc>();
+    _loginBloc = context.read<LoginBloc>();
     _profileBloc!.add(FetchUserInfo());
   }
 
@@ -52,8 +56,16 @@ class _ProfilePageState extends State<ProfilePage> {
         bloc: _profileBloc,
         listener: _handleListener,
         builder: (BuildContext context, ProfileState state) {
+          IconButton logoutButton = IconButton(
+              onPressed: () {
+                _loginBloc!.add(Logout());
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.red,
+              ));
           return Scaffold(
-            appBar: buildAppBar(context, "Perfil"),
+            appBar: buildAppBar(context, "Perfil", logoutButton),
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -85,19 +97,19 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 24,
                       ),
                       NumbersWidget(
-                          caronasRealizadas: user!.caronasMotorista?? 0,
-                          caronasUtilizadas: user!.caronasPassageiro?? 0),
+                          caronasRealizadas: user!.caronasMotorista ?? 0,
+                          caronasUtilizadas: user!.caronasPassageiro ?? 0),
                       const SizedBox(
                         height: 24,
                       ),
                       InfosWidget(
-                          infoTitle: "Telefone", infoValues: [user!.phoneNumber]),
+                          infoTitle: "Telefone",
+                          infoValues: [user!.phoneNumber]),
                       const SizedBox(
                         height: 12,
                       ),
                       InfosWidget(
-                          infoTitle: "Instituto",
-                          infoValues: [user!.college]),
+                          infoTitle: "Instituto", infoValues: [user!.college]),
                       const SizedBox(
                         height: 12,
                       ),
@@ -107,7 +119,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 12,
                       ),
                       InfosWidget(
-                          infoTitle: "Ano", infoValues: [user!.ingressYear.toString()]),
+                          infoTitle: "Ano",
+                          infoValues: [user!.ingressYear.toString()]),
                       const SizedBox(
                         height: 12,
                       ),
