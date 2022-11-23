@@ -57,7 +57,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           vehicles: []);
 
       try {
-        await riderRepository.registerRider(rider);
+        rider = await riderRepository.registerRider(rider);
       } catch (e) {
         print(e);
         emit(await logout());
