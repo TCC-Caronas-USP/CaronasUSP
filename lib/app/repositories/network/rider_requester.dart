@@ -11,7 +11,8 @@ class RiderRequester extends BaseRequester {
     final response = await BaseRequester.get(path);
 
     if (response.statusCode == HttpStatus.ok) {
-      final Map<String, dynamic> userJson = json.decode(response.body);
+      var responseDecoded = const Utf8Decoder().convert(response.body.codeUnits);
+      final Map<String, dynamic> userJson = json.decode(responseDecoded);
       return Rider.fromJson(userJson);
     } else {
       var msg =

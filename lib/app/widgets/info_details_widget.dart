@@ -3,8 +3,10 @@ import 'package:caronas_usp/app/models/ride.dart';
 import 'package:caronas_usp/app/models/rider.dart';
 import 'package:caronas_usp/app/modules/aceitar/ui/aceitar_page.dart';
 import 'package:caronas_usp/app/utils/get_status.dart';
+import 'package:caronas_usp/app/utils/google_map_link.dart';
 import 'package:caronas_usp/app/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
@@ -20,13 +22,20 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
           elevation: 2,
           child: ListTile(
             enabled: true,
-            onTap: () {
+            onTap: () async {
               if (page == AppPage.oferecer &&
                   infoDetails == InfoDetails.passenger &&
                   rider!.passenger!.status == RidePassengerStatus.waiting) {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
                         AceitarPage(ride: ride, rider: rider)));
+              }
+              else if (infoDetails == InfoDetails.maps) {
+                Uri googleMapsLink = constructGoogleMapLink(ride);
+                await canLaunchUrl(googleMapsLink)
+                    ? await launchUrl(googleMapsLink, mode: LaunchMode.externalApplication)
+                  : ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Não foi possível abrir a rota no Google Maps.")));
               }
             },
             title: Text(
@@ -92,7 +101,7 @@ Widget buildInfoDetailsLeading(InfoDetails infoDetails, {imagePath}) {
   switch (infoDetails) {
     case InfoDetails.location:
       return const Icon(
-        Icons.map,
+        Icons.place,
         size: 1000,
       );
     case InfoDetails.price:
@@ -108,6 +117,11 @@ Widget buildInfoDetailsLeading(InfoDetails infoDetails, {imagePath}) {
     case InfoDetails.whatsapp:
       return const Icon(
         Icons.whatsapp,
+        size: 1000,
+      );
+    case InfoDetails.maps:
+      return const Icon(
+        Icons.map,
         size: 1000,
       );
     default:

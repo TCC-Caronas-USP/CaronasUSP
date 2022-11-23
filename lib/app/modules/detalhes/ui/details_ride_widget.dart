@@ -42,6 +42,14 @@ class DetailsRideWidget extends StatelessWidget {
             time: arrivalTimeString),
         Maps(height: 400, locations: ride.locations),
         InfoDetailsWidget(
+          "Google Maps",
+          "Clique para abrir a rota.",
+          context,
+          ride,
+          page,
+          InfoDetails.maps,
+        ),
+        InfoDetailsWidget(
           "R\$ ${ride.price.toStringAsFixed(2)}",
           "Pago ao final da carona",
           context,

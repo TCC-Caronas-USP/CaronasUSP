@@ -36,6 +36,7 @@ class BaseRequester {
     Uri uri = getUri(path);
     headers = await getHeaders(headers);
     final response = await http.get(uri, headers: headers);
+    print(response.body);
     return response;
   }
 
@@ -45,6 +46,7 @@ class BaseRequester {
     headers = await getHeaders(headers);
     final body = jsonEncode(params);
     final response = await http.post(uri, headers: headers, body: body);
+    print(response.body);
     return response;
   }
 
@@ -54,6 +56,7 @@ class BaseRequester {
     headers = await getHeaders(headers);
     final body = jsonEncode(params);
     final response = await http.patch(uri, headers: headers, body: body);
+    print(response.body);
     return response;
   }
 
@@ -62,6 +65,7 @@ class BaseRequester {
     Uri uri = getUri(path);
     headers = await getHeaders(headers);
     final response = await http.delete(uri, headers: headers);
+    print(response.body);
     return response;
   }
 }

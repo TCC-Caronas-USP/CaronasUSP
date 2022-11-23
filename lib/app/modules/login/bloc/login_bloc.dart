@@ -1,6 +1,7 @@
 import 'package:caronas_usp/app/core/constants.dart';
 import 'package:caronas_usp/app/modules/login/bloc/login_event.dart';
 import 'package:caronas_usp/app/modules/login/bloc/login_state.dart';
+import 'package:caronas_usp/app/repositories/network/onesignal_requester.dart';
 import 'package:caronas_usp/app/repositories/rider_repository.dart';
 import 'package:caronas_usp/app/models/rider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -100,6 +101,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Future<LoginState> logout() async {
+    try {
+      await OneSignalRequester.disablePush();
+    } catch (e) {}
     try {
       await googleSignIn.disconnect();
     } catch (e) {}
