@@ -35,8 +35,8 @@ class RiderRepository {
     }
   }
 
-  Future<void> registerRider(Rider rider) async {
+  Future<Rider> registerRider(Rider rider) async {
     Map<String, dynamic> params = rider.toJson();
-    await RiderRequester.postRider(params);
+    return RiderRequester.postRider(params);
   }
 }

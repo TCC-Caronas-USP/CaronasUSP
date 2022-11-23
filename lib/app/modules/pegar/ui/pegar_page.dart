@@ -22,7 +22,7 @@ class _PegarPageState extends State<PegarPage> {
   PegarBloc? _pegarBloc;
   DateTime date = DateTime.now();
 
-  late Rider rider = context.read<LoginBloc>().currentRider!;
+  late Rider rider;
   List<List<Ride>>? offeredRides;
   bool _loading = true;
 
@@ -41,6 +41,7 @@ class _PegarPageState extends State<PegarPage> {
     }
     if (state is PegarLoaded) {
       offeredRides = state.offeredRides;
+      rider = state.rider;
       _loading = false;
     }
   }

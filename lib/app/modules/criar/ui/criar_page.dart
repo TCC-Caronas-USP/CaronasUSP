@@ -325,7 +325,7 @@ class _CriarPageState extends State<CriarPage> {
                         ),
                         const SizedBox(height: 12),
                         const Text(
-                            "Por favor, tenha atenção as informações fornecidas, porque a carona não poderá ser editada depois de criada.",
+                            "Por favor, tenha atenção às informações fornecidas, porque a carona não poderá ser editada depois de criada.",
                             overflow: TextOverflow.fade,
                             style: TextStyle(fontSize: 12)),
                         const SizedBox(height: 12),

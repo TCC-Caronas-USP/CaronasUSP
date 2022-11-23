@@ -21,7 +21,7 @@ class HistoricoPage extends StatefulWidget {
 class _HistoricoPageState extends State<HistoricoPage> {
   HistoricoBloc? _historicoBloc;
 
-  late Rider rider = context.read<LoginBloc>().currentRider!;
+  late Rider rider;
   List<List<Ride>>? myRides;
   bool _loading = true;
 
@@ -41,6 +41,7 @@ class _HistoricoPageState extends State<HistoricoPage> {
     }
     if (state is HistoricoLoaded) {
       myRides = state.myRides;
+      rider = state.rider;
       _loading = false;
     }
   }

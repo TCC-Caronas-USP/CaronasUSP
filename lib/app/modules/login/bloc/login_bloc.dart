@@ -24,7 +24,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         bool riderExists = await riderRepository.checkIfRiderExists();
         if (riderExists) {
           _rider = await riderRepository.getRider(); // TODO Ao invés de chamar riderRepository 2 vezes, usar Result<T, E> para retornar Rider ou Erro. Fonte: https://gist.github.com/anoop4real/57584eb3a04ce0b9be6252401b0bde8b
-          emit(LoggedIn());
+          emit(LoggedIn(_rider!));
         } else {
           emit(LoggedInFirstTime());
         }
@@ -57,14 +57,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           vehicles: []);
 
       try {
-        await riderRepository.registerRider(rider);
+        rider = await riderRepository.registerRider(rider);
       } catch (e) {
         print(e);
         emit(await logout());
         return;
       }
       _rider = rider;
-      emit(LoggedIn());
+      emit(LoggedIn(_rider!));
     });
   }
 

@@ -21,22 +21,25 @@ class Rider {
   final List<Vehicle>? vehicles;
   final Passenger? passenger;
 
+  bool hasVehicle() {
+    return vehicles?.isNotEmpty == true;
+  }
+
   factory Rider.fromJson(Map<String, dynamic> json) => _$RiderFromJson(json);
 
   Map<String, dynamic> toJson() => _$RiderToJson(this);
 
-  Rider({
-    required this.id,
-    required this.profileImage,
-    required this.name,
-    required this.email,
-    required this.phoneNumber,
-    required this.college,
-    required this.course,
-    required this.ingressYear,
-    this.caronasMotorista,
-    this.caronasPassageiro,
-    this.vehicles,
-    this.passenger
-  });
+  Rider(
+      {required this.id,
+      required this.profileImage,
+      required this.name,
+      required this.email,
+      required this.phoneNumber,
+      required this.college,
+      required this.course,
+      required this.ingressYear,
+      this.caronasMotorista,
+      this.caronasPassageiro,
+      this.vehicles,
+      this.passenger});
 }

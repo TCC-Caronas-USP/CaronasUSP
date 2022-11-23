@@ -1,4 +1,5 @@
 import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class DetalhesState extends Equatable {
@@ -16,8 +17,9 @@ class RideDetailsLoading extends DetalhesState {
 
 class RideDetails extends DetalhesState {
   final Ride ride;
+  final Rider rider;
 
-  RideDetails(this.ride) : super([ride]);
+  RideDetails(this.ride, this.rider) : super([ride, rider]);
 }
 
 class Canceling extends DetalhesState {
