@@ -1,7 +1,6 @@
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_bloc.dart';
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_event.dart';
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_state.dart';
-import 'package:caronas_usp/app/modules/profile/ui/profile_page.dart';
 import 'package:caronas_usp/app/models/vehicle.dart';
 import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
 import 'package:caronas_usp/app/widgets/text_field_widget.dart';
@@ -43,9 +42,7 @@ class _EditVehicleState extends State<EditVehicle> {
       BuildContext context, EditProfileState state) async {
     if (state is EditedVehicle) {
       if (state.updated == true) {
-        Navigator.of(context).pop(MaterialPageRoute(
-            builder: (context) =>
-                const ProfilePage()));
+        Navigator.of(context).pop();
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
