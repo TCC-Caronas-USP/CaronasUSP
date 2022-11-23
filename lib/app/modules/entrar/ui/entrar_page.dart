@@ -6,7 +6,6 @@ import 'package:caronas_usp/app/modules/entrar/bloc/entrar_event.dart';
 import 'package:caronas_usp/app/modules/entrar/bloc/entrar_state.dart';
 import 'package:caronas_usp/app/models/location.dart';
 import 'package:caronas_usp/app/models/ride.dart';
-import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
 import 'package:caronas_usp/app/utils/maps_autocomplete.dart';
 import 'package:caronas_usp/app/utils/maps_open_route_service.dart';
 import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
@@ -17,8 +16,9 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class Entrar extends StatefulWidget {
   Ride ride;
+  Rider rider;
 
-  Entrar({Key? key, required this.ride}) : super(key: key);
+  Entrar({Key? key, required this.ride, required this.rider}) : super(key: key);
 
   @override
   State<Entrar> createState() => _EntrarState();
@@ -28,7 +28,7 @@ class _EntrarState extends State<Entrar> {
   EntrarBloc? _entrarBloc;
 
   late Ride ride;
-  late Rider rider = context.read<LoginBloc>().currentRider!;
+  late Rider rider;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 

@@ -41,24 +41,25 @@ Future<void> main() async {
         BlocProvider(
           create: (context) => OferecerBloc(
             RidesRepository(),
+            RiderRepository()
           ),
         ),
         BlocProvider(
-          create: (context) => PegarBloc(RidesRepository()),
+          create: (context) => PegarBloc(RidesRepository(), RiderRepository()),
         ),
         BlocProvider(
           create: (context) => EntrarBloc(PassengerRepository()),
         ),
         BlocProvider(
-          create: (context) => HistoricoBloc(RidesRepository()),
+          create: (context) =>
+              HistoricoBloc(RidesRepository(), RiderRepository()),
         ),
         BlocProvider(
           create: (context) => CriarBloc(RidesRepository(), RiderRepository()),
         ),
         BlocProvider(
           create: (context) => DetalhesBloc(
-            RidesRepository(), PassengerRepository()
-          ),
+              RidesRepository(), RiderRepository(), PassengerRepository()),
         ),
         BlocProvider(
           create: (context) => AceitarBloc(
