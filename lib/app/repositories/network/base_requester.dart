@@ -37,7 +37,7 @@ class BaseRequester {
     Uri uri = getUri(path);
     headers = await getHeaders(headers);
     final response = await http.get(uri, headers: headers);
-    print(response);
+    print(response.body);
     return response;
   }
 
