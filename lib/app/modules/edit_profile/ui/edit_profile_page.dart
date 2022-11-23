@@ -1,7 +1,6 @@
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_bloc.dart';
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_event.dart';
 import 'package:caronas_usp/app/modules/edit_profile/bloc/edit_profile_state.dart';
-import 'package:caronas_usp/app/modules/profile/ui/profile_page.dart';
 import 'package:caronas_usp/app/models/rider.dart';
 import 'package:caronas_usp/app/utils/input_validators.dart';
 import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
@@ -65,8 +64,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       _loading = false;
     }
     if (state is EditedProfile) {
-      Navigator.of(context)
-          .pop(MaterialPageRoute(builder: (context) => const ProfilePage()));
+      Navigator.of(context).pop();
     }
   }
 

@@ -67,11 +67,12 @@ class _ProfilePageState extends State<ProfilePage> {
           return Scaffold(
             appBar: buildAppBar(context, "Perfil", logoutButton),
             floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                onPressed: () async {
+                  await Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => EditProfilePage(
                             rider: user!,
                           )));
+                  _profileBloc!.add(FetchUserInfo());
                 },
                 backgroundColor: Colors.green[400],
                 child: const Icon(Icons.edit)),
@@ -133,11 +134,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         ]),
                       const SizedBox(height: 12),
                       ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
+                          onPressed: () async {
+                            await Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
                                     EditVehicle(vehicle: vehicle)));
-
                             _profileBloc!.add(FetchUserInfo());
                           },
                           child: vehicle == null

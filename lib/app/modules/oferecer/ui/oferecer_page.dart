@@ -69,9 +69,10 @@ class _OferecerPageState extends State<OferecerPage> {
           return Scaffold(
             appBar: buildAppBar(context, "Oferecer Caronas"),
             floatingActionButton: FloatingActionButton(
-                onPressed: !_loading && rider.hasVehicle()? () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                onPressed: !_loading && rider.hasVehicle()? () async {
+                  await Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const CriarPage()));
+                  _oferecerBloc!.add(FetchUserOfferedRides());
                 } : null,
                 backgroundColor: Colors.green[400],
                 child: const Icon(Icons.add)),

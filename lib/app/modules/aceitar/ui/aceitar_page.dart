@@ -4,6 +4,8 @@ import 'package:caronas_usp/app/models/rider.dart';
 import 'package:caronas_usp/app/modules/aceitar/bloc/aceitar_bloc.dart';
 import 'package:caronas_usp/app/modules/aceitar/bloc/aceitar_event.dart';
 import 'package:caronas_usp/app/modules/aceitar/bloc/aceitar_state.dart';
+import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_bloc.dart';
+import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_event.dart';
 import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
 import 'package:caronas_usp/app/widgets/info_details_widget.dart';
 import 'package:caronas_usp/app/widgets/maps_widget.dart';
@@ -23,18 +25,22 @@ class AceitarPage extends StatefulWidget {
 
 class _AceitarPageState extends State<AceitarPage> {
   AceitarBloc? _aceitarBloc;
+  DetalhesBloc? _detalhesBloc;
 
   @override
   void initState() {
     super.initState();
 
     _aceitarBloc = context.read<AceitarBloc>();
+
+    _detalhesBloc = context.read<DetalhesBloc>();
   }
 
   Future<void> _handleListener(BuildContext context, AceitarState state) async {
     if (state is PassengerValidated) {
       await Future.delayed(const Duration(seconds: 2), (){});
       Navigator.of(context).pop();
+      _detalhesBloc!.add(FetchRideDetails(widget.ride.id));
     }
   }
 
