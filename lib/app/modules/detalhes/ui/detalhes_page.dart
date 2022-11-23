@@ -29,7 +29,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
 
   bool _loading = true;
   late Ride ride;
-  late Rider rider = context.read<LoginBloc>().currentRider!;
+  late Rider rider;
 
   @override
   void initState() {
@@ -47,6 +47,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
     if (state is RideDetails) {
       _loading = false;
       ride = state.ride;
+      rider = state.rider;
     }
     if (state is Canceled) {
       _loading = false;
@@ -131,7 +132,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
             heroTag: "btnEntrar",
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Entrar(ride: ride)));
+                  builder: (context) => Entrar(ride: ride, rider: rider,)));
             },
             backgroundColor: Colors.green[400],
             child: const Icon(Icons.input));

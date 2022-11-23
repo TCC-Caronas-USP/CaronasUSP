@@ -1,4 +1,5 @@
 import 'package:caronas_usp/app/models/ride.dart';
+import 'package:caronas_usp/app/models/rider.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class OferecerState extends Equatable {
@@ -16,6 +17,8 @@ class OferecerLoading extends OferecerState {
 
 class OferecerLoaded extends OferecerState {
   final List<List<Ride>> userOfferedRides;
+  final Rider rider;
 
-  OferecerLoaded(this.userOfferedRides) : super([userOfferedRides]);
+  OferecerLoaded(this.userOfferedRides, this.rider)
+      : super([userOfferedRides, rider]);
 }
