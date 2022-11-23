@@ -55,26 +55,37 @@ Widget InfoDetailsWidget(String title, String subtitle, BuildContext context,
           padding: const EdgeInsets.only(right: 12),
           tooltip: "Conversar no Whatsapp",
           onPressed: () async => {
-
-            if (infoDetails == InfoDetails.driver){
-              if (await canLaunchUrlString("https://wa.me/${ride.driver.phoneNumber}"))
-                await launchUrlString("https://wa.me/${ride.driver.phoneNumber.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "")}", mode: LaunchMode.externalApplication)
-              else
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
-            }
-            else if (infoDetails == InfoDetails.passenger){
-              if (await canLaunchUrlString("https://wa.me/${rider!.phoneNumber}"))
-                await launchUrlString("https://wa.me/55${rider.phoneNumber.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "")}", mode: LaunchMode.externalApplication)
-              else
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Não foi possível abrir o Whatsapp.")))
-            }
-
+            if (infoDetails == InfoDetails.driver)
+              {
+                if (await canLaunchUrlString(
+                    buildWhatsappLink(ride.driver.phoneNumber)))
+                  await launchUrlString(
+                      buildWhatsappLink(ride.driver.phoneNumber),
+                      mode: LaunchMode.externalApplication)
+                else
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Não foi possível abrir o Whatsapp.")))
+              }
+            else if (infoDetails == InfoDetails.passenger)
+              {
+                if (await canLaunchUrlString(
+                    buildWhatsappLink(rider!.phoneNumber)))
+                  await launchUrlString(buildWhatsappLink(rider.phoneNumber),
+                      mode: LaunchMode.externalApplication)
+                else
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Não foi possível abrir o Whatsapp.")))
+              }
           },
         )
     ],
   );
+}
+
+String buildWhatsappLink(String phoneNumber) {
+  String whatsappLink =
+      "https://wa.me/55${phoneNumber.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "").replaceAll("-", "")}";
+  return whatsappLink;
 }
 
 Widget buildInfoDetailsLeading(InfoDetails infoDetails, {imagePath}) {
