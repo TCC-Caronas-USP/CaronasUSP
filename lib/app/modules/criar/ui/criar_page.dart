@@ -5,7 +5,6 @@ import 'package:caronas_usp/app/modules/criar/bloc/criar_event.dart';
 import 'package:caronas_usp/app/modules/criar/bloc/criar_state.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_bloc.dart';
 import 'package:caronas_usp/app/modules/oferecer/bloc/oferecer_event.dart';
-import 'package:caronas_usp/app/modules/oferecer/ui/oferecer_page.dart';
 import 'package:caronas_usp/app/models/location.dart';
 import 'package:caronas_usp/app/models/ride.dart';
 import 'package:caronas_usp/app/models/rider.dart';
@@ -94,8 +93,7 @@ class _CriarPageState extends State<CriarPage> {
     if (state is Created) {
       _loading = false;
       if (state.created == true) {
-        Navigator.of(context)
-            .pop(MaterialPageRoute(builder: (context) => const OferecerPage()));
+        Navigator.of(context).pop();
       }
     }
   }

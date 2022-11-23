@@ -33,6 +33,7 @@ class _AceitarPageState extends State<AceitarPage> {
 
   Future<void> _handleListener(BuildContext context, AceitarState state) async {
     if (state is PassengerValidated) {
+      await Future.delayed(const Duration(seconds: 2), (){});
       Navigator.of(context).pop();
     }
   }

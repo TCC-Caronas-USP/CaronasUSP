@@ -55,6 +55,7 @@ class _EntrarState extends State<Entrar> {
     _entrarBloc = context.read<EntrarBloc>();
 
     ride = widget.ride;
+    rider = widget.rider;
   }
 
   Future<void> _handleListener(BuildContext context, EntrarState state) async {

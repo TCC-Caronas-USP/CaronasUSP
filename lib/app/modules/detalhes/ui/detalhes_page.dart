@@ -4,8 +4,6 @@ import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_bloc.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_event.dart';
 import 'package:caronas_usp/app/modules/detalhes/bloc/detalhes_state.dart';
 import 'package:caronas_usp/app/modules/entrar/ui/entrar_page.dart';
-import 'package:caronas_usp/app/modules/login/bloc/login_bloc.dart';
-import 'package:caronas_usp/app/modules/oferecer/ui/oferecer_page.dart';
 import 'package:caronas_usp/app/models/ride.dart';
 import 'package:caronas_usp/app/widgets/appbar_backbutton_widget.dart';
 import 'package:caronas_usp/app/modules/detalhes/ui/details_ride_widget.dart';
@@ -52,6 +50,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
     if (state is Canceled) {
       _loading = false;
       if (state.canceled == true) {
+        await Future.delayed(const Duration(seconds: 2), (){});
         Navigator.of(context).pop();
         Navigator.of(context).pop();
       } else {
@@ -71,6 +70,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
     if (state is Exited) {
       _loading = false;
       if (state.canceled == true) {
+        await Future.delayed(const Duration(seconds: 2), (){});
         Navigator.of(context).pop();
         Navigator.of(context).pop();
       }
@@ -143,7 +143,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
             onPressed: () => showDialog(
             context: context,
             builder: (BuildContext context) => AlertDialog(
-              title: const Text("Deseja realmente sair a carona?",
+              title: const Text("Deseja realmente sair da carona?",
                   textAlign: TextAlign.center),
               alignment: Alignment.center,
               actions: <Widget>[
